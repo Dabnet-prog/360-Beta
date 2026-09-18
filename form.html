@@ -71,7 +71,6 @@ input {
     font-size: 16px;
     color: #000000;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 input:focus {
@@ -101,11 +100,6 @@ input:focus {
     border: 1px solid #d6d6d6;
     border-radius: 8px;
     cursor: pointer;
-    transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-.option:hover {
-    border-color: #999999;
 }
 
 .option input {
@@ -185,15 +179,11 @@ textarea:focus {
     font-size: 17px;
     font-weight: 500;
     cursor: pointer;
-    transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
-.confirm:hover {
-    opacity: 0.9;
-}
-
-.confirm:active {
-    transform: scale(0.99);
+.confirm:disabled {
+    opacity: 0.6;
+    cursor: wait;
 }
 
 .error {
@@ -205,7 +195,6 @@ textarea:focus {
 }
 
 @media (max-width: 600px) {
-
     body {
         padding: 28px 18px 35px;
     }
@@ -255,50 +244,19 @@ textarea:focus {
     </div>
 
     <div class="field">
-
-        <label for="name">
-            الاسم الكامل
-        </label>
-
-        <input
-            type="text"
-            id="name"
-            autocomplete="name"
-        >
-
+        <label for="name">الاسم الكامل</label>
+        <input type="text" id="name" autocomplete="name">
     </div>
-
 
     <div class="field">
-
-        <label for="city">
-            المدينة
-        </label>
-
-        <input
-            type="text"
-            id="city"
-            autocomplete="address-level2"
-        >
-
+        <label for="city">المدينة</label>
+        <input type="text" id="city" autocomplete="address-level2">
     </div>
-
 
     <div class="field">
-
-        <label for="phone">
-            رقم الهاتف
-        </label>
-
-        <input
-            type="tel"
-            id="phone"
-            inputmode="tel"
-            autocomplete="tel"
-        >
-
+        <label for="phone">رقم الهاتف</label>
+        <input type="tel" id="phone" inputmode="tel" autocomplete="tel">
     </div>
-
 
     <div class="field">
 
@@ -306,77 +264,58 @@ textarea:focus {
             المشكلة
         </div>
 
-
         <div class="options">
 
             <label class="option">
-
                 <input
                     type="radio"
                     name="problem"
                     value="يوجد مهتمين لكن لا يشترون"
                 >
-
                 <span class="radio"></span>
-
                 <span class="option-text">
                     يوجد مهتمين لكن لا يشترون
                 </span>
-
             </label>
 
-
             <label class="option">
-
                 <input
                     type="radio"
                     name="problem"
                     value="لا يوجد مهتمين"
                 >
-
                 <span class="radio"></span>
-
                 <span class="option-text">
                     لا يوجد مهتمين
                 </span>
-
             </label>
 
-
             <label class="option">
-
                 <input
                     type="radio"
                     name="problem"
                     value="أخرى"
                     id="otherOption"
                 >
-
                 <span class="radio"></span>
-
                 <span class="option-text">
                     أخرى
                 </span>
-
             </label>
 
         </div>
-
 
         <div
             class="other-problem"
             id="otherProblem"
         >
-
             <textarea
                 id="otherText"
                 placeholder="اكتب مشكلتك هنا..."
             ></textarea>
-
         </div>
 
     </div>
-
 
     <button
         class="confirm"
@@ -385,7 +324,6 @@ textarea:focus {
     >
         تأكيد
     </button>
-
 
     <div
         class="error"
@@ -398,6 +336,10 @@ textarea:focus {
 
 
 <script>
+
+const scriptURL =
+    "https://script.google.com/macros/s/AKfycbx-leQ-ZWuA4LVjz-spCAhyY84_3YQer9vVgFPuHSYAiESgmGvnc9GMhAjXFYaWhtfNXw/exec";
+
 
 const otherOption =
     document.getElementById("otherOption");
@@ -466,7 +408,6 @@ confirmButton.addEventListener(
             .value
             .trim();
 
-
         const selected =
             document.querySelector(
                 'input[name="problem"]:checked'
@@ -508,8 +449,52 @@ confirmButton.addEventListener(
         }
 
 
-        window.location.href =
-            "success.html";
+        const problem =
+            selected.value === "أخرى"
+                ? otherText.value.trim()
+                : selected.value;
+
+
+        confirmButton.disabled = true;
+        confirmButton.textContent = "جاري الإرسال...";
+
+
+        fetch(scriptURL, {
+
+            method: "POST",
+
+            body: JSON.stringify({
+
+                name: name,
+                city: city,
+                phone: phone,
+                problem: problem
+
+            })
+
+        })
+
+        .then(function () {
+
+            window.location.href =
+                "success.html";
+
+        })
+
+        .catch(function () {
+
+            confirmButton.disabled = false;
+
+            confirmButton.textContent =
+                "تأكيد";
+
+            error.textContent =
+                "حدث خطأ أثناء إرسال البيانات. حاول مرة أخرى.";
+
+            error.style.display =
+                "block";
+
+        });
 
     }
 );
