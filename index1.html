@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>360¹</title>
+
+    <style>
+
+        /* =========================
+           الإعداد الأساسي
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+
+            background: #ffffff;
+            color: #000000;
+
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* =========================
+           الصفحة
+        ========================= */
+
+        .welcome {
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transition: transform 0.7s ease;
+        }
+
+
+        /* =========================
+           المحتوى الرئيسي
+        ========================= */
+
+        .main {
+            width: 100%;
+
+            text-align: center;
+
+            user-select: none;
+
+            transform: translateY(-55px);
+
+            padding: 0 20px;
+        }
+
+
+        /* =========================
+           360¹
+        ========================= */
+
+        .logo {
+            direction: ltr;
+
+            font-size: 110px;
+            font-weight: 800;
+
+            line-height: 0.95;
+
+            letter-spacing: -4px;
+
+            color: #000000;
+        }
+
+
+        /* الرقم 1 */
+
+        .logo .one {
+            font-size: 0.38em;
+
+            vertical-align: super;
+
+            position: relative;
+            top: -0.18em;
+
+            letter-spacing: 0;
+        }
+
+
+        /* =========================
+           السؤال
+        ========================= */
+
+        .statement {
+            margin: 30px auto 0;
+
+            max-width: 720px;
+
+            font-size: 25px;
+            font-weight: 400;
+
+            line-height: 1.55;
+
+            color: #333333;
+        }
+
+
+        /* =========================
+           الجزء السفلي
+        ========================= */
+
+        .bottom {
+            position: absolute;
+
+            left: 0;
+            right: 0;
+
+            bottom: 26px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            user-select: none;
+        }
+
+
+        /* النص */
+
+        .hint {
+            margin-bottom: 6px;
+
+            font-size: 16px;
+            font-weight: 400;
+
+            color: #666666;
+        }
+
+
+        /* السهم */
+
+        .arrow {
+            font-size: 38px;
+            font-weight: 300;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            animation: arrowMove 1.8s ease-in-out infinite;
+        }
+
+
+        /* =========================
+           حركة السهم
+        ========================= */
+
+        @keyframes arrowMove {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.55;
+            }
+
+            50% {
+                transform: translateY(8px);
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =========================
+           الهاتف
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .main {
+                transform: translateY(-62px);
+
+                padding: 0 18px;
+            }
+
+
+            /* 360¹ */
+
+            .logo {
+                font-size: 78px;
+
+                letter-spacing: -3px;
+            }
+
+
+            /* السؤال */
+
+            .statement {
+                margin-top: 24px;
+
+                width: 100%;
+                max-width: 340px;
+
+                padding: 0;
+
+                font-size: 20px;
+
+                line-height: 1.65;
+
+                text-align: center;
+            }
+
+
+            /* الجزء السفلي */
+
+            .bottom {
+                bottom: 20px;
+            }
+
+
+            .hint {
+                margin-bottom: 5px;
+
+                font-size: 14px;
+            }
+
+
+            .arrow {
+                font-size: 34px;
+            }
+
+        }
+
+
+        /* =========================
+           الهواتف الصغيرة جدًا
+        ========================= */
+
+        @media (max-height: 650px) and (max-width: 600px) {
+
+            .main {
+                transform: translateY(-48px);
+            }
+
+
+            .logo {
+                font-size: 70px;
+            }
+
+
+            .statement {
+                margin-top: 20px;
+
+                font-size: 18px;
+
+                line-height: 1.5;
+
+                max-width: 320px;
+            }
+
+
+            .bottom {
+                bottom: 14px;
+            }
+
+
+            .hint {
+                font-size: 13px;
+            }
+
+
+            .arrow {
+                font-size: 31px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <section
+        class="welcome"
+        id="welcome"
+    >
+
+        <!-- =========================
+             الهوية + السؤال
+        ========================= -->
+
+        <div class="main">
+
+            <div class="logo">
+
+                360<span class="one">1</span>
+
+            </div>
+
+
+            <div class="statement">
+
+                إذا كان العميل مهتمًا بالمنتج... فلماذا لا يشتريه؟
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             الخطوة التالية
+        ========================= -->
+
+        <div class="bottom">
+
+            <div class="hint">
+
+                خطوة بسيطة للبدء
+
+            </div>
+
+
+            <div
+                class="arrow"
+                id="arrow"
+            >
+
+                ↓
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <script>
+
+        /* =========================
+           العناصر
+        ========================= */
+
+        const welcome =
+            document.getElementById("welcome");
+
+        const arrow =
+            document.getElementById("arrow");
+
+
+        let startY = 0;
+
+        let moved = false;
+
+
+        /* =========================
+           الانتقال إلى صفحة البيانات
+        ========================= */
+
+        function goToForm() {
+
+            if (moved) return;
+
+            moved = true;
+
+
+            welcome.style.transform =
+                "translateY(-100vh)";
+
+
+            setTimeout(function () {
+
+                window.location.href =
+                    "form.html";
+
+            }, 700);
+
+        }
+
+
+        /* =========================
+           الضغط على السهم
+        ========================= */
+
+        arrow.addEventListener(
+            "click",
+            function () {
+
+                goToForm();
+
+            }
+        );
+
+
+        /* =========================
+           السحب للأعلى
+        ========================= */
+
+        document.addEventListener(
+            "touchstart",
+            function (event) {
+
+                startY =
+                    event.touches[0].clientY;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        document.addEventListener(
+            "touchend",
+            function (event) {
+
+                const endY =
+                    event.changedTouches[0].clientY;
+
+                const distance =
+                    startY - endY;
+
+
+                if (distance > 50) {
+
+                    goToForm();
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* =========================
+           عجلة الماوس
+        ========================= */
+
+        document.addEventListener(
+            "wheel",
+            function (event) {
+
+                if (event.deltaY > 20) {
+
+                    goToForm();
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
