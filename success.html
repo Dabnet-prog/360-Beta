@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360¹</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            text-align: center;
+        }
+
+        .logo {
+            direction: ltr;
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -3px;
+            margin-bottom: 45px;
+        }
+
+        .logo .one {
+            font-size: 0.38em;
+            vertical-align: super;
+            position: relative;
+            top: -0.18em;
+            letter-spacing: 0;
+        }
+
+        .message {
+            font-size: 22px;
+            line-height: 1.7;
+            color: #222222;
+            margin-bottom: 38px;
+        }
+
+        .finish {
+            width: 100%;
+            max-width: 300px;
+            height: 52px;
+            border: none;
+            border-radius: 8px;
+            background: #000000;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .finish:active {
+            transform: scale(0.99);
+        }
+
+        @media (max-width: 600px) {
+            .logo {
+                font-size: 52px;
+                margin-bottom: 38px;
+            }
+
+            .message {
+                font-size: 19px;
+                margin-bottom: 32px;
+            }
+
+            .finish {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="logo">
+            360<span class="one">1</span>
+        </div>
+
+        <div class="message">
+            تم استلام بياناتك بنجاح.<br>
+            سنتواصل معك في أقرب وقت.
+        </div>
+
+        <button class="finish" onclick="finish()">
+            إنهاء
+        </button>
+
+    </main>
+
+    <script>
+        function finish() {
+            window.location.replace("about:blank");
+        }
+    </script>
+
+</body>
+</html>
