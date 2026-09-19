@@ -9,10 +9,6 @@
 
     <style>
 
-        /* =========================
-           الإعداد الأساسي
-        ========================= */
-
         * {
             box-sizing: border-box;
         }
@@ -22,25 +18,16 @@
             margin: 0;
             width: 100%;
             height: 100%;
-
             overflow: hidden;
-
             background: #ffffff;
             color: #000000;
-
             font-family: Arial, sans-serif;
         }
-
-
-        /* =========================
-           الصفحة
-        ========================= */
 
         .welcome {
             width: 100%;
             height: 100vh;
             height: 100dvh;
-
             position: relative;
 
             display: flex;
@@ -50,84 +37,44 @@
             transition: transform 0.7s ease;
         }
 
-
-        /* =========================
-           المحتوى الرئيسي
-        ========================= */
-
         .main {
             width: 100%;
-
             text-align: center;
-
             user-select: none;
-
             transform: translateY(-55px);
-
             padding: 0 20px;
         }
 
-
-        /* =========================
-           360¹
-        ========================= */
-
         .logo {
             direction: ltr;
-
             font-size: 110px;
             font-weight: 800;
-
             line-height: 0.95;
-
             letter-spacing: -4px;
-
             color: #000000;
         }
 
-
-        /* الرقم 1 */
-
         .logo .one {
             font-size: 0.38em;
-
             vertical-align: super;
-
             position: relative;
             top: -0.18em;
-
             letter-spacing: 0;
         }
 
-
-        /* =========================
-           السؤال
-        ========================= */
-
         .statement {
             margin: 30px auto 0;
-
             max-width: 720px;
-
             font-size: 25px;
             font-weight: 400;
-
             line-height: 1.55;
-
             color: #333333;
         }
 
-
-        /* =========================
-           الجزء السفلي
-        ========================= */
-
         .bottom {
             position: absolute;
-
             left: 0;
             right: 0;
-
             bottom: 26px;
 
             display: flex;
@@ -137,36 +84,21 @@
             user-select: none;
         }
 
-
-        /* النص */
-
         .hint {
             margin-bottom: 6px;
-
             font-size: 16px;
             font-weight: 400;
-
             color: #666666;
         }
-
-
-        /* السهم */
 
         .arrow {
             font-size: 38px;
             font-weight: 300;
-
             line-height: 1;
-
             cursor: pointer;
 
             animation: arrowMove 1.8s ease-in-out infinite;
         }
-
-
-        /* =========================
-           حركة السهم
-        ========================= */
 
         @keyframes arrowMove {
 
@@ -183,60 +115,36 @@
 
         }
 
-
-        /* =========================
-           الهاتف
-        ========================= */
-
         @media (max-width: 600px) {
 
             .main {
                 transform: translateY(-62px);
-
                 padding: 0 18px;
             }
 
-
-            /* 360¹ */
-
             .logo {
                 font-size: 78px;
-
                 letter-spacing: -3px;
             }
 
-
-            /* السؤال */
-
             .statement {
                 margin-top: 24px;
-
                 width: 100%;
                 max-width: 340px;
-
                 padding: 0;
-
                 font-size: 20px;
-
                 line-height: 1.65;
-
                 text-align: center;
             }
-
-
-            /* الجزء السفلي */
 
             .bottom {
                 bottom: 20px;
             }
 
-
             .hint {
                 margin-bottom: 5px;
-
                 font-size: 14px;
             }
-
 
             .arrow {
                 font-size: 34px;
@@ -244,43 +152,30 @@
 
         }
 
-
-        /* =========================
-           الهواتف الصغيرة جدًا
-        ========================= */
-
         @media (max-height: 650px) and (max-width: 600px) {
 
             .main {
                 transform: translateY(-48px);
             }
 
-
             .logo {
                 font-size: 70px;
             }
 
-
             .statement {
                 margin-top: 20px;
-
                 font-size: 18px;
-
                 line-height: 1.5;
-
                 max-width: 320px;
             }
-
 
             .bottom {
                 bottom: 14px;
             }
 
-
             .hint {
                 font-size: 13px;
             }
-
 
             .arrow {
                 font-size: 31px;
@@ -292,113 +187,84 @@
 
 </head>
 
-
 <body>
 
+<section class="welcome" id="welcome">
 
-    <section
-        class="welcome"
-        id="welcome"
-    >
+    <div class="main">
 
-        <!-- =========================
-             الهوية + السؤال
-        ========================= -->
-
-        <div class="main">
-
-            <div class="logo">
-
-                360<span class="one">1</span>
-
-            </div>
-
-
-            <div class="statement">
-
-                إذا كان العميل مهتمًا بالمنتج... فلماذا لا يشتريه؟
-
-            </div>
-
+        <div class="logo">
+            360<span class="one">1</span>
         </div>
 
-
-        <!-- =========================
-             الخطوة التالية
-        ========================= -->
-
-        <div class="bottom">
-
-            <div class="hint">
-
-                خطوة بسيطة للبدء
-
-            </div>
-
-
-            <div
-                class="arrow"
-                id="arrow"
-            >
-
-                ↓
-
-            </div>
-
+        <div class="statement">
+            إذا كان العميل مهتمًا بالمنتج... فلماذا لا يشتريه؟
         </div>
 
-    </section>
+    </div>
+
+    <div class="bottom">
+
+        <div class="hint">
+            خطوة بسيطة للبدء
+        </div>
+
+        <div class="arrow" id="arrow">
+            ↓
+        </div>
+
+    </div>
+
+</section>
 
 
+<script>
 
-    <script>
-
-        /* =========================
-           رابط Google Apps Script
-        ========================= */
-
-        const SCRIPT_URL =
-            "https://script.google.com/macros/s/AKfycbx-leQ-ZWuA4LVjz-spCAhyY84_3YQer9vVgFPuHSYAiESgmGvnc9GMhAjXFYaWhtfNXw/exec";
+const SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbx-leQ-ZWuA4LVjz-spCAhyY84_3YQer9vVgFPuHSYAiESgmGvnc9GMhAjXFYaWhtfNXw/exec";
 
 
-        /* =========================
-           تسجيل دخول الموقع
-        ========================= */
+const welcome =
+    document.getElementById("welcome");
 
-        fetch(SCRIPT_URL, {
-            method: "POST",
-            body: JSON.stringify({
-                type: "entry"
-            })
-        });
+const arrow =
+    document.getElementById("arrow");
 
 
-        /* =========================
-           العناصر
-        ========================= */
-
-        const welcome =
-            document.getElementById("welcome");
-
-        const arrow =
-            document.getElementById("arrow");
+let startY = 0;
+let moved = false;
 
 
-        let startY = 0;
+/* =========================
+   تسجيل الدخول والانتقال
+   ========================= */
 
-        let moved = false;
+async function goToForm() {
+
+    if (moved) return;
+
+    moved = true;
+
+    try {
+
+        const response = await fetch(
+            SCRIPT_URL,
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    type: "entry"
+                })
+            }
+        );
+
+        const data =
+            await response.json();
 
 
-        /* =========================
-           الانتقال إلى صفحة البيانات
-        ========================= */
-
-        function goToForm() {
-
-            if (moved) return;
-
-            moved = true;
-
+        if (
+            data.success &&
+            data.row
+        ) {
 
             welcome.style.transform =
                 "translateY(-100vh)";
@@ -407,90 +273,104 @@
             setTimeout(function () {
 
                 window.location.href =
-                    "form.html";
+                    "form.html?row=" + data.row;
 
             }, 700);
 
+        } else {
+
+            moved = false;
+
         }
 
+    } catch (error) {
 
-        /* =========================
-           الضغط على السهم
-        ========================= */
+        console.error(error);
 
-        arrow.addEventListener(
-            "click",
-            function () {
+        moved = false;
 
-                goToForm();
+    }
 
-            }
-        );
+}
 
 
-        /* =========================
-           السحب للأعلى
-        ========================= */
+/* =========================
+   السهم
+   ========================= */
 
-        document.addEventListener(
-            "touchstart",
-            function (event) {
+arrow.addEventListener(
+    "click",
+    function () {
 
-                startY =
-                    event.touches[0].clientY;
+        goToForm();
 
-            },
-            {
-                passive: true
-            }
-        );
+    }
+);
 
 
-        document.addEventListener(
-            "touchend",
-            function (event) {
+/* =========================
+   السحب للأعلى
+   ========================= */
 
-                const endY =
-                    event.changedTouches[0].clientY;
+document.addEventListener(
+    "touchstart",
+    function (event) {
 
-                const distance =
-                    startY - endY;
+        startY =
+            event.touches[0].clientY;
 
-
-                if (distance > 50) {
-
-                    goToForm();
-
-                }
-
-            },
-            {
-                passive: true
-            }
-        );
+    },
+    {
+        passive: true
+    }
+);
 
 
-        /* =========================
-           عجلة الماوس
-        ========================= */
+document.addEventListener(
+    "touchend",
+    function (event) {
 
-        document.addEventListener(
-            "wheel",
-            function (event) {
+        const endY =
+            event.changedTouches[0].clientY;
 
-                if (event.deltaY > 20) {
+        const distance =
+            startY - endY;
 
-                    goToForm();
 
-                }
+        if (distance > 50) {
 
-            },
-            {
-                passive: true
-            }
-        );
+            goToForm();
 
-    </script>
+        }
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+/* =========================
+   عجلة الماوس
+   ========================= */
+
+document.addEventListener(
+    "wheel",
+    function (event) {
+
+        if (event.deltaY > 20) {
+
+            goToForm();
+
+        }
+
+    },
+    {
+        passive: true
+    }
+);
+
+</script>
 
 </body>
 
