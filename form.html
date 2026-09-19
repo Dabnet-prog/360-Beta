@@ -435,6 +435,10 @@ textarea:focus {
 </div>
 
 
+<!-- ========================= -->
+<!-- المشكلة -->
+<!-- ========================= -->
+
 <div class="field">
 
 <div class="problem-title">
@@ -509,6 +513,59 @@ textarea:focus {
     id="otherText"
     placeholder="اكتب مشكلتك هنا..."
 ></textarea>
+
+</div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- الحالة -->
+<!-- ========================= -->
+
+<div class="field">
+
+<div class="problem-title">
+الحالة
+</div>
+
+
+<div class="options">
+
+
+<label class="option">
+
+<input
+    type="radio"
+    name="status"
+    value="مهتم"
+>
+
+<span class="radio"></span>
+
+<span class="option-text">
+مهتم
+</span>
+
+</label>
+
+
+<label class="option">
+
+<input
+    type="radio"
+    name="status"
+    value="غير مهتم"
+>
+
+<span class="radio"></span>
+
+<span class="option-text">
+غير مهتم
+</span>
+
+</label>
+
 
 </div>
 
@@ -659,15 +716,26 @@ confirmButton.addEventListener(
             );
 
 
+        const selectedStatus =
+            document.querySelector(
+                'input[name="status"]:checked'
+            );
+
+
         error.style.display =
             "none";
 
+
+        /*
+         * التحقق من البيانات
+         */
 
         if (
             !name ||
             !city ||
             !phone ||
-            !selected
+            !selected ||
+            !selectedStatus
         ) {
 
             error.textContent =
@@ -679,6 +747,10 @@ confirmButton.addEventListener(
             return;
         }
 
+
+        /*
+         * التحقق من "أخرى"
+         */
 
         if (
             selected.value === "أخرى" &&
@@ -695,6 +767,10 @@ confirmButton.addEventListener(
         }
 
 
+        /*
+         * التحقق من الجلسة
+         */
+
         if (!sessionId) {
 
             error.textContent =
@@ -707,11 +783,27 @@ confirmButton.addEventListener(
         }
 
 
+        /*
+         * تحديد المشكلة
+         */
+
         const problem =
             selected.value === "أخرى"
                 ? otherText.value.trim()
                 : selected.value;
 
+
+        /*
+         * تحديد الحالة
+         */
+
+        const status =
+            selectedStatus.value;
+
+
+        /*
+         * تعطيل الزر
+         */
 
         confirmButton.disabled =
             true;
@@ -747,7 +839,10 @@ confirmButton.addEventListener(
                                 phone,
 
                             problem:
-                                problem
+                                problem,
+
+                            status:
+                                status
 
                         })
 
@@ -770,7 +865,7 @@ confirmButton.addEventListener(
 
             /*
              * البيانات أصبحت محفوظة.
-             * ننتقل فورًا.
+             * ننتقل إلى صفحة النجاح.
              */
 
             window.location.href =
