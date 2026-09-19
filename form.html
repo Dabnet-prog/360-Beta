@@ -2,16 +2,20 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>360¹</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     width: 100%;
     min-height: 100%;
@@ -195,6 +199,7 @@ textarea:focus {
 }
 
 @media (max-width: 600px) {
+
     body {
         padding: 28px 18px 35px;
     }
@@ -230,7 +235,9 @@ textarea:focus {
         margin-top: 28px;
         height: 52px;
     }
+
 }
+
 </style>
 
 </head>
@@ -243,20 +250,52 @@ textarea:focus {
         360<span class="one">1</span>
     </div>
 
-    <div class="field">
-        <label for="name">الاسم الكامل</label>
-        <input type="text" id="name" autocomplete="name">
-    </div>
 
     <div class="field">
-        <label for="city">المدينة</label>
-        <input type="text" id="city" autocomplete="address-level2">
+
+        <label for="name">
+            الاسم الكامل
+        </label>
+
+        <input
+            type="text"
+            id="name"
+            autocomplete="name"
+        >
+
     </div>
 
+
     <div class="field">
-        <label for="phone">رقم الهاتف</label>
-        <input type="tel" id="phone" inputmode="tel" autocomplete="tel">
+
+        <label for="city">
+            المدينة
+        </label>
+
+        <input
+            type="text"
+            id="city"
+            autocomplete="address-level2"
+        >
+
     </div>
+
+
+    <div class="field">
+
+        <label for="phone">
+            رقم الهاتف
+        </label>
+
+        <input
+            type="tel"
+            id="phone"
+            inputmode="tel"
+            autocomplete="tel"
+        >
+
+    </div>
+
 
     <div class="field">
 
@@ -264,58 +303,77 @@ textarea:focus {
             المشكلة
         </div>
 
+
         <div class="options">
 
             <label class="option">
+
                 <input
                     type="radio"
                     name="problem"
                     value="يوجد مهتمين لكن لا يشترون"
                 >
+
                 <span class="radio"></span>
+
                 <span class="option-text">
                     يوجد مهتمين لكن لا يشترون
                 </span>
+
             </label>
 
+
             <label class="option">
+
                 <input
                     type="radio"
                     name="problem"
                     value="لا يوجد مهتمين"
                 >
+
                 <span class="radio"></span>
+
                 <span class="option-text">
                     لا يوجد مهتمين
                 </span>
+
             </label>
 
+
             <label class="option">
+
                 <input
                     type="radio"
                     name="problem"
                     value="أخرى"
                     id="otherOption"
                 >
+
                 <span class="radio"></span>
+
                 <span class="option-text">
                     أخرى
                 </span>
+
             </label>
 
         </div>
+
 
         <div
             class="other-problem"
             id="otherProblem"
         >
+
             <textarea
                 id="otherText"
                 placeholder="اكتب مشكلتك هنا..."
             ></textarea>
+
         </div>
 
     </div>
+
 
     <button
         class="confirm"
@@ -324,6 +382,7 @@ textarea:focus {
     >
         تأكيد
     </button>
+
 
     <div
         class="error"
@@ -340,6 +399,24 @@ textarea:focus {
 const scriptURL =
     "https://script.google.com/macros/s/AKfycbx-leQ-ZWuA4LVjz-spCAhyY84_3YQer9vVgFPuHSYAiESgmGvnc9GMhAjXFYaWhtfNXw/exec";
 
+
+/* =========================
+   قراءة رقم الصف من الرابط
+   ========================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const entryRow =
+    params.get("row");
+
+
+/* =========================
+   العناصر
+   ========================= */
 
 const otherOption =
     document.getElementById("otherOption");
@@ -363,50 +440,74 @@ const problemOptions =
     );
 
 
-problemOptions.forEach(function (option) {
+/* =========================
+   إظهار أخرى
+   ========================= */
 
-    option.addEventListener(
-        "change",
-        function () {
+problemOptions.forEach(
+    function (option) {
 
-            error.style.display = "none";
+        option.addEventListener(
+            "change",
+            function () {
 
-            if (otherOption.checked) {
+                error.style.display =
+                    "none";
 
-                otherProblem.classList.add("show");
 
-            } else {
+                if (
+                    otherOption.checked
+                ) {
 
-                otherProblem.classList.remove("show");
+                    otherProblem.classList.add(
+                        "show"
+                    );
 
-                otherText.value = "";
+                } else {
+
+                    otherProblem.classList.remove(
+                        "show"
+                    );
+
+                    otherText.value = "";
+
+                }
 
             }
+        );
 
-        }
-    );
+    }
+);
 
-});
 
+/* =========================
+   إرسال البيانات
+   ========================= */
 
 confirmButton.addEventListener(
     "click",
     function () {
 
         const name =
-            document.getElementById("name")
-            .value
-            .trim();
+            document
+                .getElementById("name")
+                .value
+                .trim();
+
 
         const city =
-            document.getElementById("city")
-            .value
-            .trim();
+            document
+                .getElementById("city")
+                .value
+                .trim();
+
 
         const phone =
-            document.getElementById("phone")
-            .value
-            .trim();
+            document
+                .getElementById("phone")
+                .value
+                .trim();
+
 
         const selected =
             document.querySelector(
@@ -414,7 +515,8 @@ confirmButton.addEventListener(
             );
 
 
-        error.style.display = "none";
+        error.style.display =
+            "none";
 
 
         if (
@@ -431,6 +533,7 @@ confirmButton.addEventListener(
                 "block";
 
             return;
+
         }
 
 
@@ -446,6 +549,20 @@ confirmButton.addEventListener(
                 "block";
 
             return;
+
+        }
+
+
+        if (!entryRow) {
+
+            error.textContent =
+                "حدث خطأ في جلسة الدخول. أعد فتح الرابط من البداية.";
+
+            error.style.display =
+                "block";
+
+            return;
+
         }
 
 
@@ -455,46 +572,80 @@ confirmButton.addEventListener(
                 : selected.value;
 
 
-        confirmButton.disabled = true;
-        confirmButton.textContent = "جاري الإرسال...";
+        confirmButton.disabled =
+            true;
+
+        confirmButton.textContent =
+            "جاري الإرسال...";
 
 
-        fetch(scriptURL, {
+        fetch(
+            scriptURL,
+            {
+                method: "POST",
 
-            method: "POST",
+                body: JSON.stringify({
 
-            body: JSON.stringify({
+                    type: "form",
 
-                name: name,
-                city: city,
-                phone: phone,
-                problem: problem
+                    row: entryRow,
 
-            })
+                    name: name,
 
-        })
+                    city: city,
 
-        .then(function () {
+                    phone: phone,
 
-            window.location.href =
-                "success.html";
+                    problem: problem
 
-        })
+                })
 
-        .catch(function () {
+            }
+        )
 
-            confirmButton.disabled = false;
+        .then(
+            function (response) {
 
-            confirmButton.textContent =
-                "تأكيد";
+                return response.json();
 
-            error.textContent =
-                "حدث خطأ أثناء إرسال البيانات. حاول مرة أخرى.";
+            }
+        )
 
-            error.style.display =
-                "block";
+        .then(
+            function (data) {
 
-        });
+                if (!data.success) {
+
+                    throw new Error(
+                        "فشل الإرسال"
+                    );
+
+                }
+
+
+                window.location.href =
+                    "success.html";
+
+            }
+        )
+
+        .catch(
+            function () {
+
+                confirmButton.disabled =
+                    false;
+
+                confirmButton.textContent =
+                    "تأكيد";
+
+                error.textContent =
+                    "حدث خطأ أثناء إرسال البيانات. حاول مرة أخرى.";
+
+                error.style.display =
+                    "block";
+
+            }
+        );
 
     }
 );
