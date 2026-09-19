@@ -5,10 +5,8 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>360¹</title>
 
@@ -20,357 +18,182 @@
 
 html,
 body {
-
     margin: 0;
-
     width: 100%;
-
     min-height: 100%;
-
     background: #ffffff;
-
     color: #000000;
-
     font-family: Arial, sans-serif;
 }
 
 body {
-
     padding: 40px 20px;
 }
 
 .container {
-
     width: 100%;
-
     max-width: 520px;
-
     margin: 0 auto;
 }
 
 .logo {
-
     text-align: center;
-
     direction: ltr;
-
     font-size: 58px;
-
     font-weight: 800;
-
     line-height: 1;
-
     letter-spacing: -3px;
-
     margin-bottom: 45px;
 }
 
 .logo .one {
-
     font-size: 0.38em;
-
     vertical-align: super;
-
     position: relative;
-
     top: -0.18em;
-
     letter-spacing: 0;
 }
 
 .field {
-
     margin-bottom: 24px;
 }
 
 label {
-
     display: block;
-
     margin-bottom: 9px;
-
     font-size: 16px;
-
     font-weight: 500;
-
     color: #222222;
 }
 
-input {
-
+input[type="text"],
+input[type="tel"] {
     width: 100%;
-
     height: 52px;
-
     padding: 0 15px;
-
-    border:
-        1px solid #d6d6d6;
-
+    border: 1px solid #d6d6d6;
     border-radius: 8px;
-
     background: #ffffff;
-
     font-family: Arial, sans-serif;
-
     font-size: 16px;
-
     color: #000000;
-
     outline: none;
 }
 
 input:focus {
-
     border-color: #000000;
-
-    box-shadow:
-        0 0 0 2px
-        rgba(0,0,0,0.06);
 }
 
-.problem-title {
-
+.section-title {
     margin-bottom: 12px;
-
     font-size: 16px;
-
     font-weight: 500;
-
     color: #222222;
 }
 
 .options {
-
     display: flex;
-
     flex-direction: column;
-
     gap: 10px;
 }
 
 .option {
-
     position: relative;
-
     display: flex;
-
     align-items: center;
-
     min-height: 52px;
-
     padding: 0 15px;
-
-    border:
-        1px solid #d6d6d6;
-
+    border: 1px solid #d6d6d6;
     border-radius: 8px;
-
     cursor: pointer;
 }
 
 .option input {
-
     position: absolute;
-
     opacity: 0;
-
     width: 0;
-
     height: 0;
 }
 
 .radio {
-
     width: 18px;
-
     height: 18px;
-
-    border:
-        1.5px solid #777777;
-
+    border: 1.5px solid #777777;
     border-radius: 50%;
-
     margin-left: 11px;
-
     flex-shrink: 0;
-
     position: relative;
 }
 
 .option input:checked + .radio {
-
     border-color: #000000;
 }
 
-.option input:checked
-+ .radio::after {
-
+.option input:checked + .radio::after {
     content: "";
-
     position: absolute;
-
     width: 9px;
-
     height: 9px;
-
     background: #000000;
-
     border-radius: 50%;
-
     top: 50%;
-
     left: 50%;
-
-    transform:
-        translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .option-text {
-
     font-size: 16px;
-
     color: #222222;
 }
 
 .other-problem {
-
     display: none;
-
     margin-top: 12px;
 }
 
 .other-problem.show {
-
     display: block;
 }
 
 textarea {
-
     width: 100%;
-
     min-height: 110px;
-
     padding: 13px 15px;
-
     resize: vertical;
-
-    border:
-        1px solid #d6d6d6;
-
+    border: 1px solid #d6d6d6;
     border-radius: 8px;
-
     background: #ffffff;
-
     font-family: Arial, sans-serif;
-
     font-size: 16px;
-
     color: #000000;
-
     outline: none;
 }
 
-textarea:focus {
-
-    border-color: #000000;
-}
-
 .confirm {
-
     width: 100%;
-
     height: 54px;
-
     margin-top: 34px;
-
     border: none;
-
     border-radius: 8px;
-
     background: #000000;
-
     color: #ffffff;
-
     font-family: Arial, sans-serif;
-
     font-size: 17px;
-
     font-weight: 500;
-
     cursor: pointer;
 }
 
 .confirm:disabled {
-
     opacity: 0.6;
-
     cursor: wait;
 }
 
 .error {
-
     display: none;
-
     margin-top: 14px;
-
     text-align: center;
-
     font-size: 14px;
-
     color: #c00000;
-}
-
-@media (max-width: 600px) {
-
-    body {
-
-        padding:
-            28px 18px 35px;
-    }
-
-    .logo {
-
-        font-size: 48px;
-
-        margin-bottom: 38px;
-    }
-
-    .field {
-
-        margin-bottom: 21px;
-    }
-
-    label,
-    .problem-title {
-
-        font-size: 15px;
-    }
-
-    input {
-
-        height: 50px;
-
-        font-size: 16px;
-    }
-
-    .option {
-
-        min-height: 50px;
-    }
-
-    .option-text {
-
-        font-size: 15px;
-    }
-
-    .confirm {
-
-        margin-top: 28px;
-
-        height: 52px;
-    }
-
 }
 
 </style>
@@ -381,6 +204,9 @@ textarea:focus {
 <body>
 
 <main class="container">
+
+
+<!-- LOGO -->
 
 <div class="logo">
 
@@ -441,13 +267,13 @@ textarea:focus {
 </div>
 
 
-<!-- ============================== -->
+<!-- ========================= -->
 <!-- المشكلة -->
-<!-- ============================== -->
+<!-- ========================= -->
 
 <div class="field">
 
-<div class="problem-title">
+<div class="section-title">
 المشكلة
 </div>
 
@@ -524,15 +350,16 @@ textarea:focus {
 </div>
 
 
-<!-- ============================== -->
+<!-- ========================= -->
 <!-- الحالة -->
-<!-- ============================== -->
+<!-- ========================= -->
 
 <div class="field">
 
-<div class="problem-title">
+<div class="section-title">
 الحالة
 </div>
+
 
 <div class="options">
 
@@ -576,9 +403,7 @@ textarea:focus {
 </div>
 
 
-<!-- ============================== -->
 <!-- زر التأكيد -->
-<!-- ============================== -->
 
 <button
     class="confirm"
@@ -606,162 +431,109 @@ textarea:focus {
 
 <script>
 
+
 const scriptURL =
-    "https://script.google.com/macros/s/AKfycbx-leQ-ZWuA4LVjz-spCAhyY84_3YQer9vVgFPuHSYAiESgmGvnc9GMhAjXFYaWhtfNXw/exec";
+"https://script.google.com/macros/s/AKfycbx-leQ-ZWuA4LVjz-spCAhyY84_3YQer9vVgFPuHSYAiESgmGvnc9GMhAjXFYaWhtfNXw/exec";
 
-
-/*
- * Session ID
- */
 
 const sessionId =
-    sessionStorage.getItem(
-        "sessionId"
-    );
+sessionStorage.getItem("sessionId");
 
-
-/*
- * عناصر المشكلة
- */
 
 const otherOption =
-    document.getElementById(
-        "otherOption"
-    );
+document.getElementById("otherOption");
+
 
 const otherProblem =
-    document.getElementById(
-        "otherProblem"
-    );
+document.getElementById("otherProblem");
+
 
 const otherText =
-    document.getElementById(
-        "otherText"
-    );
+document.getElementById("otherText");
 
-
-/*
- * عناصر الزر والخطأ
- */
 
 const confirmButton =
-    document.getElementById(
-        "confirm"
-    );
+document.getElementById("confirm");
+
 
 const error =
-    document.getElementById(
-        "error"
-    );
+document.getElementById("error");
 
 
-/*
- * خيارات المشكلة
- */
+/* إظهار وإخفاء "أخرى" */
 
-const problemOptions =
-    document.querySelectorAll(
-        'input[name="problem"]'
-    );
+document
+.querySelectorAll('input[name="problem"]')
+.forEach(function(option) {
 
+    option.addEventListener(
+        "change",
+        function() {
 
-problemOptions.forEach(
-    function(option) {
+            error.style.display = "none";
 
-        option.addEventListener(
-            "change",
-            function() {
+            if (otherOption.checked) {
 
-                error.style.display =
-                    "none";
+                otherProblem.classList.add("show");
 
+            } else {
 
-                if (
-                    otherOption.checked
-                ) {
+                otherProblem.classList.remove("show");
 
-                    otherProblem
-                        .classList
-                        .add("show");
-
-                } else {
-
-                    otherProblem
-                        .classList
-                        .remove("show");
-
-                    otherText.value =
-                        "";
-
-                }
+                otherText.value = "";
 
             }
-        );
 
-    }
-);
+        }
+    );
+
+});
 
 
-/*
- * زر التأكيد
- */
+/* إرسال البيانات */
 
 confirmButton.addEventListener(
     "click",
     async function() {
 
-        error.style.display =
-            "none";
 
+        error.style.display = "none";
 
-        /*
-         * البيانات الأساسية
-         */
 
         const name =
-            document
-                .getElementById("name")
-                .value
-                .trim();
+        document
+        .getElementById("name")
+        .value
+        .trim();
 
 
         const city =
-            document
-                .getElementById("city")
-                .value
-                .trim();
+        document
+        .getElementById("city")
+        .value
+        .trim();
 
 
         const phone =
-            document
-                .getElementById("phone")
-                .value
-                .trim();
+        document
+        .getElementById("phone")
+        .value
+        .trim();
 
-
-        /*
-         * المشكلة
-         */
 
         const selectedProblem =
-            document.querySelector(
-                'input[name="problem"]:checked'
-            );
+        document.querySelector(
+            'input[name="problem"]:checked'
+        );
 
-
-        /*
-         * الحالة
-         */
 
         const selectedStatus =
-            document.querySelector(
-                'input[name="status"]:checked'
-            );
+        document.querySelector(
+            'input[name="status"]:checked'
+        );
 
 
-        /*
-         * التحقق
-         */
+        /* التحقق */
 
         if (
             !name ||
@@ -772,19 +544,15 @@ confirmButton.addEventListener(
         ) {
 
             error.textContent =
-                "يرجى إكمال البيانات المطلوبة.";
+            "يرجى إكمال البيانات المطلوبة.";
 
             error.style.display =
-                "block";
+            "block";
 
             return;
 
         }
 
-
-        /*
-         * التحقق من "أخرى"
-         */
 
         if (
             selectedProblem.value === "أخرى" &&
@@ -792,149 +560,116 @@ confirmButton.addEventListener(
         ) {
 
             error.textContent =
-                "يرجى كتابة المشكلة.";
+            "يرجى كتابة المشكلة.";
 
             error.style.display =
-                "block";
+            "block";
 
             return;
 
         }
 
-
-        /*
-         * التحقق من الجلسة
-         */
 
         if (!sessionId) {
 
             error.textContent =
-                "تعذر تحديد جلسة الدخول. أعد فتح الرابط من البداية.";
+            "تعذر تحديد جلسة الدخول. أعد فتح الرابط من البداية.";
 
             error.style.display =
-                "block";
+            "block";
 
             return;
 
         }
 
 
-        /*
-         * القيمة النهائية للمشكلة
-         */
-
         const problem =
-            selectedProblem.value === "أخرى"
-                ? otherText.value.trim()
-                : selectedProblem.value;
+        selectedProblem.value === "أخرى"
+        ? otherText.value.trim()
+        : selectedProblem.value;
 
-
-        /*
-         * القيمة النهائية للحالة
-         */
 
         const status =
-            selectedStatus.value;
+        selectedStatus.value;
 
-
-        /*
-         * تعطيل الزر
-         */
 
         confirmButton.disabled =
-            true;
+        true;
+
 
         confirmButton.textContent =
-            "جاري الإرسال...";
+        "جاري الإرسال...";
 
 
         try {
 
-            /*
-             * إرسال البيانات إلى Google Sheets
-             */
 
             const response =
-                await fetch(
-                    scriptURL,
-                    {
+            await fetch(
+                scriptURL,
+                {
 
-                        method: "POST",
+                    method: "POST",
 
-                        body: JSON.stringify({
+                    body: JSON.stringify({
 
-                            type:
-                                "form",
+                        type: "form",
 
-                            sessionId:
-                                sessionId,
+                        sessionId: sessionId,
 
-                            name:
-                                name,
+                        name: name,
 
-                            city:
-                                city,
+                        city: city,
 
-                            phone:
-                                phone,
+                        phone: phone,
 
-                            problem:
-                                problem,
+                        problem: problem,
 
-                            status:
-                                status
+                        status: status
 
-                        })
+                    })
 
-                    }
-                );
+                }
+            );
 
 
             const result =
-                await response.json();
+            await response.json();
 
-
-            /*
-             * التأكد من نجاح الحفظ
-             */
 
             if (!result.success) {
 
                 throw new Error(
-                    result.error ||
-                    "save_failed"
+                    result.error || "save_failed"
                 );
 
             }
 
 
-            /*
-             * الانتقال بعد نجاح الحفظ
-             */
-
             window.location.href =
-                "success.html";
+            "success.html";
 
 
         } catch (errorObject) {
 
-            console.error(
-                errorObject
-            );
+
+            console.error(errorObject);
 
 
             confirmButton.disabled =
-                false;
+            false;
+
 
             confirmButton.textContent =
-                "تأكيد";
+            "تأكيد";
 
 
             error.textContent =
-                "حدث خطأ أثناء الإرسال. حاول مرة أخرى.";
+            "حدث خطأ أثناء الإرسال. حاول مرة أخرى.";
+
 
             error.style.display =
-                "block";
+            "block";
 
         }
 
