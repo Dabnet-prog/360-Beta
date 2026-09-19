@@ -2,215 +2,341 @@
 <html lang="ar" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>360¹</title>
+<meta charset="UTF-8">
 
-    <style>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-        * {
-            box-sizing: border-box;
-        }
+<title>360¹</title>
 
-        html,
-        body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: #ffffff;
-            color: #000000;
-            font-family: Arial, sans-serif;
-        }
+<style>
 
-        .welcome {
-            width: 100%;
-            height: 100vh;
-            height: 100dvh;
-            position: relative;
+* {
+    box-sizing: border-box;
+}
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+html,
+body {
 
-            transition: transform 0.7s ease;
-        }
+    margin: 0;
 
-        .main {
-            width: 100%;
-            text-align: center;
-            user-select: none;
-            transform: translateY(-55px);
-            padding: 0 20px;
-        }
+    width: 100%;
+    height: 100%;
 
-        .logo {
-            direction: ltr;
-            font-size: 110px;
-            font-weight: 800;
-            line-height: 0.95;
-            letter-spacing: -4px;
-            color: #000000;
-        }
+    overflow: hidden;
 
-        .logo .one {
-            font-size: 0.38em;
-            vertical-align: super;
-            position: relative;
-            top: -0.18em;
-            letter-spacing: 0;
-        }
+    background: #ffffff;
 
-        .statement {
-            margin: 30px auto 0;
-            max-width: 720px;
-            font-size: 25px;
-            font-weight: 400;
-            line-height: 1.55;
-            color: #333333;
-        }
+    color: #000000;
 
-        .bottom {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 26px;
+    font-family: Arial, sans-serif;
+}
 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
 
-            user-select: none;
-        }
+.welcome {
 
-        .hint {
-            margin-bottom: 6px;
-            font-size: 16px;
-            font-weight: 400;
-            color: #666666;
-        }
+    width: 100%;
 
-        .arrow {
-            font-size: 38px;
-            font-weight: 300;
-            line-height: 1;
-            cursor: pointer;
+    height: 100vh;
+    height: 100dvh;
 
-            animation: arrowMove 1.8s ease-in-out infinite;
-        }
+    position: relative;
 
-        @keyframes arrowMove {
+    display: flex;
 
-            0%,
-            100% {
-                transform: translateY(0);
-                opacity: 0.55;
-            }
+    justify-content: center;
 
-            50% {
-                transform: translateY(8px);
-                opacity: 1;
-            }
+    align-items: center;
 
-        }
+    transition:
+        transform 0.7s ease;
+}
 
-        @media (max-width: 600px) {
 
-            .main {
-                transform: translateY(-62px);
-                padding: 0 18px;
-            }
+.main {
 
-            .logo {
-                font-size: 78px;
-                letter-spacing: -3px;
-            }
+    width: 100%;
 
-            .statement {
-                margin-top: 24px;
-                width: 100%;
-                max-width: 340px;
-                padding: 0;
-                font-size: 20px;
-                line-height: 1.65;
-                text-align: center;
-            }
+    text-align: center;
 
-            .bottom {
-                bottom: 20px;
-            }
+    user-select: none;
 
-            .hint {
-                margin-bottom: 5px;
-                font-size: 14px;
-            }
+    transform:
+        translateY(-55px);
 
-            .arrow {
-                font-size: 34px;
-            }
+    padding: 0 20px;
+}
 
-        }
 
-        @media (max-height: 650px) and (max-width: 600px) {
+.logo {
 
-            .main {
-                transform: translateY(-48px);
-            }
+    direction: ltr;
 
-            .logo {
-                font-size: 70px;
-            }
+    font-size: 110px;
 
-            .statement {
-                margin-top: 20px;
-                font-size: 18px;
-                line-height: 1.5;
-                max-width: 320px;
-            }
+    font-weight: 800;
 
-            .bottom {
-                bottom: 14px;
-            }
+    line-height: 0.95;
 
-            .hint {
-                font-size: 13px;
-            }
+    letter-spacing: -4px;
 
-            .arrow {
-                font-size: 31px;
-            }
+    color: #000000;
+}
 
-        }
 
-    </style>
+.logo .one {
+
+    font-size: 0.38em;
+
+    vertical-align: super;
+
+    position: relative;
+
+    top: -0.18em;
+
+    letter-spacing: 0;
+}
+
+
+.statement {
+
+    margin:
+        30px auto 0;
+
+    max-width: 720px;
+
+    font-size: 25px;
+
+    font-weight: 400;
+
+    line-height: 1.55;
+
+    color: #333333;
+}
+
+
+.bottom {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 26px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    user-select: none;
+}
+
+
+.hint {
+
+    margin-bottom: 6px;
+
+    font-size: 16px;
+
+    color: #666666;
+}
+
+
+.arrow {
+
+    font-size: 38px;
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    animation:
+        arrowMove 1.8s ease-in-out infinite;
+}
+
+
+@keyframes arrowMove {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+        opacity: 0.55;
+    }
+
+    50% {
+
+        transform:
+            translateY(8px);
+
+        opacity: 1;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .main {
+
+        transform:
+            translateY(-62px);
+
+        padding: 0 18px;
+    }
+
+
+    .logo {
+
+        font-size: 78px;
+
+        letter-spacing: -3px;
+    }
+
+
+    .statement {
+
+        margin-top: 24px;
+
+        width: 100%;
+
+        max-width: 340px;
+
+        font-size: 20px;
+
+        line-height: 1.65;
+
+        text-align: center;
+    }
+
+
+    .bottom {
+
+        bottom: 20px;
+    }
+
+
+    .hint {
+
+        margin-bottom: 5px;
+
+        font-size: 14px;
+    }
+
+
+    .arrow {
+
+        font-size: 34px;
+    }
+
+}
+
+
+@media
+(max-height: 650px)
+and
+(max-width: 600px) {
+
+    .main {
+
+        transform:
+            translateY(-48px);
+    }
+
+
+    .logo {
+
+        font-size: 70px;
+    }
+
+
+    .statement {
+
+        margin-top: 20px;
+
+        font-size: 18px;
+
+        line-height: 1.5;
+
+        max-width: 320px;
+    }
+
+
+    .bottom {
+
+        bottom: 14px;
+    }
+
+
+    .hint {
+
+        font-size: 13px;
+    }
+
+
+    .arrow {
+
+        font-size: 31px;
+    }
+
+}
+
+</style>
 
 </head>
 
+
 <body>
 
-<section class="welcome" id="welcome">
+
+<section
+    class="welcome"
+    id="welcome"
+>
 
     <div class="main">
 
         <div class="logo">
+
             360<span class="one">1</span>
+
         </div>
 
+
         <div class="statement">
+
             إذا كان العميل مهتمًا بالمنتج... فلماذا لا يشتريه؟
+
         </div>
 
     </div>
 
+
     <div class="bottom">
 
         <div class="hint">
+
             خطوة بسيطة للبدء
+
         </div>
 
-        <div class="arrow" id="arrow">
+
+        <div
+            class="arrow"
+            id="arrow"
+        >
+
             ↓
+
         </div>
 
     </div>
@@ -220,6 +346,7 @@
 
 <script>
 
+
 const SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbx-leQ-ZWuA4LVjz-spCAhyY84_3YQer9vVgFPuHSYAiESgmGvnc9GMhAjXFYaWhtfNXw/exec";
 
@@ -227,69 +354,103 @@ const SCRIPT_URL =
 const welcome =
     document.getElementById("welcome");
 
+
 const arrow =
     document.getElementById("arrow");
 
 
-let startY = 0;
 let moved = false;
+
+let startY = 0;
 
 
 /* =========================
-   تسجيل الدخول والانتقال
+   تسجيل الدخول فور فتح الصفحة
    ========================= */
 
-async function goToForm() {
+fetch(
+    SCRIPT_URL,
+    {
+
+        method: "POST",
+
+        body: JSON.stringify({
+
+            type: "entry"
+
+        })
+
+    }
+)
+
+.then(function(response) {
+
+    return response.json();
+
+})
+
+.then(function(data) {
+
+    if (
+        data.success &&
+        data.row
+    ) {
+
+        sessionStorage.setItem(
+            "entryRow",
+            data.row
+        );
+
+    }
+
+})
+
+.catch(function(error) {
+
+    console.error(error);
+
+});
+
+
+/* =========================
+   الانتقال
+   ========================= */
+
+function goToForm() {
 
     if (moved) return;
 
     moved = true;
 
-    try {
 
-        const response = await fetch(
-            SCRIPT_URL,
-            {
-                method: "POST",
-                body: JSON.stringify({
-                    type: "entry"
-                })
-            }
-        );
-
-        const data =
-            await response.json();
+    welcome.style.transform =
+        "translateY(-100vh)";
 
 
-        if (
-            data.success &&
-            data.row
-        ) {
+    setTimeout(
+        function() {
 
-            welcome.style.transform =
-                "translateY(-100vh)";
+            const row =
+                sessionStorage.getItem(
+                    "entryRow"
+                );
 
 
-            setTimeout(function () {
+            if (row) {
 
                 window.location.href =
-                    "form.html?row=" + data.row;
+                    "form.html?row=" + row;
 
-            }, 700);
+            } else {
 
-        } else {
+                window.location.href =
+                    "form.html";
 
-            moved = false;
+            }
 
-        }
-
-    } catch (error) {
-
-        console.error(error);
-
-        moved = false;
-
-    }
+        },
+        700
+    );
 
 }
 
@@ -300,7 +461,7 @@ async function goToForm() {
 
 arrow.addEventListener(
     "click",
-    function () {
+    function() {
 
         goToForm();
 
@@ -309,12 +470,12 @@ arrow.addEventListener(
 
 
 /* =========================
-   السحب للأعلى
+   السحب
    ========================= */
 
 document.addEventListener(
     "touchstart",
-    function (event) {
+    function(event) {
 
         startY =
             event.touches[0].clientY;
@@ -327,8 +488,32 @@ document.addEventListener(
 
 
 document.addEventListener(
+    "touchmove",
+    function(event) {
+
+        const currentY =
+            event.touches[0].clientY;
+
+        const distance =
+            startY - currentY;
+
+
+        if (distance > 35) {
+
+            goToForm();
+
+        }
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+document.addEventListener(
     "touchend",
-    function (event) {
+    function(event) {
 
         const endY =
             event.changedTouches[0].clientY;
@@ -337,7 +522,7 @@ document.addEventListener(
             startY - endY;
 
 
-        if (distance > 50) {
+        if (distance > 25) {
 
             goToForm();
 
@@ -351,14 +536,14 @@ document.addEventListener(
 
 
 /* =========================
-   عجلة الماوس
+   الماوس
    ========================= */
 
 document.addEventListener(
     "wheel",
-    function (event) {
+    function(event) {
 
-        if (event.deltaY > 20) {
+        if (event.deltaY > 5) {
 
             goToForm();
 
