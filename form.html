@@ -389,6 +389,8 @@ textarea:focus {
 </div>
 
 
+<!-- الاسم -->
+
 <div class="field">
 
 <label for="name">
@@ -404,6 +406,8 @@ textarea:focus {
 </div>
 
 
+<!-- المدينة -->
+
 <div class="field">
 
 <label for="city">
@@ -418,6 +422,8 @@ textarea:focus {
 
 </div>
 
+
+<!-- الهاتف -->
 
 <div class="field">
 
@@ -435,16 +441,15 @@ textarea:focus {
 </div>
 
 
-<!-- ========================= -->
+<!-- ============================== -->
 <!-- المشكلة -->
-<!-- ========================= -->
+<!-- ============================== -->
 
 <div class="field">
 
 <div class="problem-title">
 المشكلة
 </div>
-
 
 <div class="options">
 
@@ -519,16 +524,15 @@ textarea:focus {
 </div>
 
 
-<!-- ========================= -->
+<!-- ============================== -->
 <!-- الحالة -->
-<!-- ========================= -->
+<!-- ============================== -->
 
 <div class="field">
 
 <div class="problem-title">
 الحالة
 </div>
-
 
 <div class="options">
 
@@ -572,6 +576,10 @@ textarea:focus {
 </div>
 
 
+<!-- ============================== -->
+<!-- زر التأكيد -->
+<!-- ============================== -->
+
 <button
     class="confirm"
     id="confirm"
@@ -603,7 +611,7 @@ const scriptURL =
 
 
 /*
- * نأخذ الجلسة التي أنشأتها الصفحة الأولى.
+ * Session ID
  */
 
 const sessionId =
@@ -612,17 +620,19 @@ const sessionId =
     );
 
 
+/*
+ * عناصر المشكلة
+ */
+
 const otherOption =
     document.getElementById(
         "otherOption"
     );
 
-
 const otherProblem =
     document.getElementById(
         "otherProblem"
     );
-
 
 const otherText =
     document.getElementById(
@@ -630,17 +640,24 @@ const otherText =
     );
 
 
+/*
+ * عناصر الزر والخطأ
+ */
+
 const confirmButton =
     document.getElementById(
         "confirm"
     );
-
 
 const error =
     document.getElementById(
         "error"
     );
 
+
+/*
+ * خيارات المشكلة
+ */
 
 const problemOptions =
     document.querySelectorAll(
@@ -685,9 +702,21 @@ problemOptions.forEach(
 );
 
 
+/*
+ * زر التأكيد
+ */
+
 confirmButton.addEventListener(
     "click",
     async function() {
+
+        error.style.display =
+            "none";
+
+
+        /*
+         * البيانات الأساسية
+         */
 
         const name =
             document
@@ -710,11 +739,19 @@ confirmButton.addEventListener(
                 .trim();
 
 
-        const selected =
+        /*
+         * المشكلة
+         */
+
+        const selectedProblem =
             document.querySelector(
                 'input[name="problem"]:checked'
             );
 
+
+        /*
+         * الحالة
+         */
 
         const selectedStatus =
             document.querySelector(
@@ -722,19 +759,15 @@ confirmButton.addEventListener(
             );
 
 
-        error.style.display =
-            "none";
-
-
         /*
-         * التحقق من البيانات
+         * التحقق
          */
 
         if (
             !name ||
             !city ||
             !phone ||
-            !selected ||
+            !selectedProblem ||
             !selectedStatus
         ) {
 
@@ -745,6 +778,7 @@ confirmButton.addEventListener(
                 "block";
 
             return;
+
         }
 
 
@@ -753,7 +787,7 @@ confirmButton.addEventListener(
          */
 
         if (
-            selected.value === "أخرى" &&
+            selectedProblem.value === "أخرى" &&
             !otherText.value.trim()
         ) {
 
@@ -764,6 +798,7 @@ confirmButton.addEventListener(
                 "block";
 
             return;
+
         }
 
 
@@ -780,21 +815,22 @@ confirmButton.addEventListener(
                 "block";
 
             return;
+
         }
 
 
         /*
-         * تحديد المشكلة
+         * القيمة النهائية للمشكلة
          */
 
         const problem =
-            selected.value === "أخرى"
+            selectedProblem.value === "أخرى"
                 ? otherText.value.trim()
-                : selected.value;
+                : selectedProblem.value;
 
 
         /*
-         * تحديد الحالة
+         * القيمة النهائية للحالة
          */
 
         const status =
@@ -808,12 +844,15 @@ confirmButton.addEventListener(
         confirmButton.disabled =
             true;
 
-
         confirmButton.textContent =
             "جاري الإرسال...";
 
 
         try {
+
+            /*
+             * إرسال البيانات إلى Google Sheets
+             */
 
             const response =
                 await fetch(
@@ -824,7 +863,8 @@ confirmButton.addEventListener(
 
                         body: JSON.stringify({
 
-                            type: "form",
+                            type:
+                                "form",
 
                             sessionId:
                                 sessionId,
@@ -854,9 +894,14 @@ confirmButton.addEventListener(
                 await response.json();
 
 
+            /*
+             * التأكد من نجاح الحفظ
+             */
+
             if (!result.success) {
 
                 throw new Error(
+                    result.error ||
                     "save_failed"
                 );
 
@@ -864,14 +909,19 @@ confirmButton.addEventListener(
 
 
             /*
-             * البيانات أصبحت محفوظة.
-             * ننتقل إلى صفحة النجاح.
+             * الانتقال بعد نجاح الحفظ
              */
 
             window.location.href =
                 "success.html";
 
+
         } catch (errorObject) {
+
+            console.error(
+                errorObject
+            );
+
 
             confirmButton.disabled =
                 false;
