@@ -43,6 +43,9 @@ body {
     align-items: center;
 
     justify-content: center;
+
+    transition:
+        opacity 0.25s ease;
 }
 
 .container {
@@ -118,7 +121,8 @@ body {
 
     line-height: 1;
 
-    animation: move 1.3s infinite;
+    animation:
+        move 1.3s infinite;
 }
 
 @keyframes move {
@@ -170,9 +174,7 @@ body {
 
 <body>
 
-
 <main class="container">
-
 
 <div class="logo">
 
@@ -192,35 +194,69 @@ body {
 <div class="start">
 
 <div>
-
 خطوة بسيطة للبدء
-
 </div>
 
 <div class="arrow">
-
-↓ 
-
+↓
 </div>
 
 </div>
-
 
 </main>
 
 
 <script>
 
-
 const scriptURL =
     "https://script.google.com/macros/s/AKfycbx-leQ-ZWuA4LVjz-spCAhyY84_3YQer9vVgFPuHSYAiESgmGvnc9GMhAjXFYaWhtfNXw/exec";
 
 
 /*
- * نسجل الدخول فور فتح الصفحة.
+ * إنشاء جلسة جديدة فور فتح الصفحة.
  */
 
-let entryPromise =
+function createSessionId() {
+
+    if (
+        window.crypto &&
+        crypto.randomUUID
+    ) {
+
+        return crypto.randomUUID();
+
+    }
+
+
+    return (
+        Date.now().toString(36) +
+        Math.random()
+            .toString(36)
+            .substring(2)
+    );
+
+}
+
+
+const sessionId =
+    createSessionId();
+
+
+/*
+ * نحفظ الجلسة فورًا في الجهاز.
+ */
+
+sessionStorage.setItem(
+    "sessionId",
+    sessionId
+);
+
+
+/*
+ * تسجيل الدخول مباشرة.
+ */
+
+const entryRequest =
     fetch(
         scriptURL,
         {
@@ -229,7 +265,9 @@ let entryPromise =
 
             body: JSON.stringify({
 
-                type: "entry"
+                type: "entry",
+
+                sessionId: sessionId
 
             })
 
@@ -242,28 +280,16 @@ let entryPromise =
     .then(
         data => {
 
-            if (
-                data.success &&
-                data.row
-            ) {
-
-                sessionStorage.setItem(
-                    "entryRow",
-                    data.row
-                );
-
-                return data.row;
-
-            }
-
-            return null;
+            return data;
 
         }
     )
     .catch(
         function() {
 
-            return null;
+            return {
+                success: false
+            };
 
         }
     );
@@ -272,10 +298,6 @@ let entryPromise =
 let started = false;
 
 
-/*
- * الانتقال إلى الاستبيان
- */
-
 function goToForm() {
 
     if (started) return;
@@ -283,75 +305,26 @@ function goToForm() {
     started = true;
 
 
-    /*
-     * نبدأ الانتقال مباشرة
-     * حتى لا يشعر المستخدم بالانتظار.
-     */
-
-    document.body.style.transition =
-        "opacity 0.35s ease";
-
     document.body.style.opacity =
         "0";
 
 
     /*
-     * بعد الحركة ننتظر فقط
-     * حتى يصل رقم صف الدخول.
+     * نعطي الصفحة وقتًا قصيرًا للحركة،
+     * ثم ننتقل.
+     *
+     * لا نحتاج إلى رقم الصف.
+     * sessionId محفوظ مسبقًا.
      */
 
     setTimeout(
-        async function() {
+        function() {
 
-            let row =
-                sessionStorage.getItem(
-                    "entryRow"
-                );
-
-
-            /*
-             * إذا لم يصل الرقم بعد،
-             * ننتظر طلب الدخول.
-             */
-
-            if (!row) {
-
-                row =
-                    await entryPromise;
-
-            }
-
-
-            /*
-             * إذا حصلنا على رقم الصف،
-             * نرسله إلى صفحة الاستبيان.
-             */
-
-            if (row) {
-
-                window.location.href =
-                    "form.html?row=" + row;
-
-                return;
-
-            }
-
-
-            /*
-             * في حالة فشل تسجيل الدخول
-             */
-
-            document.body.style.opacity =
-                "1";
-
-            started = false;
-
-            alert(
-                "تعذر تسجيل الدخول. حاول مرة أخرى."
-            );
+            window.location.href =
+                "form.html";
 
         },
-        350
+        250
     );
 
 }
@@ -368,7 +341,7 @@ document.addEventListener(
 
 
 /*
- * السحب للأعلى
+ * السحب
  */
 
 let startY = 0;
@@ -395,11 +368,12 @@ document.addEventListener(
         const currentY =
             event.touches[0].clientY;
 
+
         const distance =
             startY - currentY;
 
 
-        if (distance > 30) {
+        if (distance > 25) {
 
             goToForm();
 
@@ -413,7 +387,7 @@ document.addEventListener(
 
 
 /*
- * السحب بالماوس / trackpad
+ * الماوس / Trackpad
  */
 
 document.addEventListener(
@@ -433,7 +407,6 @@ document.addEventListener(
 );
 
 </script>
-
 
 </body>
 
