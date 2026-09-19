@@ -4,7 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>360¹</title>
 
@@ -16,223 +20,355 @@
 
 html,
 body {
+
     margin: 0;
+
     width: 100%;
+
     min-height: 100%;
+
     background: #ffffff;
+
     color: #000000;
+
     font-family: Arial, sans-serif;
 }
 
 body {
-    padding: 40px 20px;
+
+    padding:
+        40px 20px;
 }
 
 .container {
+
     width: 100%;
+
     max-width: 520px;
+
     margin: 0 auto;
 }
 
 .logo {
+
     text-align: center;
+
     direction: ltr;
+
     font-size: 58px;
+
     font-weight: 800;
+
     line-height: 1;
+
     letter-spacing: -3px;
+
     margin-bottom: 45px;
 }
 
 .logo .one {
+
     font-size: 0.38em;
+
     vertical-align: super;
+
     position: relative;
+
     top: -0.18em;
+
     letter-spacing: 0;
 }
 
 .field {
+
     margin-bottom: 24px;
 }
 
 label {
+
     display: block;
+
     margin-bottom: 9px;
+
     font-size: 16px;
+
     font-weight: 500;
+
     color: #222222;
 }
 
 input {
+
     width: 100%;
+
     height: 52px;
+
     padding: 0 15px;
-    border: 1px solid #d6d6d6;
+
+    border:
+        1px solid #d6d6d6;
+
     border-radius: 8px;
+
     background: #ffffff;
+
     font-family: Arial, sans-serif;
+
     font-size: 16px;
+
     color: #000000;
+
     outline: none;
 }
 
 input:focus {
+
     border-color: #000000;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.06);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(0,0,0,0.06);
 }
 
 .problem-title {
+
     margin-bottom: 12px;
+
     font-size: 16px;
+
     font-weight: 500;
+
     color: #222222;
 }
 
 .options {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 10px;
 }
 
 .option {
+
     position: relative;
+
     display: flex;
+
     align-items: center;
+
     min-height: 52px;
+
     padding: 0 15px;
-    border: 1px solid #d6d6d6;
+
+    border:
+        1px solid #d6d6d6;
+
     border-radius: 8px;
+
     cursor: pointer;
 }
 
 .option input {
+
     position: absolute;
+
     opacity: 0;
+
     width: 0;
+
     height: 0;
 }
 
 .radio {
+
     width: 18px;
+
     height: 18px;
-    border: 1.5px solid #777777;
+
+    border:
+        1.5px solid #777777;
+
     border-radius: 50%;
+
     margin-left: 11px;
+
     flex-shrink: 0;
+
     position: relative;
 }
 
 .option input:checked + .radio {
+
     border-color: #000000;
 }
 
-.option input:checked + .radio::after {
+.option input:checked
++ .radio::after {
+
     content: "";
+
     position: absolute;
+
     width: 9px;
+
     height: 9px;
+
     background: #000000;
+
     border-radius: 50%;
+
     top: 50%;
+
     left: 50%;
-    transform: translate(-50%, -50%);
+
+    transform:
+        translate(-50%, -50%);
 }
 
 .option-text {
+
     font-size: 16px;
+
     color: #222222;
 }
 
 .other-problem {
+
     display: none;
+
     margin-top: 12px;
 }
 
 .other-problem.show {
+
     display: block;
 }
 
 textarea {
+
     width: 100%;
+
     min-height: 110px;
+
     padding: 13px 15px;
+
     resize: vertical;
-    border: 1px solid #d6d6d6;
+
+    border:
+        1px solid #d6d6d6;
+
     border-radius: 8px;
+
     background: #ffffff;
+
     font-family: Arial, sans-serif;
+
     font-size: 16px;
+
     color: #000000;
+
     outline: none;
 }
 
 textarea:focus {
+
     border-color: #000000;
 }
 
 .confirm {
+
     width: 100%;
+
     height: 54px;
+
     margin-top: 34px;
+
     border: none;
+
     border-radius: 8px;
+
     background: #000000;
+
     color: #ffffff;
+
     font-family: Arial, sans-serif;
+
     font-size: 17px;
+
     font-weight: 500;
+
     cursor: pointer;
 }
 
 .confirm:disabled {
+
     opacity: 0.6;
+
     cursor: wait;
 }
 
 .error {
+
     display: none;
+
     margin-top: 14px;
+
     text-align: center;
+
     font-size: 14px;
+
     color: #c00000;
 }
 
 @media (max-width: 600px) {
 
     body {
-        padding: 28px 18px 35px;
+
+        padding:
+            28px 18px 35px;
     }
 
     .logo {
+
         font-size: 48px;
+
         margin-bottom: 38px;
     }
 
     .field {
+
         margin-bottom: 21px;
     }
 
     label,
     .problem-title {
+
         font-size: 15px;
     }
 
     input {
+
         height: 50px;
+
         font-size: 16px;
     }
 
     .option {
+
         min-height: 50px;
     }
 
     .option-text {
+
         font-size: 15px;
     }
 
     .confirm {
+
         margin-top: 28px;
+
         height: 52px;
     }
 
@@ -242,167 +378,186 @@ textarea:focus {
 
 </head>
 
+
 <body>
+
 
 <main class="container">
 
-    <div class="logo">
-        360<span class="one">1</span>
-    </div>
+
+<div class="logo">
+
+360<span class="one">1</span>
+
+</div>
 
 
-    <div class="field">
+<div class="field">
 
-        <label for="name">
-            الاسم الكامل
-        </label>
+<label for="name">
+الاسم الكامل
+</label>
 
-        <input
-            type="text"
-            id="name"
-            autocomplete="name"
-        >
+<input
+    type="text"
+    id="name"
+    autocomplete="name"
+>
 
-    </div>
-
-
-    <div class="field">
-
-        <label for="city">
-            المدينة
-        </label>
-
-        <input
-            type="text"
-            id="city"
-            autocomplete="address-level2"
-        >
-
-    </div>
+</div>
 
 
-    <div class="field">
+<div class="field">
 
-        <label for="phone">
-            رقم الهاتف
-        </label>
+<label for="city">
+المدينة
+</label>
 
-        <input
-            type="tel"
-            id="phone"
-            inputmode="tel"
-            autocomplete="tel"
-        >
+<input
+    type="text"
+    id="city"
+    autocomplete="address-level2"
+>
 
-    </div>
-
-
-    <div class="field">
-
-        <div class="problem-title">
-            المشكلة
-        </div>
+</div>
 
 
-        <div class="options">
+<div class="field">
 
-            <label class="option">
+<label for="phone">
+رقم الهاتف
+</label>
 
-                <input
-                    type="radio"
-                    name="problem"
-                    value="يوجد مهتمين لكن لا يشترون"
-                >
+<input
+    type="tel"
+    id="phone"
+    inputmode="tel"
+    autocomplete="tel"
+>
 
-                <span class="radio"></span>
-
-                <span class="option-text">
-                    يوجد مهتمين لكن لا يشترون
-                </span>
-
-            </label>
+</div>
 
 
-            <label class="option">
-
-                <input
-                    type="radio"
-                    name="problem"
-                    value="لا يوجد مهتمين"
-                >
-
-                <span class="radio"></span>
-
-                <span class="option-text">
-                    لا يوجد مهتمين
-                </span>
-
-            </label>
+<div class="field">
 
 
-            <label class="option">
+<div class="problem-title">
 
-                <input
-                    type="radio"
-                    name="problem"
-                    value="أخرى"
-                    id="otherOption"
-                >
+المشكلة
 
-                <span class="radio"></span>
-
-                <span class="option-text">
-                    أخرى
-                </span>
-
-            </label>
-
-        </div>
+</div>
 
 
-        <div
-            class="other-problem"
-            id="otherProblem"
-        >
-
-            <textarea
-                id="otherText"
-                placeholder="اكتب مشكلتك هنا..."
-            ></textarea>
-
-        </div>
-
-    </div>
+<div class="options">
 
 
-    <button
-        class="confirm"
-        id="confirm"
-        type="button"
-    >
-        تأكيد
-    </button>
+<label class="option">
+
+<input
+    type="radio"
+    name="problem"
+    value="يوجد مهتمين لكن لا يشترون"
+>
+
+<span class="radio"></span>
+
+<span class="option-text">
+
+يوجد مهتمين لكن لا يشترون
+
+</span>
+
+</label>
 
 
-    <div
-        class="error"
-        id="error"
-    >
-        يرجى إكمال البيانات المطلوبة.
-    </div>
+<label class="option">
+
+<input
+    type="radio"
+    name="problem"
+    value="لا يوجد مهتمين"
+>
+
+<span class="radio"></span>
+
+<span class="option-text">
+
+لا يوجد مهتمين
+
+</span>
+
+</label>
+
+
+<label class="option">
+
+<input
+    type="radio"
+    name="problem"
+    value="أخرى"
+    id="otherOption"
+>
+
+<span class="radio"></span>
+
+<span class="option-text">
+
+أخرى
+
+</span>
+
+</label>
+
+
+</div>
+
+
+<div
+    class="other-problem"
+    id="otherProblem"
+>
+
+<textarea
+    id="otherText"
+    placeholder="اكتب مشكلتك هنا..."
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<button
+    class="confirm"
+    id="confirm"
+    type="button"
+>
+
+تأكيد
+
+</button>
+
+
+<div
+    class="error"
+    id="error"
+>
+
+يرجى إكمال البيانات المطلوبة.
+
+</div>
+
 
 </main>
 
 
 <script>
 
+
 const scriptURL =
     "https://script.google.com/macros/s/AKfycbx-leQ-ZWuA4LVjz-spCAhyY84_3YQer9vVgFPuHSYAiESgmGvnc9GMhAjXFYaWhtfNXw/exec";
 
-
-/* =========================
-   قراءة رقم الصف من الرابط
-   ========================= */
 
 const params =
     new URLSearchParams(
@@ -411,27 +566,40 @@ const params =
 
 
 const entryRow =
-    params.get("row");
+    params.get("row") ||
+    sessionStorage.getItem(
+        "entryRow"
+    );
 
-
-/* =========================
-   العناصر
-   ========================= */
 
 const otherOption =
-    document.getElementById("otherOption");
+    document.getElementById(
+        "otherOption"
+    );
+
 
 const otherProblem =
-    document.getElementById("otherProblem");
+    document.getElementById(
+        "otherProblem"
+    );
+
 
 const otherText =
-    document.getElementById("otherText");
+    document.getElementById(
+        "otherText"
+    );
+
 
 const confirmButton =
-    document.getElementById("confirm");
+    document.getElementById(
+        "confirm"
+    );
+
 
 const error =
-    document.getElementById("error");
+    document.getElementById(
+        "error"
+    );
 
 
 const problemOptions =
@@ -440,16 +608,12 @@ const problemOptions =
     );
 
 
-/* =========================
-   إظهار أخرى
-   ========================= */
-
 problemOptions.forEach(
-    function (option) {
+    function(option) {
 
         option.addEventListener(
             "change",
-            function () {
+            function() {
 
                 error.style.display =
                     "none";
@@ -459,17 +623,18 @@ problemOptions.forEach(
                     otherOption.checked
                 ) {
 
-                    otherProblem.classList.add(
-                        "show"
-                    );
+                    otherProblem
+                        .classList
+                        .add("show");
 
                 } else {
 
-                    otherProblem.classList.remove(
-                        "show"
-                    );
+                    otherProblem
+                        .classList
+                        .remove("show");
 
-                    otherText.value = "";
+                    otherText.value =
+                        "";
 
                 }
 
@@ -481,12 +646,12 @@ problemOptions.forEach(
 
 
 /* =========================
-   إرسال البيانات
+   إرسال النموذج
    ========================= */
 
 confirmButton.addEventListener(
     "click",
-    function () {
+    function() {
 
         const name =
             document
@@ -533,7 +698,6 @@ confirmButton.addEventListener(
                 "block";
 
             return;
-
         }
 
 
@@ -549,20 +713,18 @@ confirmButton.addEventListener(
                 "block";
 
             return;
-
         }
 
 
         if (!entryRow) {
 
             error.textContent =
-                "حدث خطأ في جلسة الدخول. أعد فتح الرابط من البداية.";
+                "تعذر تحديد جلسة الدخول. أعد فتح الموقع من الصفحة الأولى.";
 
             error.style.display =
                 "block";
 
             return;
-
         }
 
 
@@ -575,13 +737,17 @@ confirmButton.addEventListener(
         confirmButton.disabled =
             true;
 
+
         confirmButton.textContent =
             "جاري الإرسال...";
 
 
+        /* إرسال البيانات */
+
         fetch(
             scriptURL,
             {
+
                 method: "POST",
 
                 body: JSON.stringify({
@@ -601,50 +767,23 @@ confirmButton.addEventListener(
                 })
 
             }
-        )
+        );
 
-        .then(
-            function (response) {
 
-                return response.json();
+        /*
+         * لا ننتظر استجابة طويلة.
+         * نعطي الطلب لحظة للإرسال ثم ننتقل.
+         */
 
-            }
-        )
-
-        .then(
-            function (data) {
-
-                if (!data.success) {
-
-                    throw new Error(
-                        "فشل الإرسال"
-                    );
-
-                }
-
+        setTimeout(
+            function() {
 
                 window.location.href =
-                    "success.html";
+                    "success.html?row="
+                    + entryRow;
 
-            }
-        )
-
-        .catch(
-            function () {
-
-                confirmButton.disabled =
-                    false;
-
-                confirmButton.textContent =
-                    "تأكيد";
-
-                error.textContent =
-                    "حدث خطأ أثناء إرسال البيانات. حاول مرة أخرى.";
-
-                error.style.display =
-                    "block";
-
-            }
+            },
+            400
         );
 
     }
