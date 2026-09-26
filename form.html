@@ -924,6 +924,222 @@
     <script>
 
         /* =====================================================
+           TRACKING — فقط مضاف، لا يغير هيكل الصفحة
+        ===================================================== */
+
+        const API_URL =
+            "https://script.google.com/macros/s/AKfycby4Bh4LqFrAH0igKlMdHyrYPpXbQL2NpbkUbzg8Ah6U0AtF4I1FgDqGBrGmr4r7HBW36g/exec";
+
+
+        function generateSessionId() {
+
+            return (
+                Date.now().toString(36) +
+                "-" +
+                Math.random()
+                    .toString(36)
+                    .substring(2, 12)
+            );
+
+        }
+
+
+        let sessionId =
+            sessionStorage.getItem(
+                "sessionId"
+            );
+
+
+        if (!sessionId) {
+
+            sessionId =
+                generateSessionId();
+
+            sessionStorage.setItem(
+                "sessionId",
+                sessionId
+            );
+
+        }
+
+
+        /*
+         * وقت دخول الصفحة 2
+         * تم إنشاؤه في index.html
+         */
+
+        let page2EntryTimestamp =
+            sessionStorage.getItem(
+                "page2EntryTimestamp"
+            );
+
+
+        /*
+         * إذا لم يوجد، ننشئه الآن
+         * حتى لا يتعطل التتبع
+         */
+
+        if (!page2EntryTimestamp) {
+
+            page2EntryTimestamp =
+                new Date().toISOString();
+
+            sessionStorage.setItem(
+                "page2EntryTimestamp",
+                page2EntryTimestamp
+            );
+
+        }
+
+
+        function formatDateTime(date) {
+
+            const hours =
+                String(
+                    date.getHours()
+                ).padStart(2, "0");
+
+            const minutes =
+                String(
+                    date.getMinutes()
+                ).padStart(2, "0");
+
+            const seconds =
+                String(
+                    date.getSeconds()
+                ).padStart(2, "0");
+
+            const day =
+                String(
+                    date.getDate()
+                ).padStart(2, "0");
+
+            const month =
+                String(
+                    date.getMonth() + 1
+                ).padStart(2, "0");
+
+            const year =
+                date.getFullYear();
+
+
+            return (
+                hours +
+                ":" +
+                minutes +
+                ":" +
+                seconds +
+                " " +
+                day +
+                "/" +
+                month +
+                "/" +
+                year
+            );
+
+        }
+
+
+        function getDuration(
+            startTimestamp
+        ) {
+
+            if (!startTimestamp) {
+                return "";
+            }
+
+
+            const start =
+                new Date(
+                    startTimestamp
+                );
+
+            const now =
+                new Date();
+
+
+            let totalSeconds =
+                Math.floor(
+                    (
+                        now.getTime() -
+                        start.getTime()
+                    ) / 1000
+                );
+
+
+            if (totalSeconds < 0) {
+                totalSeconds = 0;
+            }
+
+
+            const hours =
+                Math.floor(
+                    totalSeconds / 3600
+                );
+
+
+            totalSeconds =
+                totalSeconds % 3600;
+
+
+            const minutes =
+                Math.floor(
+                    totalSeconds / 60
+                );
+
+
+            const seconds =
+                totalSeconds % 60;
+
+
+            return (
+                String(hours).padStart(2, "0") +
+                ":" +
+                String(minutes).padStart(2, "0") +
+                ":" +
+                String(seconds).padStart(2, "0") +
+                " sec"
+            );
+
+        }
+
+
+        function sendTracking(data) {
+
+            return fetch(
+                API_URL,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+                    },
+
+                    body:
+                        JSON.stringify(data),
+
+                    keepalive: true
+                }
+            )
+            .then(function () {
+                return true;
+            })
+            .catch(function (error) {
+
+                console.error(
+                    "Tracking error:",
+                    error
+                );
+
+                return false;
+
+            });
+
+        }
+
+
+        /* =====================================================
            الأسئلة
         ===================================================== */
 
@@ -1627,7 +1843,7 @@
 
             nextButton.addEventListener(
                 "click",
-                function () {
+                async function () {
 
                     if (
                         nextButton.classList.contains(
@@ -1661,15 +1877,152 @@
                     );
 
 
-                    const originalText =
-                        nextButton.textContent;
-
-
                     nextButton.textContent =
                         currentQuestion ===
                         questions.length - 1
                         ? "جارٍ الحفظ..."
                         : "جارٍ الانتقال...";
+
+
+                    /* =================================================
+                       TRACKING
+                       حفظ بيانات H → R في نفس الصف
+                    ================================================= */
+
+                    const trackingData = {
+
+                        sessionId:
+                            sessionId
+
+                    };
+
+
+                    trackingData.fullName =
+                        answers[0] || "";
+
+
+                    trackingData.city =
+                        answers[1] || "";
+
+
+                    trackingData.age =
+                        answers[2] || "";
+
+
+                    trackingData.phone =
+                        answers[3] || "";
+
+
+                    trackingData.currentStatus =
+                        answers[4] || "";
+
+
+                    trackingData.previousAttempt =
+                        answers[5] || "";
+
+
+                    trackingData.budget =
+                        answers[6] || "";
+
+
+                    trackingData.obstacles =
+                        Array.isArray(answers[7])
+                        ? answers[7].join("، ")
+                        : answers[7] || "";
+
+
+                    trackingData.product =
+                        answers[8] || "";
+
+
+                    trackingData.reason =
+                        answers[9] || "";
+
+
+                    trackingData.needToKnow =
+                        answers[10] || "";
+
+
+                    /*
+                     * إضافة "شيء آخر"
+                     * إلى بيانات العوائق
+                     */
+
+                    if (
+                        answers[7] &&
+                        Array.isArray(answers[7]) &&
+                        answers[7].includes(
+                            "شيء آخر"
+                        )
+                    ) {
+
+                        const other =
+                            answers["7_other"] || "";
+
+
+                        if (other) {
+
+                            trackingData.obstacles =
+                                trackingData.obstacles +
+                                " — " +
+                                other;
+
+                        }
+
+                    }
+
+
+                    /*
+                     * إذا كانت هذه آخر خطوة:
+                     * نسجل S → V
+                     */
+
+                    if (
+                        currentQuestion ===
+                        questions.length - 1
+                    ) {
+
+                        const transitionDate =
+                            new Date();
+
+
+                        const duration2 =
+                            getDuration(
+                                page2EntryTimestamp
+                            );
+
+
+                        const transitionTime =
+                            formatDateTime(
+                                transitionDate
+                            );
+
+
+                        trackingData.duration2 =
+                            duration2;
+
+
+                        trackingData.movedToPage3 =
+                            "نعم";
+
+
+                        trackingData.page3Time =
+                            transitionTime;
+
+
+                        trackingData.page3 =
+                            "3";
+
+                    }
+
+
+                    /*
+                     * إرسال التتبع
+                     */
+
+                    await sendTracking(
+                        trackingData
+                    );
 
 
                     setTimeout(
