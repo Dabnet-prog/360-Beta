@@ -638,6 +638,7 @@
 
         transform: none;
       }
+
     }
 
   </style>
@@ -728,24 +729,303 @@
 
 
     /* =========================
+       TRACKING
+       W → X → Y
+    ========================= */
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycby4Bh4LqFrAH0igKlMdHyrYPpXbQL2NpbkUbzg8Ah6U0AtF4I1FgDqGBrGmr4r7HBW36g/exec";
+
+
+    const sessionId =
+      sessionStorage.getItem(
+        "sessionId"
+      );
+
+
+    /*
+      الصفحة الثانية تحفظ وقت
+      الانتقال إلى الصفحة الثالثة.
+    */
+
+    let page3EntryTimestamp =
+      sessionStorage.getItem(
+        "page3EntryTimestamp"
+      );
+
+
+    /*
+      إذا لم يكن موجودًا بسبب تجربة
+      مباشرة للصفحة الثالثة، نبدأ
+      من لحظة فتحها.
+    */
+
+    if (!page3EntryTimestamp) {
+
+      page3EntryTimestamp =
+        new Date().toISOString();
+
+      sessionStorage.setItem(
+        "page3EntryTimestamp",
+        page3EntryTimestamp
+      );
+
+    }
+
+
+    /* =========================
+       FORMAT DATE
+    ========================= */
+
+    function formatDateTime(date) {
+
+      const hours =
+        String(
+          date.getHours()
+        ).padStart(2, "0");
+
+      const minutes =
+        String(
+          date.getMinutes()
+        ).padStart(2, "0");
+
+      const seconds =
+        String(
+          date.getSeconds()
+        ).padStart(2, "0");
+
+      const day =
+        String(
+          date.getDate()
+        ).padStart(2, "0");
+
+      const month =
+        String(
+          date.getMonth() + 1
+        ).padStart(2, "0");
+
+      const year =
+        date.getFullYear();
+
+
+      return (
+        hours +
+        ":" +
+        minutes +
+        ":" +
+        seconds +
+        " " +
+        day +
+        "/" +
+        month +
+        "/" +
+        year
+      );
+
+    }
+
+
+    /* =========================
+       DURATION
+    ========================= */
+
+    function getDuration(
+      startTimestamp
+    ) {
+
+      if (!startTimestamp) {
+        return "";
+      }
+
+
+      const start =
+        new Date(
+          startTimestamp
+        );
+
+      const now =
+        new Date();
+
+
+      let totalSeconds =
+        Math.floor(
+          (
+            now.getTime() -
+            start.getTime()
+          ) / 1000
+        );
+
+
+      if (totalSeconds < 0) {
+        totalSeconds = 0;
+      }
+
+
+      const hours =
+        Math.floor(
+          totalSeconds / 3600
+        );
+
+
+      totalSeconds =
+        totalSeconds % 3600;
+
+
+      const minutes =
+        Math.floor(
+          totalSeconds / 60
+        );
+
+
+      const seconds =
+        totalSeconds % 60;
+
+
+      return (
+        String(hours).padStart(2, "0") +
+        ":" +
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(seconds).padStart(2, "0") +
+        " sec"
+      );
+
+    }
+
+
+    /* =========================
+       SEND TRACKING
+    ========================= */
+
+    function sendTracking(data) {
+
+      if (!sessionId) {
+        return Promise.resolve(false);
+      }
+
+
+      return fetch(
+        API_URL,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:
+            JSON.stringify(data),
+
+          keepalive: true
+        }
+      )
+      .then(function () {
+        return true;
+      })
+      .catch(function (error) {
+
+        console.error(
+          "Tracking error:",
+          error
+        );
+
+        return false;
+
+      });
+
+    }
+
+
+    /* =========================
        EXIT BUTTON
     ========================= */
 
     const exitButton =
-      document.getElementById("exitButton");
+      document.getElementById(
+        "exitButton"
+      );
+
+
+    let exitClicked = false;
 
 
     exitButton.addEventListener(
       "click",
-      function () {
+      async function () {
 
-        if (
-          exitButton.classList.contains(
-            "loading"
-          )
-        ) {
+        if (exitClicked) {
           return;
         }
+
+
+        exitClicked = true;
+
+
+        /*
+          وقت الخروج
+        */
+
+        const exitDate =
+          new Date();
+
+
+        const exitTime =
+          formatDateTime(
+            exitDate
+          );
+
+
+        /*
+          مدة البقاء في الصفحة 3
+        */
+
+        const duration3 =
+          getDuration(
+            page3EntryTimestamp
+          );
+
+
+        /*
+          حفظ محليًا أيضًا
+        */
+
+        sessionStorage.setItem(
+          "page3Duration",
+          duration3
+        );
+
+
+        sessionStorage.setItem(
+          "exitTime",
+          exitTime
+        );
+
+
+        /*
+          نفس الصف في Google Sheets
+        */
+
+        await sendTracking({
+
+          sessionId:
+            sessionId,
+
+          exited:
+            "نعم",
+
+          exitTime:
+            exitTime,
+
+          duration3:
+            duration3
+
+        });
+
+
+        /*
+          نفس سلوك الزر الأصلي
+        */
 
         exitButton.classList.add(
           "loading"
@@ -758,8 +1038,18 @@
         setTimeout(
           function () {
 
-            exitButton.textContent =
-              "يمكنك إغلاق الصفحة";
+            if (
+              window.history.length > 1
+            ) {
+
+              window.history.back();
+
+            } else {
+
+              exitButton.textContent =
+                "يمكنك إغلاق الصفحة";
+
+            }
 
           },
           600
@@ -767,6 +1057,7 @@
 
       }
     );
+
 
   </script>
 
