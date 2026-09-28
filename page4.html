@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>اختيارك | ELIT MAN</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #fafafa;
+    color: #111;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 24px;
+}
+
+.container {
+    width: 100%;
+    max-width: 430px;
+    text-align: center;
+}
+
+
+/* =========================
+   BRAND
+========================= */
+
+.brand {
+    display: inline-block;
+
+    padding: 8px 16px;
+
+    border: 1px solid #e7e7e7;
+    border-radius: 30px;
+
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    margin-bottom: 48px;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.title {
+    font-size: 24px;
+    font-weight: 400;
+
+    line-height: 1.55;
+
+    margin-bottom: 9px;
+
+    transition: .3s ease;
+}
+
+.title strong {
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #777;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   OPTIONS
+========================= */
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 100%;
+}
+
+
+.option {
+    position: relative;
+
+    width: 100%;
+
+    background: #fff;
+
+    border: 1px solid #e7e7e7;
+
+    border-radius: 16px;
+
+    padding: 16px 18px;
+
+    text-align: right;
+
+    cursor: pointer;
+
+    transition:
+        border-color .22s ease,
+        transform .22s ease,
+        box-shadow .22s ease,
+        opacity .22s ease;
+}
+
+
+.option:hover {
+    border-color: #ccc;
+}
+
+
+.option:active {
+    transform: scale(.985);
+}
+
+
+/* =========================
+   SELECTED
+========================= */
+
+.option.selected {
+
+    border-color: #111;
+
+    box-shadow:
+        0 7px 25px rgba(0,0,0,.055);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   OTHER OPTIONS QUIET
+========================= */
+
+.options.has-selection .option:not(.selected) {
+    opacity: .58;
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.option-title {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.option-description {
+    margin-top: 4px;
+
+    font-size: 11px;
+    color: #999;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   CHECK
+========================= */
+
+.check {
+
+    float: left;
+
+    width: 19px;
+    height: 19px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 10px;
+
+    color: transparent;
+
+    transition: .2s ease;
+}
+
+.option.selected .check {
+
+    background: #111;
+
+    border-color: #111;
+
+    color: #fff;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================
+   CONFIRM BUTTON
+========================= */
+
+.confirm {
+
+    width: 100%;
+
+    margin-top: 21px;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background: #111;
+
+    color: #fff;
+
+    font-size: 14px;
+
+    opacity: .28;
+
+    pointer-events: none;
+
+    cursor: pointer;
+
+    transition:
+        opacity .25s ease,
+        transform .2s ease;
+}
+
+
+.confirm.active {
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+.confirm:active {
+    transform: scale(.985);
+}
+
+
+/* =========================
+   MICRO NOTE
+========================= */
+
+.note {
+
+    margin-top: 16px;
+
+    font-size: 11px;
+
+    color: #aaa;
+
+    transition: .25s ease;
+}
+
+
+/* =========================
+   CONFIRMATION STATE
+========================= */
+
+.confirmation {
+
+    display: none;
+
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+
+.confirmation.show {
+
+    display: block;
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+.confirmation-title {
+
+    font-size: 20px;
+
+    font-weight: 500;
+
+    margin-bottom: 10px;
+}
+
+
+.confirmation-text {
+
+    font-size: 13px;
+
+    color: #777;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   LOADING DOT
+========================= */
+
+.dot-loader {
+
+    margin: 20px auto 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 5px;
+}
+
+
+.dot-loader span {
+
+    width: 4px;
+    height: 4px;
+
+    background: #111;
+
+    border-radius: 50%;
+
+    animation: pulse 1s infinite ease-in-out;
+}
+
+
+.dot-loader span:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.dot-loader span:nth-child(3) {
+    animation-delay: .3s;
+}
+
+
+@keyframes pulse {
+
+    0%,100% {
+        opacity: .2;
+        transform: scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:480px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .brand {
+        margin-bottom: 42px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     TRACKING IFRAME
+===================================================== -->
+
+<iframe
+    name="trackingFrame"
+    style="display:none;"
+></iframe>
+
+
+<div class="container">
+
+
+    <!-- =================================================
+         BRAND
+    ================================================== -->
+
+    <div class="brand">
+        ELIT MAN
+    </div>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <div id="mainContent">
+
+        <h1 class="title">
+
+            اخترت هذا العطر...
+            <br>
+
+            <strong>لكن لماذا؟</strong>
+
+        </h1>
+
+
+        <p class="subtitle">
+
+            ما الشيء الذي تبحث عنه من هذا العطر؟
+
+        </p>
+
+
+        <div class="options" id="options">
+
+
+            <!-- 01 -->
+
+            <div class="option"
+                 data-intent="confidence">
+
+                <span class="check">✓</span>
+
+                <div class="option-title">
+                    أريد أن أشعر بالثقة
+                </div>
+
+                <div class="option-description">
+                    أريد رائحة تجعلني أشعر بشكل مختلف
+                </div>
+
+            </div>
+
+
+            <!-- 02 -->
+
+            <div class="option"
+                 data-intent="impression">
+
+                <span class="check">✓</span>
+
+                <div class="option-title">
+                    أريد أن أترك انطباعًا جيدًا
+                </div>
+
+                <div class="option-description">
+                    أريد شيئًا يلاحظه من حولي
+                </div>
+
+            </div>
+
+
+            <!-- 03 -->
+
+            <div class="option"
+                 data-intent="identity">
+
+                <span class="check">✓</span>
+
+                <div class="option-title">
+                    أريد رائحة تشبهني
+                </div>
+
+                <div class="option-description">
+                    أبحث عن شيء أشعر أنه مناسب لي
+                </div>
+
+            </div>
+
+
+            <!-- 04 -->
+
+            <div class="option"
+                 data-intent="occasion">
+
+                <span class="check">✓</span>
+
+                <div class="option-title">
+                    أريده لمناسبة معينة
+                </div>
+
+                <div class="option-description">
+                    مناسبة، لقاء، خروج أو لحظة خاصة
+                </div>
+
+            </div>
+
+
+            <!-- 05 -->
+
+            <div class="option"
+                 data-intent="just_like">
+
+                <span class="check">✓</span>
+
+                <div class="option-title">
+                    أعجبني وأريده فقط
+                </div>
+
+                <div class="option-description">
+                    لم أفكر في سبب معين
+                </div>
+
+            </div>
+
+
+            <!-- 06 -->
+
+            <div class="option"
+                 data-intent="other">
+
+                <span class="check">✓</span>
+
+                <div class="option-title">
+                    شيء آخر
+                </div>
+
+                <div class="option-description">
+                    السبب الذي أبحث عنه مختلف
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            class="confirm"
+            id="confirm">
+
+            هذا هو السبب ←
+
+        </button>
+
+
+        <div class="note" id="note">
+
+            لا يوجد اختيار صحيح أو خاطئ
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CONFIRMATION
+    ================================================== -->
+
+    <div
+        class="confirmation"
+        id="confirmation"
+    >
+
+        <div class="confirmation-title">
+
+            فهمنا اختيارك.
+
+        </div>
+
+        <div class="confirmation-text">
+
+            الآن نكمل من النقطة التي تهمك.
+
+        </div>
+
+        <div class="dot-loader">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/* ======================================================
+   TRACKING URL
+====================================================== */
+
+const TRACKING_URL =
+    "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+
+/* ======================================================
+   BROWSER ID
+   نفس المعرف يبقى مع الشخص بين الصفحات
+====================================================== */
+
+function getBrowserId() {
+
+    let browserId =
+        localStorage.getItem(
+            "closing_layer_browser_id"
+        );
+
+    if (!browserId) {
+
+        browserId =
+            "browser_" +
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(36)
+                .substring(2, 10);
+
+        localStorage.setItem(
+            "closing_layer_browser_id",
+            browserId
+        );
+    }
+
+    return browserId;
+}
+
+
+/* ======================================================
+   SEND TRACKING
+   HTML FORM + HIDDEN IFRAME
+   بدون sendBeacon
+====================================================== */
+
+function sendTracking(data) {
+
+    try {
+
+        const form =
+            document.createElement("form");
+
+        form.method = "POST";
+
+        form.action = TRACKING_URL;
+
+        form.target = "trackingFrame";
+
+        form.style.display = "none";
+
+
+        const finalData = {
+
+            browser_id:
+                getBrowserId(),
+
+            ...data
+
+        };
+
+
+        Object.keys(finalData).forEach(key => {
+
+            const input =
+                document.createElement("input");
+
+            input.type = "hidden";
+
+            input.name = key;
+
+            input.value =
+                finalData[key] === null ||
+                finalData[key] === undefined
+                    ? ""
+                    : String(finalData[key]);
+
+            form.appendChild(input);
+
+        });
+
+
+        document.body.appendChild(form);
+
+        form.submit();
+
+
+        setTimeout(() => {
+
+            if (form.parentNode) {
+                form.remove();
+            }
+
+        }, 1000);
+
+
+    } catch (error) {
+
+        console.error(
+            "Tracking error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ======================================================
+   STATE
+====================================================== */
+
+let selectedIntent = null;
+
+
+/* ======================================================
+   ELEMENTS
+====================================================== */
+
+const options =
+    document.querySelectorAll(".option");
+
+const optionsContainer =
+    document.getElementById("options");
+
+const confirmButton =
+    document.getElementById("confirm");
+
+const mainContent =
+    document.getElementById("mainContent");
+
+const confirmation =
+    document.getElementById("confirmation");
+
+
+/* ======================================================
+   PRODUCT FROM PAGE 2
+====================================================== */
+
+const selectedProduct =
+    localStorage.getItem(
+        "selected_product"
+    ) || "";
+
+
+/* ======================================================
+   ALL SELECTED PRODUCTS
+====================================================== */
+
+function getSelectedProducts() {
+
+    try {
+
+        const stored =
+            localStorage.getItem(
+                "selected_products"
+            );
+
+        if (!stored) {
+            return [];
+        }
+
+        const products =
+            JSON.parse(stored);
+
+        return Array.isArray(products)
+            ? products
+            : [];
+
+    } catch (error) {
+
+        console.error(
+            "selected_products error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* ======================================================
+   PAGE 4 ENTRY TIME
+====================================================== */
+
+const page4EnteredAt =
+    Date.now();
+
+
+localStorage.setItem(
+    "page4_entered_at",
+    page4EnteredAt
+);
+
+
+/* ======================================================
+   PAGE 4 VIEW
+====================================================== */
+
+const selectedProducts =
+    getSelectedProducts();
+
+
+sendTracking({
+
+    event:
+        "page_view",
+
+    page:
+        "page4",
+
+    selected_product:
+        selectedProduct,
+
+    selected_products:
+        selectedProducts
+            .map(product => product.id)
+            .join(", "),
+
+    selected_count:
+        selectedProducts.length,
+
+    timestamp:
+        new Date().toISOString()
+
+});
+
+
+/* ======================================================
+   OPTION CLICK
+====================================================== */
+
+options.forEach(option => {
+
+    option.addEventListener(
+        "click",
+        () => {
+
+
+            /* ==========================================
+               REMOVE OLD SELECTION
+            ========================================== */
+
+            options.forEach(item => {
+
+                item.classList.remove(
+                    "selected"
+                );
+
+            });
+
+
+            /* ==========================================
+               SELECT CURRENT OPTION
+            ========================================== */
+
+            option.classList.add(
+                "selected"
+            );
+
+
+            optionsContainer.classList.add(
+                "has-selection"
+            );
+
+
+            /* ==========================================
+               INTERNAL VALUE
+            ========================================== */
+
+            selectedIntent =
+                option.dataset.intent;
+
+
+            /* ==========================================
+               EXACT VISIBLE NAME
+            ========================================== */
+
+            const optionTextElement =
+                option.querySelector(
+                    ".option-title"
+                );
+
+
+            const optionDescriptionElement =
+                option.querySelector(
+                    ".option-description"
+                );
+
+
+            const optionText =
+                optionTextElement
+                    ? optionTextElement.textContent.trim()
+                    : "";
+
+
+            const optionDescription =
+                optionDescriptionElement
+                    ? optionDescriptionElement
+                        .textContent
+                        .trim()
+                    : "";
+
+
+            /* ==========================================
+               ACTIVATE CONFIRM BUTTON
+            ========================================== */
+
+            confirmButton.classList.add(
+                "active"
+            );
+
+
+            /* ==========================================
+               TRACK SELECTION
+            ========================================== */
+
+            sendTracking({
+
+                event:
+                    "intention_selected",
+
+                page:
+                    "page4",
+
+                product:
+                    selectedProduct,
+
+                selected_product:
+                    selectedProduct,
+
+                selected_products:
+                    selectedProducts
+                        .map(product => product.id)
+                        .join(", "),
+
+                selected_count:
+                    selectedProducts.length,
+
+                intent:
+                    selectedIntent,
+
+                option_text:
+                    optionText,
+
+                option_description:
+                    optionDescription,
+
+                timestamp:
+                    new Date().toISOString()
+
+            });
+
+
+            console.log(
+                "PAGE 4 OPTION SELECTED:",
+                {
+                    intent:
+                        selectedIntent,
+
+                    option_text:
+                        optionText,
+
+                    option_description:
+                        optionDescription
+                }
+            );
+
+        }
+    );
+
+});
+
+
+/* ======================================================
+   CONFIRM BUTTON
+====================================================== */
+
+confirmButton.addEventListener(
+    "click",
+    () => {
+
+
+        if (!selectedIntent) {
+
+            return;
+
+        }
+
+
+        /* =================================================
+           TIME ON PAGE
+        ================================================= */
+
+        const timeOnPage =
+            Date.now()
+            -
+            page4EnteredAt;
+
+
+        /* =================================================
+           GET SELECTED OPTION
+        ================================================= */
+
+        const selectedOption =
+            document.querySelector(
+                ".option.selected"
+            );
+
+
+        if (!selectedOption) {
+
+            return;
+
+        }
+
+
+        /* =================================================
+           EXACT VISIBLE TEXT
+        ================================================= */
+
+        const finalOptionTextElement =
+            selectedOption.querySelector(
+                ".option-title"
+            );
+
+
+        const finalOptionDescriptionElement =
+            selectedOption.querySelector(
+                ".option-description"
+            );
+
+
+        const finalOptionText =
+            finalOptionTextElement
+                ? finalOptionTextElement
+                    .textContent
+                    .trim()
+                : "";
+
+
+        const finalOptionDescription =
+            finalOptionDescriptionElement
+                ? finalOptionDescriptionElement
+                    .textContent
+                    .trim()
+                : "";
+
+
+        /* =================================================
+           SAVE INTERNAL INTENT
+        ================================================= */
+
+        localStorage.setItem(
+            "selected_intent",
+            selectedIntent
+        );
+
+
+        /* =================================================
+           SAVE EXACT VISIBLE NAME
+        ================================================= */
+
+        localStorage.setItem(
+            "selected_intent_text",
+            finalOptionText
+        );
+
+
+        /* =================================================
+           SAVE DESCRIPTION
+        ================================================= */
+
+        localStorage.setItem(
+            "selected_intent_description",
+            finalOptionDescription
+        );
+
+
+        /* =================================================
+           CONFIRM TIME
+        ================================================= */
+
+        localStorage.setItem(
+            "intent_confirmed_at",
+            Date.now()
+        );
+
+
+        /* =================================================
+           DECISION STATE
+        ================================================= */
+
+        const decisionState = {
+
+            product:
+                selectedProduct,
+
+            intent:
+                selectedIntent,
+
+            option_text:
+                finalOptionText,
+
+            option_description:
+                finalOptionDescription,
+
+            page:
+                "page4",
+
+            time_on_page:
+                timeOnPage,
+
+            timestamp:
+                new Date().toISOString()
+
+        };
+
+
+        localStorage.setItem(
+
+            "decision_state",
+
+            JSON.stringify(
+                decisionState
+            )
+
+        );
+
+
+        /* =================================================
+           TRACK FINAL CONFIRMATION
+        ================================================= */
+
+        sendTracking({
+
+            event:
+                "intention_confirmed",
+
+            page:
+                "page4",
+
+            product:
+                selectedProduct,
+
+            selected_product:
+                selectedProduct,
+
+            selected_products:
+                selectedProducts
+                    .map(product => product.id)
+                    .join(", "),
+
+            selected_count:
+                selectedProducts.length,
+
+            intent:
+                selectedIntent,
+
+            option_text:
+                finalOptionText,
+
+            option_description:
+                finalOptionDescription,
+
+            time_on_page:
+                timeOnPage,
+
+            next_page:
+                "page5",
+
+            timestamp:
+                new Date().toISOString()
+
+        });
+
+
+        /* =================================================
+           CONSOLE
+        ================================================= */
+
+        console.log(
+            "PAGE 4 CONFIRMED:",
+            decisionState
+        );
+
+
+        /* =================================================
+           PSYCHOLOGICAL TRANSITION
+        ================================================= */
+
+        mainContent.style.display =
+            "none";
+
+
+        confirmation.classList.add(
+            "show"
+        );
+
+
+        /* =================================================
+           PAGE 5
+        ================================================= */
+
+        setTimeout(() => {
+
+            window.location.href =
+                "page5.html";
+
+        }, 900);
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>

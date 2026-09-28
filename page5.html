@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>نكمل | ELIT MAN</title>
+
+
+<style>
+
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ==================================================
+   BODY
+================================================== */
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        "Tahoma",
+        sans-serif;
+
+    background: #fafafa;
+
+    color: #111;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 22px;
+
+    overflow: hidden;
+}
+
+
+/* ==================================================
+   MAIN
+================================================== */
+
+.container {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    min-height: 620px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* ==================================================
+   BRAND — TOP
+================================================== */
+
+.brand {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px 17px;
+
+    border: 1px solid #e6e6e6;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.5);
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    color: #222;
+
+    flex-shrink: 0;
+
+    animation:
+        brandIn .8s ease both;
+}
+
+
+/* ==================================================
+   UPPER PSYCHOLOGICAL SPACE
+================================================== */
+
+.upper-space {
+
+    flex: 1;
+
+    min-height: 105px;
+}
+
+
+/* ==================================================
+   CENTER MESSAGE
+================================================== */
+
+.message-area {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* ==================================================
+   SMALL LINE
+================================================== */
+
+.small-line {
+
+    font-size: 12px;
+
+    color: #999;
+
+    margin-bottom: 16px;
+
+    opacity: 0;
+
+    animation:
+        fadeUp .7s .2s ease forwards;
+}
+
+
+/* ==================================================
+   MAIN MESSAGE
+================================================== */
+
+.main-line {
+
+    font-size: 27px;
+
+    font-weight: 400;
+
+    line-height: 1.55;
+
+    color: #111;
+
+    opacity: 0;
+
+    animation:
+        fadeUp .8s .35s ease forwards;
+}
+
+
+.main-line strong {
+
+    font-weight: 600;
+
+    position: relative;
+}
+
+
+/* خط نفسي خفيف */
+
+.main-line strong::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 4%;
+
+    left: 4%;
+
+    bottom: -5px;
+
+    height: 1px;
+
+    background: #111;
+
+    opacity: .12;
+
+    transform:
+        scaleX(0);
+
+    animation:
+        lineReveal .8s 1s ease forwards;
+}
+
+
+/* ==================================================
+   SUPPORTING MESSAGE
+================================================== */
+
+.support-line {
+
+    max-width: 295px;
+
+    margin-top: 21px;
+
+    font-size: 13px;
+
+    line-height: 1.9;
+
+    color: #777;
+
+    opacity: 0;
+
+    animation:
+        fadeUp .8s .55s ease forwards;
+}
+
+
+/* ==================================================
+   LOWER PSYCHOLOGICAL SPACE
+================================================== */
+
+.lower-space {
+
+    flex: 1;
+
+    min-height: 105px;
+}
+
+
+/* ==================================================
+   BUTTON
+================================================== */
+
+.button-area {
+
+    width: 100%;
+
+    flex-shrink: 0;
+
+    opacity: 0;
+
+    animation:
+        buttonIn .8s .75s ease forwards;
+}
+
+
+.main-button {
+
+    width: 100%;
+
+    height: 54px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    background: #111;
+
+    color: #fff;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.main-button:active {
+
+    transform:
+        scale(.985);
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.08);
+}
+
+
+/* ==================================================
+   MICRO LINE
+================================================== */
+
+.micro-line {
+
+    margin-top: 14px;
+
+    font-size: 10px;
+
+    color: #aaa;
+
+    opacity: 0;
+
+    animation:
+        fadeUp .7s 1s ease forwards;
+}
+
+
+/* ==================================================
+   AMBIENT
+================================================== */
+
+.ambient {
+
+    position: fixed;
+
+    width: 360px;
+
+    height: 360px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,0,0,.025),
+            transparent 68%
+        );
+
+    filter: blur(12px);
+
+    pointer-events: none;
+
+    animation:
+        breathe 8s ease-in-out infinite alternate;
+}
+
+
+/* ==================================================
+   ANIMATIONS
+================================================== */
+
+@keyframes brandIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-8px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(9px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+@keyframes buttonIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+@keyframes lineReveal {
+
+    to {
+
+        transform:
+            scaleX(1);
+
+    }
+}
+
+
+@keyframes breathe {
+
+    from {
+
+        transform:
+            translate(
+                -15px,
+                -8px
+            );
+
+    }
+
+    to {
+
+        transform:
+            translate(
+                15px,
+                10px
+            );
+
+    }
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width:480px) {
+
+    .container {
+
+        min-height: 590px;
+
+    }
+
+
+    .upper-space {
+
+        min-height: 85px;
+
+    }
+
+
+    .lower-space {
+
+        min-height: 85px;
+
+    }
+
+
+    .main-line {
+
+        font-size: 24px;
+
+    }
+
+
+    .support-line {
+
+        font-size: 12px;
+
+        max-width: 275px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="ambient"></div>
+
+
+<!-- ==================================================
+     TRACKING IFRAME
+================================================== -->
+
+<iframe
+    name="trackingFrame"
+    style="display:none;"
+></iframe>
+
+
+<div class="container">
+
+
+    <!-- ==================================================
+         TOP
+    ================================================== -->
+
+    <div class="brand">
+
+        ELIT MAN
+
+    </div>
+
+
+    <!-- ==================================================
+         PSYCHOLOGICAL SPACE
+    ================================================== -->
+
+    <div class="upper-space"></div>
+
+
+    <!-- ==================================================
+         CENTER
+    ================================================== -->
+
+    <div class="message-area">
+
+
+        <div class="small-line">
+
+            الآن الصورة أوضح...
+
+        </div>
+
+
+        <div class="main-line">
+
+            أنت لا تبحث عن
+            <strong>أي عطر</strong>
+
+        </div>
+
+
+        <div class="support-line">
+
+            أنت تبحث عن شيء يتوافق
+            مع السبب الذي جعلك تختاره من البداية.
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ==================================================
+         PSYCHOLOGICAL SPACE
+    ================================================== -->
+
+    <div class="lower-space"></div>
+
+
+    <!-- ==================================================
+         BOTTOM
+    ================================================== -->
+
+    <div class="button-area">
+
+
+        <button
+            class="main-button"
+            id="continueButton"
+        >
+
+            نكمل ←
+
+        </button>
+
+
+        <div class="micro-line">
+
+            من هنا نقترب أكثر
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/* ==================================================
+   TRACKING URL
+================================================== */
+
+const TRACKING_URL =
+    "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+
+/* ==================================================
+   BROWSER ID
+   نفس المعرف يبقى مع الشخص بين جميع الصفحات
+================================================== */
+
+function getBrowserId() {
+
+    let browserId =
+        localStorage.getItem(
+            "closing_layer_browser_id"
+        );
+
+
+    if (!browserId) {
+
+        browserId =
+            "browser_" +
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(36)
+                .substring(2, 10);
+
+
+        localStorage.setItem(
+            "closing_layer_browser_id",
+            browserId
+        );
+
+    }
+
+
+    return browserId;
+
+}
+
+
+/* ==================================================
+   SEND TRACKING
+   HTML FORM + HIDDEN IFRAME
+================================================== */
+
+function sendTracking(data) {
+
+    try {
+
+        const form =
+            document.createElement("form");
+
+
+        form.method =
+            "POST";
+
+
+        form.action =
+            TRACKING_URL;
+
+
+        form.target =
+            "trackingFrame";
+
+
+        form.style.display =
+            "none";
+
+
+        const finalData = {
+
+            browser_id:
+                getBrowserId(),
+
+            ...data
+
+        };
+
+
+        Object.keys(finalData).forEach(key => {
+
+            const input =
+                document.createElement("input");
+
+
+            input.type =
+                "hidden";
+
+
+            input.name =
+                key;
+
+
+            input.value =
+                finalData[key] === null ||
+                finalData[key] === undefined
+                    ? ""
+                    : String(finalData[key]);
+
+
+            form.appendChild(
+                input
+            );
+
+        });
+
+
+        document.body.appendChild(
+            form
+        );
+
+
+        form.submit();
+
+
+        setTimeout(() => {
+
+            if (form.parentNode) {
+
+                form.remove();
+
+            }
+
+        }, 1000);
+
+
+    } catch (error) {
+
+        console.error(
+            "Tracking error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   STATE
+================================================== */
+
+const selectedProduct =
+    localStorage.getItem(
+        "selected_product"
+    ) || "";
+
+
+const selectedIntent =
+    localStorage.getItem(
+        "selected_intent"
+    ) || "";
+
+
+/* ==================================================
+   ALL SELECTED PRODUCTS
+================================================== */
+
+function getSelectedProducts() {
+
+    try {
+
+        const stored =
+            localStorage.getItem(
+                "selected_products"
+            );
+
+
+        if (!stored) {
+
+            return [];
+
+        }
+
+
+        const products =
+            JSON.parse(stored);
+
+
+        return Array.isArray(products)
+            ? products
+            : [];
+
+
+    } catch (error) {
+
+        console.error(
+            "selected_products error:",
+            error
+        );
+
+
+        return [];
+
+    }
+
+}
+
+
+/* ==================================================
+   PAGE 5 ENTRY
+================================================== */
+
+const page5EnteredAt =
+    Date.now();
+
+
+localStorage.setItem(
+    "page5_entered_at",
+    page5EnteredAt
+);
+
+
+/* ==================================================
+   PAGE 5 VIEW
+================================================== */
+
+const selectedProducts =
+    getSelectedProducts();
+
+
+sendTracking({
+
+    event:
+        "page_view",
+
+    page:
+        "page5",
+
+    product:
+        selectedProduct,
+
+    selected_product:
+        selectedProduct,
+
+    intent:
+        selectedIntent,
+
+    selected_products:
+        selectedProducts
+            .map(product => product.id)
+            .join(", "),
+
+    selected_count:
+        selectedProducts.length,
+
+    timestamp:
+        new Date().toISOString()
+
+});
+
+
+/* ==================================================
+   CONTINUE BUTTON
+================================================== */
+
+const continueButton =
+    document.getElementById(
+        "continueButton"
+    );
+
+
+continueButton.addEventListener(
+    "click",
+    () => {
+
+
+        /* ==========================================
+           TIME ON PAGE
+        ========================================== */
+
+        const timeOnPage =
+            Date.now()
+            -
+            page5EnteredAt;
+
+
+        /* ==========================================
+           TRANSITION DATA
+        ========================================== */
+
+        const transitionData = {
+
+            event:
+                "page5_completed",
+
+            page:
+                "page5",
+
+            product:
+                selectedProduct,
+
+            selected_product:
+                selectedProduct,
+
+            intent:
+                selectedIntent,
+
+            selected_products:
+                selectedProducts
+                    .map(product => product.id)
+                    .join(", "),
+
+            selected_count:
+                selectedProducts.length,
+
+            time_on_page:
+                timeOnPage,
+
+            next_page:
+                "page6",
+
+            timestamp:
+                new Date().toISOString()
+
+        };
+
+
+        /* ==========================================
+           SAVE LOCAL TIME
+        ========================================== */
+
+        localStorage.setItem(
+
+            "page5_completed_at",
+
+            Date.now()
+
+        );
+
+
+        /* ==========================================
+           SEND TRACKING
+        ========================================== */
+
+        sendTracking(
+            transitionData
+        );
+
+
+        /* ==========================================
+           DEBUG
+        ========================================== */
+
+        console.log(
+            "PAGE 5 COMPLETED:",
+            transitionData
+        );
+
+
+        /* ==========================================
+           NEXT PAGE
+        ========================================== */
+
+        setTimeout(() => {
+
+            window.location.href =
+                "page6.html";
+
+        }, 250);
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

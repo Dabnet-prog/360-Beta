@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ELIT MAN</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255,255,255,.95) 0%,
+            rgba(247,247,245,.92) 42%,
+            #f4f4f1 100%
+        );
+
+    color:#171717;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    overflow-x:hidden;
+}
+
+
+/* =========================================
+   AMBIENT PSYCHOLOGICAL MOTION
+========================================= */
+
+body::before{
+    content:"";
+
+    position:fixed;
+
+    width:360px;
+    height:360px;
+
+    top:50%;
+    left:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.8),
+            rgba(255,255,255,0) 70%
+        );
+
+    pointer-events:none;
+
+    animation:
+        breathing 7s ease-in-out infinite;
+}
+
+
+@keyframes breathing{
+
+    0%,
+    100%{
+        opacity:.55;
+        transform:
+            translate(-50%,-50%)
+            scale(.92);
+    }
+
+    50%{
+        opacity:.9;
+        transform:
+            translate(-50%,-50%)
+            scale(1.08);
+    }
+
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.page{
+    width:100%;
+    max-width:520px;
+
+    min-height:100vh;
+
+    margin:auto;
+
+    padding:
+        28px 22px
+        24px;
+
+    display:flex;
+    flex-direction:column;
+
+    position:relative;
+    z-index:2;
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.brand{
+    align-self:center;
+
+    padding:
+        7px 15px;
+
+    border:
+        1px solid #deded9;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.58);
+
+    color:#555;
+
+    font-size:10px;
+    font-weight:600;
+
+    letter-spacing:2.2px;
+
+    opacity:0;
+
+    transform:
+        translateY(-8px)
+        scale(.96);
+
+    animation:
+        brandIn .8s
+        cubic-bezier(.2,.8,.2,1)
+        .15s forwards;
+}
+
+
+@keyframes brandIn{
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================
+   CENTER
+========================================= */
+
+.content{
+
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:
+        25px 0
+        30px;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.intro{
+    color:#a1a1a1;
+
+    font-size:12px;
+
+    margin-bottom:17px;
+
+    opacity:0;
+
+    transform:
+        translateY(12px);
+
+    animation:
+        softIn .75s
+        cubic-bezier(.2,.8,.2,1)
+        .55s forwards;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+h1{
+    max-width:360px;
+
+    font-size:28px;
+
+    font-weight:450;
+
+    line-height:1.55;
+
+    letter-spacing:-.8px;
+
+    opacity:0;
+
+    transform:
+        translateY(15px)
+        scale(.985);
+
+    animation:
+        titleIn 1s
+        cubic-bezier(.2,.8,.2,1)
+        .72s forwards;
+}
+
+
+h1 strong{
+    font-weight:780;
+
+    display:inline-block;
+
+    position:relative;
+}
+
+
+h1 strong::after{
+    content:"";
+
+    position:absolute;
+
+    bottom:-4px;
+    right:5%;
+
+    width:90%;
+    height:1px;
+
+    background:#d7d7d2;
+
+    transform:
+        scaleX(0);
+
+    transform-origin:center;
+
+    animation:
+        lineReveal .9s
+        cubic-bezier(.2,.8,.2,1)
+        1.45s forwards;
+}
+
+
+@keyframes titleIn{
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+@keyframes lineReveal{
+
+    to{
+        transform:
+            scaleX(1);
+    }
+
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.description{
+    max-width:300px;
+
+    margin-top:15px;
+
+    color:#919191;
+
+    font-size:13px;
+
+    line-height:1.85;
+
+    opacity:0;
+
+    transform:
+        translateY(12px);
+
+    animation:
+        softIn .8s
+        cubic-bezier(.2,.8,.2,1)
+        1.05s forwards;
+}
+
+
+@keyframes softIn{
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   OPTIONS
+========================================= */
+
+.options{
+
+    width:100%;
+    max-width:390px;
+
+    margin-top:30px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:9px;
+}
+
+
+/* =========================================
+   OPTION
+========================================= */
+
+.option{
+
+    position:relative;
+
+    width:100%;
+
+    padding:
+        15px 17px;
+
+    border:
+        1px solid #deded9;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,.78);
+
+    color:#222;
+
+    font-family:inherit;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    transform:
+        translateY(17px)
+        scale(.985);
+
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1),
+        border-color .35s ease,
+        box-shadow .45s ease,
+        background .35s ease,
+        opacity .35s ease;
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+/* stagger */
+
+.option:nth-child(1){
+    animation:
+        optionIn .65s
+        cubic-bezier(.2,.8,.2,1)
+        1.55s forwards;
+}
+
+.option:nth-child(2){
+    animation:
+        optionIn .65s
+        cubic-bezier(.2,.8,.2,1)
+        1.68s forwards;
+}
+
+.option:nth-child(3){
+    animation:
+        optionIn .65s
+        cubic-bezier(.2,.8,.2,1)
+        1.81s forwards;
+}
+
+.option:nth-child(4){
+    animation:
+        optionIn .65s
+        cubic-bezier(.2,.8,.2,1)
+        1.94s forwards;
+}
+
+
+@keyframes optionIn{
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================
+   OPTION INNER LIGHT
+========================================= */
+
+.option::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    right:-80%;
+
+    width:70%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.8),
+            transparent
+        );
+
+    transform:
+        skewX(-18deg);
+
+    opacity:0;
+}
+
+
+.option:hover::before{
+
+    opacity:1;
+
+    animation:
+        shine .75s
+        ease;
+}
+
+
+@keyframes shine{
+
+    from{
+        right:-80%;
+    }
+
+    to{
+        right:120%;
+    }
+
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.option-title{
+
+    font-size:14px;
+
+    font-weight:650;
+
+    line-height:1.5;
+
+    transition:
+        transform .35s ease;
+}
+
+
+.option-description{
+
+    margin-top:4px;
+
+    color:#999;
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+
+.option:hover .option-title{
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================
+   SELECTED
+========================================= */
+
+.option.selected{
+
+    border-color:#171717;
+
+    background:#fff;
+
+    box-shadow:
+        0 14px 35px
+        rgba(0,0,0,.075);
+
+    transform:
+        translateY(-2px)
+        scale(1.008);
+}
+
+
+.option.selected .option-title{
+
+    font-weight:750;
+
+    transform:
+        translateY(-1px);
+}
+
+
+.option.selected::after{
+
+    content:"✓";
+
+    position:absolute;
+
+    left:15px;
+    top:50%;
+
+    transform:
+        translateY(-50%)
+        scale(0);
+
+    width:20px;
+    height:20px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#171717;
+
+    color:white;
+
+    font-size:10px;
+
+    animation:
+        checkIn .35s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+
+@keyframes checkIn{
+
+    60%{
+        transform:
+            translateY(-50%)
+            scale(1.15);
+    }
+
+    100%{
+        transform:
+            translateY(-50%)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================
+   UNSELECTED FADE
+========================================= */
+
+.options.has-selection .option:not(.selected){
+
+    opacity:.46;
+
+    transform:
+        scale(.985);
+
+}
+
+
+.options.has-selection .option:not(.selected):hover{
+
+    opacity:.72;
+
+}
+
+
+/* =========================================
+   OTHER
+========================================= */
+
+.other-box{
+
+    display:none;
+
+    width:100%;
+
+    margin-top:9px;
+
+    animation:
+        otherIn .45s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+
+@keyframes otherIn{
+
+    from{
+        opacity:0;
+
+        transform:
+            translateY(10px)
+            scale(.98);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+.other-box textarea{
+
+    width:100%;
+
+    min-height:88px;
+
+    padding:14px;
+
+    border:
+        1px solid #dcdcd7;
+
+    border-radius:14px;
+
+    outline:none;
+
+    resize:none;
+
+    background:#fff;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    text-align:center;
+
+    transition:
+        border .25s ease,
+        box-shadow .25s ease;
+}
+
+
+.other-box textarea:focus{
+
+    border-color:#999;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(0,0,0,.035);
+}
+
+
+/* =========================================
+   BOTTOM
+========================================= */
+
+.bottom{
+
+    padding-top:18px;
+
+    opacity:0;
+
+    transform:
+        translateY(10px);
+
+    animation:
+        bottomIn .75s
+        cubic-bezier(.2,.8,.2,1)
+        2.35s forwards;
+}
+
+
+@keyframes bottomIn{
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.next-btn{
+
+    width:100%;
+
+    padding:16px 20px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#171717;
+
+    color:#fff;
+
+    font-family:inherit;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    opacity:.28;
+
+    transition:
+        opacity .35s ease,
+        transform .3s ease,
+        box-shadow .4s ease;
+}
+
+
+.next-btn.active{
+
+    opacity:1;
+
+}
+
+
+.next-btn.active:hover{
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.14);
+
+}
+
+
+.next-btn:active{
+
+    transform:
+        scale(.985);
+
+}
+
+
+/* =========================================
+   MICRO
+========================================= */
+
+.micro{
+
+    margin-top:11px;
+
+    text-align:center;
+
+    color:#aaa;
+
+    font-size:10px;
+
+    transition:
+        opacity .3s ease;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-height:700px){
+
+    .page{
+        padding-top:22px;
+    }
+
+    .content{
+        padding-top:18px;
+        padding-bottom:22px;
+    }
+
+    h1{
+        font-size:24px;
+    }
+
+    .options{
+        margin-top:22px;
+    }
+
+    .option{
+        padding:12px 14px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =========================================
+     TRACKING FRAME
+========================================= -->
+
+<iframe
+    name="trackingFrame"
+    style="display:none;"
+></iframe>
+
+
+<main class="page">
+
+
+    <!-- BRAND -->
+
+    <div class="brand">
+        ELIT MAN
+    </div>
+
+
+    <!-- CENTER CONTENT -->
+
+    <section class="content">
+
+
+        <div class="intro">
+            إذا كنت ما زلت تريده...
+        </div>
+
+
+        <h1>
+            كيف يمكن أن
+            <br>
+            <strong>تكمل طريقك إليه؟</strong>
+        </h1>
+
+
+        <div class="description">
+            اختر الطريقة التي تراها ممكنة بالنسبة لك.
+        </div>
+
+
+        <!-- OPTIONS -->
+
+        <div
+            class="options"
+            id="options"
+        >
+
+
+            <!-- PATH 1 -->
+
+            <button
+                class="option"
+                data-path="sell_asset"
+                data-text="نبيع شيئًا"
+            >
+
+                <div class="option-title">
+                    نبيع شيئًا
+                </div>
+
+                <div class="option-description">
+                    نحول شيئًا نملكه إلى مال
+                </div>
+
+            </button>
+
+
+            <!-- PATH 2 -->
+
+            <button
+                class="option"
+                data-path="ask_person"
+                data-text="نستعين بشخص"
+            >
+
+                <div class="option-title">
+                    نستعين بشخص
+                </div>
+
+                <div class="option-description">
+                    نطلب المساعدة في إكمال المبلغ
+                </div>
+
+            </button>
+
+
+            <!-- PATH 3 -->
+
+            <button
+                class="option"
+                data-path="save_wait"
+                data-text="ننتظر ونجمعه"
+            >
+
+                <div class="option-title">
+                    ننتظر ونجمعه
+                </div>
+
+                <div class="option-description">
+                    نكمل المبلغ تدريجيًا ثم نعود إليه
+                </div>
+
+            </button>
+
+
+            <!-- PATH 4 -->
+
+            <button
+                class="option"
+                data-path="other"
+                data-text="عندي طريق آخر"
+            >
+
+                <div class="option-title">
+                    عندي طريق آخر
+                </div>
+
+                <div class="option-description">
+                    الطريقة التي أفكر فيها مختلفة
+                </div>
+
+            </button>
+
+
+            <!-- OTHER -->
+
+            <div
+                class="other-box"
+                id="otherBox"
+            >
+
+                <textarea
+                    id="otherInput"
+                    placeholder="ما الطريقة التي تفكر فيها؟"
+                ></textarea>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- BOTTOM -->
+
+    <div class="bottom">
+
+        <button
+            class="next-btn"
+            id="nextBtn"
+            disabled
+        >
+            نكمل ←
+        </button>
+
+        <div class="micro">
+            اختر المسار الذي تراه ممكنًا
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<script>
+
+/* =========================================
+   TRACKING CONFIG
+========================================= */
+
+const TRACKING_URL =
+    "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+
+/* =========================================
+   PAGE START
+========================================= */
+
+const startedAt =
+    Date.now();
+
+
+/* =========================================
+   BROWSER ID
+========================================= */
+
+function getBrowserId(){
+
+    let browserId =
+        localStorage.getItem(
+            "closing_layer_browser_id"
+        );
+
+
+    if(!browserId){
+
+        browserId =
+            "browser-" +
+            Date.now() +
+            "-" +
+            Math.random()
+                .toString(36)
+                .slice(2,10);
+
+
+        localStorage.setItem(
+            "closing_layer_browser_id",
+            browserId
+        );
+
+    }
+
+
+    return browserId;
+
+}
+
+
+/* =========================================
+   SEND TRACKING
+========================================= */
+
+function sendTracking(data){
+
+    try{
+
+        const form =
+            document.createElement(
+                "form"
+            );
+
+
+        form.method =
+            "POST";
+
+
+        form.action =
+            TRACKING_URL;
+
+
+        form.target =
+            "trackingFrame";
+
+
+        form.style.display =
+            "none";
+
+
+        const payload = {
+
+            browser_id:
+                getBrowserId(),
+
+            ...data
+
+        };
+
+
+        Object.keys(payload)
+            .forEach(key => {
+
+                const input =
+                    document.createElement(
+                        "input"
+                    );
+
+
+                input.type =
+                    "hidden";
+
+
+                input.name =
+                    key;
+
+
+                const value =
+                    payload[key];
+
+
+                input.value =
+                    typeof value === "object"
+
+                        ? JSON.stringify(
+                            value
+                        )
+
+                        : String(
+                            value === undefined ||
+                            value === null
+                                ? ""
+                                : value
+                        );
+
+
+                form.appendChild(
+                    input
+                );
+
+            });
+
+
+        document.body.appendChild(
+            form
+        );
+
+
+        form.submit();
+
+
+        setTimeout(() => {
+
+            if(form.parentNode){
+
+                form.parentNode.removeChild(
+                    form
+                );
+
+            }
+
+        },1000);
+
+    }
+    catch(error){
+
+        console.error(
+            "Tracking error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   DATA
+========================================= */
+
+const financialGap =
+    Number(
+        localStorage.getItem(
+            "financial_gap"
+        )
+    );
+
+
+const productPrice =
+    Number(
+        localStorage.getItem(
+            "selected_product_price"
+        ) || 130
+    );
+
+
+const currentMoney =
+    Number(
+        localStorage.getItem(
+            "current_money"
+        ) || 0
+    );
+
+
+const product =
+    localStorage.getItem(
+        "selected_product_name"
+    ) ||
+    localStorage.getItem(
+        "selected_product"
+    ) ||
+    "";
+
+
+const selectedProducts =
+    localStorage.getItem(
+        "selected_products"
+    ) ||
+    "";
+
+
+const selectedIntent =
+    localStorage.getItem(
+        "selected_intent_text"
+    ) ||
+    localStorage.getItem(
+        "selected_intent"
+    ) ||
+    "";
+
+
+const selectedContext =
+    localStorage.getItem(
+        "selected_context_text"
+    ) ||
+    localStorage.getItem(
+        "selected_context"
+    ) ||
+    "";
+
+
+/* =========================================
+   PAGE ENTER
+========================================= */
+
+const page13EnteredAt =
+    new Date().toISOString();
+
+
+localStorage.setItem(
+    "page13_entered_at",
+    page13EnteredAt
+);
+
+
+/* =========================================
+   TRACK PAGE 13 ENTRY
+========================================= */
+
+sendTracking({
+
+    event:
+        "page_view",
+
+    page:
+        "page13",
+
+    timestamp:
+        page13EnteredAt,
+
+    product:
+        product,
+
+    selected_products:
+        selectedProducts,
+
+    selected_intent:
+        selectedIntent,
+
+    selected_context:
+        selectedContext,
+
+    current_money:
+        currentMoney,
+
+    financial_gap:
+        financialGap,
+
+    product_price:
+        productPrice
+
+});
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const options =
+    document.querySelectorAll(
+        ".option"
+    );
+
+
+const optionsContainer =
+    document.getElementById(
+        "options"
+    );
+
+
+const nextBtn =
+    document.getElementById(
+        "nextBtn"
+    );
+
+
+const otherBox =
+    document.getElementById(
+        "otherBox"
+    );
+
+
+const otherInput =
+    document.getElementById(
+        "otherInput"
+    );
+
+
+let selectedPath =
+    null;
+
+
+/* =========================================
+   SELECT
+========================================= */
+
+options.forEach(
+    option => {
+
+        option.addEventListener(
+            "click",
+            () => {
+
+                options.forEach(
+                    item => {
+
+                        item.classList.remove(
+                            "selected"
+                        );
+
+                    }
+                );
+
+
+                option.classList.add(
+                    "selected"
+                );
+
+
+                optionsContainer.classList.add(
+                    "has-selection"
+                );
+
+
+                selectedPath =
+                    option.dataset.path;
+
+
+                /* OTHER */
+
+                if(
+                    selectedPath ===
+                    "other"
+                ){
+
+                    otherBox.style.display =
+                        "block";
+
+
+                    setTimeout(
+                        () => {
+
+                            otherInput.focus();
+
+                        },
+                        180
+                    );
+
+                }
+                else{
+
+                    otherBox.style.display =
+                        "none";
+
+
+                    otherInput.value =
+                        "";
+
+                }
+
+
+                updateButton();
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+function updateButton(){
+
+    let valid =
+        selectedPath !== null;
+
+
+    if(
+        selectedPath ===
+        "other"
+    ){
+
+        valid =
+            otherInput.value
+                .trim()
+                .length >= 2;
+
+    }
+
+
+    nextBtn.disabled =
+        !valid;
+
+
+    nextBtn.classList.toggle(
+        "active",
+        valid
+    );
+
+}
+
+
+otherInput.addEventListener(
+    "input",
+    updateButton
+);
+
+
+/* =========================================
+   SAVE
+========================================= */
+
+nextBtn.addEventListener(
+    "click",
+    () => {
+
+        if(
+            !selectedPath
+        ){
+            return;
+        }
+
+
+        if(
+            selectedPath ===
+            "other" &&
+            otherInput.value
+                .trim()
+                .length < 2
+        ){
+            return;
+        }
+
+
+        const timestamp =
+            new Date()
+                .toISOString();
+
+
+        const timeOnPage =
+            Date.now() -
+            startedAt;
+
+
+        /* =====================================
+           EXACT USER-VISIBLE VALUE
+        ===================================== */
+
+        let selectedPathText = "";
+
+
+        if(
+            selectedPath ===
+            "other"
+        ){
+
+            selectedPathText =
+                otherInput.value.trim();
+
+        }
+        else{
+
+            selectedPathText =
+                document
+                    .querySelector(
+                        `.option[data-path="${selectedPath}"] .option-title`
+                    )
+                    .textContent
+                    .trim();
+
+        }
+
+
+        /* =====================================
+           SAVE PATH
+        ===================================== */
+
+        localStorage.setItem(
+            "selected_financial_path",
+            selectedPath
+        );
+
+
+        localStorage.setItem(
+            "selected_financial_path_text",
+            selectedPathText
+        );
+
+
+        /*
+          لا نعرض financialGap.
+          فقط نحتفظ به للنظام.
+        */
+
+        if(
+            Number.isFinite(
+                financialGap
+            )
+        ){
+
+            localStorage.setItem(
+                "page13_gap",
+                String(
+                    financialGap
+                )
+            );
+
+        }
+
+
+        /* =====================================
+           DECISION STATE
+        ===================================== */
+
+        let state = {};
+
+
+        try{
+
+            state =
+                JSON.parse(
+                    localStorage.getItem(
+                        "decision_state"
+                    ) || "{}"
+                );
+
+        }
+        catch(error){
+
+            state = {};
+
+        }
+
+
+        state.financial_gap =
+            financialGap;
+
+
+        state.selected_financial_path =
+            selectedPath;
+
+
+        state.selected_financial_path_text =
+            selectedPathText;
+
+
+        state.page13_completed =
+            true;
+
+
+        state.page13_completed_at =
+            timestamp;
+
+
+        localStorage.setItem(
+            "decision_state",
+            JSON.stringify(
+                state
+            )
+        );
+
+
+        /* =====================================
+           EVENT LOG
+        ===================================== */
+
+        let events = [];
+
+
+        try{
+
+            events =
+                JSON.parse(
+                    localStorage.getItem(
+                        "decision_events"
+                    ) || "[]"
+                );
+
+        }
+        catch(error){
+
+            events = [];
+
+        }
+
+
+        events.push({
+
+            event:
+                "financial_path_selected",
+
+            page:
+                "page13",
+
+            timestamp:
+                timestamp,
+
+            financial_gap:
+                financialGap,
+
+            product_price:
+                productPrice,
+
+            current_money:
+                currentMoney,
+
+            selected_path:
+                selectedPath,
+
+            selected_path_text:
+                selectedPathText,
+
+            time_on_page:
+                timeOnPage
+
+        });
+
+
+        localStorage.setItem(
+            "decision_events",
+            JSON.stringify(
+                events
+            )
+        );
+
+
+        /* =====================================
+           SERVER TRACKING
+           
+           financial_path = EXACT VALUE
+           THE USER SELECTED / WROTE
+        ===================================== */
+
+        sendTracking({
+
+            event:
+                "financial_path_selected",
+
+            page:
+                "page13",
+
+            timestamp:
+                timestamp,
+
+            financial_gap:
+                financialGap,
+
+            product_price:
+                productPrice,
+
+            current_money:
+                currentMoney,
+
+            selected_path:
+                selectedPath,
+
+            selected_financial_path:
+                selectedPath,
+
+            selected_financial_path_text:
+                selectedPathText,
+
+            financial_path:
+                selectedPathText,
+
+            path_text:
+                selectedPathText,
+
+            time_on_page:
+                timeOnPage
+
+        });
+
+
+        /* =====================================
+           PAGE 13 → PAGE 14
+           
+           financial_path contains the
+           exact visible/typed value
+        ===================================== */
+
+        sendTracking({
+
+            event:
+                "page13_completed",
+
+            page:
+                "page13",
+
+            timestamp:
+                timestamp,
+
+            financial_gap:
+                financialGap,
+
+            product_price:
+                productPrice,
+
+            current_money:
+                currentMoney,
+
+            selected_path:
+                selectedPath,
+
+            selected_financial_path:
+                selectedPath,
+
+            selected_financial_path_text:
+                selectedPathText,
+
+            financial_path:
+                selectedPathText,
+
+            path_text:
+                selectedPathText,
+
+            time_on_page:
+                timeOnPage,
+
+            next_page:
+                "page14"
+
+        });
+
+
+        /* =====================================
+           NEXT
+        ===================================== */
+
+        setTimeout(
+            () => {
+
+                window.location.href =
+                    "page14.html";
+
+            },
+            150
+        );
+
+    }
+);
+
+
+updateButton();
+
+</script>
+
+</body>
+</html>
