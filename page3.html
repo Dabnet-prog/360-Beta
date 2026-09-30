@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>ELIT MAN</title>
+
+
+<style>
+
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ==================================================
+   BODY
+================================================== */
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        "Tahoma",
+        sans-serif;
+
+    background: #fafafa;
+
+    color: #111;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 22px;
+
+    overflow: hidden;
+}
+
+
+/* ==================================================
+   MAIN
+================================================== */
+
+.container {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    min-height: 620px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* ==================================================
+   BRAND — TOP
+================================================== */
+
+.brand {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px 17px;
+
+    border: 1px solid #e6e6e6;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.5);
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    color: #222;
+
+    flex-shrink: 0;
+
+    animation:
+        brandIn .8s ease both;
+}
+
+
+/* ==================================================
+   PSYCHOLOGICAL SPACE
+================================================== */
+
+.upper-space {
+
+    flex: 1;
+
+    min-height: 105px;
+}
+
+
+/* ==================================================
+   MESSAGE AREA — CENTER
+================================================== */
+
+.message-area {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    animation:
+        messageIn .8s ease both;
+}
+
+
+/* --------------------------------------------------
+   SMALL LINE
+-------------------------------------------------- */
+
+.small-line {
+
+    font-size: 12px;
+
+    color: #999;
+
+    margin-bottom: 15px;
+
+    opacity: 0;
+
+    animation:
+        fadeUp .7s .2s ease forwards;
+}
+
+
+/* --------------------------------------------------
+   MAIN SENTENCE
+-------------------------------------------------- */
+
+.main-line {
+
+    font-size: 27px;
+
+    font-weight: 400;
+
+    line-height: 1.55;
+
+    color: #111;
+
+    opacity: 0;
+
+    animation:
+        fadeUp .8s .35s ease forwards;
+}
+
+
+.main-line strong {
+
+    font-weight: 600;
+
+    position: relative;
+
+    display: inline-block;
+}
+
+
+/*
+   خط خفيف جدًا تحت "ذوق رفيع"
+*/
+
+.main-line strong::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 5%;
+
+    left: 5%;
+
+    bottom: -5px;
+
+    height: 1px;
+
+    background: #111;
+
+    opacity: .13;
+
+    transform:
+        scaleX(0);
+
+    animation:
+        lineReveal .8s .9s ease forwards;
+}
+
+
+/* --------------------------------------------------
+   SUPPORTING LINE
+-------------------------------------------------- */
+
+.support-line {
+
+    max-width: 290px;
+
+    margin-top: 20px;
+
+    font-size: 13px;
+
+    line-height: 1.9;
+
+    color: #777;
+
+    opacity: 0;
+
+    animation:
+        fadeUp .8s .55s ease forwards;
+}
+
+
+/* ==================================================
+   LOWER SPACE
+================================================== */
+
+.lower-space {
+
+    flex: 1;
+
+    min-height: 100px;
+}
+
+
+/* ==================================================
+   BUTTON AREA — BOTTOM
+================================================== */
+
+.button-area {
+
+    width: 100%;
+
+    flex-shrink: 0;
+
+    opacity: 0;
+
+    animation:
+        buttonIn .8s .75s ease forwards;
+}
+
+
+.main-button {
+
+    width: 100%;
+
+    height: 54px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    background: #111;
+
+    color: #fff;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.main-button:active {
+
+    transform:
+        scale(.985);
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.08);
+}
+
+
+/* ==================================================
+   BOTTOM MICRO LINE
+================================================== */
+
+.micro-line {
+
+    margin-top: 14px;
+
+    font-size: 10px;
+
+    color: #aaa;
+
+    opacity: 0;
+
+    animation:
+        fadeUp .7s 1s ease forwards;
+}
+
+
+/* ==================================================
+   AMBIENT PSYCHOLOGICAL LAYER
+================================================== */
+
+.ambient {
+
+    position: fixed;
+
+    width: 360px;
+
+    height: 360px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,0,0,.025),
+            transparent 68%
+        );
+
+    filter: blur(12px);
+
+    pointer-events: none;
+
+    animation:
+        breathe 8s ease-in-out infinite alternate;
+}
+
+
+/* ==================================================
+   ANIMATIONS
+================================================== */
+
+@keyframes brandIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-8px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+@keyframes messageIn {
+
+    from {
+
+        transform:
+            translateY(8px);
+
+    }
+
+    to {
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(9px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+@keyframes lineReveal {
+
+    to {
+
+        transform:
+            scaleX(1);
+
+    }
+}
+
+
+@keyframes buttonIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+@keyframes breathe {
+
+    from {
+
+        transform:
+            translate(
+                -15px,
+                -8px
+            );
+
+    }
+
+    to {
+
+        transform:
+            translate(
+                15px,
+                10px
+            );
+
+    }
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width:480px) {
+
+    .container {
+
+        min-height: 590px;
+
+    }
+
+
+    .upper-space {
+
+        min-height: 85px;
+
+    }
+
+
+    .lower-space {
+
+        min-height: 85px;
+
+    }
+
+
+    .main-line {
+
+        font-size: 24px;
+
+    }
+
+
+    .support-line {
+
+        font-size: 12px;
+
+        max-width: 275px;
+
+    }
+
+}
+
+
+/* ==================================================
+   REDUCED MOTION
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition:
+            none !important;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     AMBIENT
+================================================== -->
+
+<div class="ambient"></div>
+
+
+<div class="container">
+
+
+    <!-- ==================================================
+         TOP — STORE NAME
+    ================================================== -->
+
+    <div class="brand">
+
+        ELIT MAN
+
+    </div>
+
+
+    <!-- ==================================================
+         PSYCHOLOGICAL EMPTY SPACE
+    ================================================== -->
+
+    <div class="upper-space"></div>
+
+
+    <!-- ==================================================
+         CENTER — MESSAGE
+    ================================================== -->
+
+    <div class="message-area">
+
+
+        <div class="small-line">
+
+            اختيارك كان غير متوقع...
+
+        </div>
+
+
+        <div class="main-line">
+
+            لديك
+            <strong>ذوق رفيع</strong>
+
+        </div>
+
+
+        <div class="support-line">
+
+            بعض الاختيارات لا تحتاج إلى تفسير،
+            يكفي أنها تشبهك.
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ==================================================
+         PSYCHOLOGICAL EMPTY SPACE
+    ================================================== -->
+
+    <div class="lower-space"></div>
+
+
+    <!-- ==================================================
+         BOTTOM — BUTTON
+    ================================================== -->
+
+    <div class="button-area">
+
+        <button
+            class="main-button"
+            id="thanksButton"
+            type="button"
+        >
+
+            شكرًا ←
+
+        </button>
+
+
+        <div class="micro-line">
+
+            نكمل من اختيارك
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   CLOSING LAYER — TRACKING URL
+================================================== */
+
+const TRACKING_URL =
+    "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+
+/* ==================================================
+   CLIENT ID
+   نفس النظام الموجود في ص1 وص2
+================================================== */
+
+const CLIENT_KEY =
+    "closing_layer_client_id";
+
+
+let clientId =
+    localStorage.getItem(
+        CLIENT_KEY
+    );
+
+
+if (!clientId) {
+
+    clientId =
+        "CL-" +
+        crypto.randomUUID();
+
+    localStorage.setItem(
+        CLIENT_KEY,
+        clientId
+    );
+
+}
+
+
+/* ==================================================
+   SESSION ID
+   نفس الجلسة عبر الصفحات
+================================================== */
+
+const SESSION_KEY =
+    "closing_layer_session_id";
+
+
+let sessionId =
+    sessionStorage.getItem(
+        SESSION_KEY
+    );
+
+
+let isNewSession = false;
+
+
+if (!sessionId) {
+
+    sessionId =
+        "S-" +
+        crypto.randomUUID();
+
+    sessionStorage.setItem(
+        SESSION_KEY,
+        sessionId
+    );
+
+    isNewSession = true;
+
+}
+
+
+/* ==================================================
+   PREVIOUS SESSION
+================================================== */
+
+const LAST_SESSION_KEY =
+    "closing_layer_last_session_id";
+
+
+const previousSessionId =
+    localStorage.getItem(
+        LAST_SESSION_KEY
+    );
+
+
+const returnedLater =
+    isNewSession &&
+    previousSessionId &&
+    previousSessionId !== sessionId;
+
+
+localStorage.setItem(
+    LAST_SESSION_KEY,
+    sessionId
+);
+
+
+/* ==================================================
+   PAGE
+================================================== */
+
+const CURRENT_PAGE =
+    "الصفحة 3";
+
+
+const pageEnteredAt =
+    Date.now();
+
+
+let pageExitSent =
+    false;
+
+
+/* ==================================================
+   SEND TRACKING
+================================================== */
+
+function sendTracking(data) {
+
+    const payload = {
+
+        client_id:
+            clientId,
+
+        session_id:
+            sessionId,
+
+        ...data
+
+    };
+
+
+    fetch(
+        TRACKING_URL,
+        {
+
+            method:
+                "POST",
+
+            headers: {
+                "Content-Type":
+                    "text/plain;charset=UTF-8"
+            },
+
+            body:
+                JSON.stringify(payload),
+
+            mode:
+                "no-cors",
+
+            keepalive:
+                true,
+
+            cache:
+                "no-store"
+
+        }
+    )
+    .catch(
+        function () {}
+    );
+
+}
+
+
+/* ==================================================
+   SESSION START
+================================================== */
+
+if (isNewSession) {
+
+    sendTracking({
+
+        event:
+            "session_start",
+
+        page:
+            CURRENT_PAGE,
+
+        path:
+            CURRENT_PAGE,
+
+        returned_later:
+            returnedLater
+                ? "نعم"
+                : "لا",
+
+        timestamp:
+            new Date().toISOString()
+
+    });
+
+}
+
+
+/* ==================================================
+   PAGE VIEW
+================================================== */
+
+sendTracking({
+
+    event:
+        "page_view",
+
+    page:
+        CURRENT_PAGE,
+
+    path:
+        CURRENT_PAGE,
+
+    entered_at:
+        new Date().toISOString()
+
+});
+
+
+/* ==================================================
+   READ PRODUCT DATA FROM PAGE 2
+   للاحتفاظ بسياق الرحلة فقط
+================================================== */
+
+function getSelectedProducts() {
+
+    try {
+
+        const data =
+            JSON.parse(
+                localStorage.getItem(
+                    "selected_products"
+                ) ||
+                "[]"
+            );
+
+
+        return Array.isArray(data)
+            ? data
+            : [];
+
+    }
+
+    catch (error) {
+
+        return [];
+
+    }
+
+}
+
+
+const selectedProducts =
+    getSelectedProducts();
+
+
+const selectedProductNames =
+    localStorage.getItem(
+        "selected_product_names"
+    ) ||
+    localStorage.getItem(
+        "selected_product"
+    ) ||
+    "";
+
+
+/* ==================================================
+   BACK NAVIGATION
+================================================== */
+
+window.addEventListener(
+    "pageshow",
+    function () {
+
+        const navigation =
+            performance.getEntriesByType(
+                "navigation"
+            )[0];
+
+
+        if (
+            navigation &&
+            navigation.type ===
+                "back_forward"
+        ) {
+
+            sendTracking({
+
+                event:
+                    "back_navigation",
+
+                page:
+                    CURRENT_PAGE,
+
+                path:
+                    CURRENT_PAGE,
+
+                went_back:
+                    true,
+
+                back_count:
+                    1,
+
+                interaction:
+                    "رجع إلى الصفحة 3",
+
+                timestamp:
+                    new Date().toISOString()
+
+            });
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   PAGE EXIT
+================================================== */
+
+function sendPageExit() {
+
+    if (pageExitSent) {
+        return;
+    }
+
+
+    pageExitSent = true;
+
+
+    const durationMs =
+        Date.now() -
+        pageEnteredAt;
+
+
+    const durationSeconds =
+        Math.round(
+            durationMs / 1000
+        );
+
+
+    sendTracking({
+
+        event:
+            "page_exit",
+
+        page:
+            CURRENT_PAGE,
+
+        path:
+            CURRENT_PAGE,
+
+        duration:
+            durationSeconds,
+
+        timestamp:
+            new Date().toISOString()
+
+    });
+
+}
+
+
+/* ==================================================
+   BUTTON
+================================================== */
+
+const thanksButton =
+    document.getElementById(
+        "thanksButton"
+    );
+
+
+thanksButton.addEventListener(
+    "click",
+    function () {
+
+        /* ------------------------------------------
+           سجل التفاعل نفسه
+        ------------------------------------------ */
+
+        sendTracking({
+
+            event:
+                "interaction",
+
+            page:
+                CURRENT_PAGE,
+
+            path:
+                CURRENT_PAGE,
+
+            interaction:
+                "ضغط على زر شكرًا",
+
+            timestamp:
+                new Date().toISOString()
+
+        });
+
+
+        /* ------------------------------------------
+           إكمال الصفحة
+        ------------------------------------------ */
+
+        sendTracking({
+
+            event:
+                "page3_completed",
+
+            page:
+                CURRENT_PAGE,
+
+            path:
+                CURRENT_PAGE,
+
+            interaction:
+                "أكمل الصفحة 3",
+
+            next_page:
+                "الصفحة 4",
+
+            completed:
+                "نعم",
+
+            timestamp:
+                new Date().toISOString()
+
+        });
+
+
+        /* ------------------------------------------
+           حفظ محلي
+        ------------------------------------------ */
+
+        localStorage.setItem(
+            "page3_completed_at",
+            new Date().toISOString()
+        );
+
+
+        /* ------------------------------------------
+           JOURNEY:
+           الخروج من الصفحة بعد الضغط
+        ------------------------------------------ */
+
+        sendPageExit();
+
+
+        /* ------------------------------------------
+           الانتقال
+        ------------------------------------------ */
+
+        setTimeout(
+            function () {
+
+                window.location.href =
+                    "page4.html";
+
+            },
+            500
+        );
+
+    }
+);
+
+
+/* ==================================================
+   PAGE HIDE
+================================================== */
+
+window.addEventListener(
+    "pagehide",
+    function () {
+
+        sendPageExit();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

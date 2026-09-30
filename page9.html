@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>نكمل من اختيارك</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      background: #ffffff;
+      color: #111111;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+
+      padding: 0 24px 30px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* =========================
+       BRAND
+    ========================= */
+
+    .brand {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-top: 25px;
+      color: #111;
+    }
+
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro {
+      margin-top: 42px;
+      text-align: center;
+    }
+
+    .intro p {
+      font-size: 15px;
+      color: #777;
+      line-height: 1.8;
+    }
+
+
+    /* =========================
+       PRICE
+    ========================= */
+
+    .price-area {
+      width: 100%;
+      height: 122px;
+
+      margin-top: 28px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      flex-shrink: 0;
+    }
+
+    .price-label {
+      height: 26px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 14px;
+      color: #777;
+
+      margin-bottom: 11px;
+    }
+
+    .price-display {
+      height: 58px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      direction: ltr;
+      gap: 4px;
+    }
+
+    .digit-box {
+      position: relative;
+
+      width: 40px;
+      height: 56px;
+
+      overflow: hidden;
+
+      border-radius: 9px;
+
+      background: #f4f4f4;
+
+      border: 1px solid #dedede;
+
+      box-shadow:
+        inset 0 2px 5px rgba(0,0,0,.07),
+        0 2px 5px rgba(0,0,0,.04);
+    }
+
+    .digit-box::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 16px;
+
+      z-index: 5;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(244,244,244,1),
+          rgba(244,244,244,0)
+        );
+    }
+
+    .digit-box::after {
+      content: "";
+
+      position: absolute;
+
+      bottom: 0;
+      left: 0;
+
+      width: 100%;
+      height: 16px;
+
+      z-index: 5;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(244,244,244,1),
+          rgba(244,244,244,0)
+        );
+    }
+
+    .digit {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 56px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 35px;
+      line-height: 1;
+      font-weight: 700;
+
+      color: #111;
+
+      opacity: 1;
+    }
+
+    .currency {
+      margin-left: 5px;
+
+      font-size: 18px;
+      font-weight: 600;
+
+      color: #222;
+
+      white-space: nowrap;
+    }
+
+
+    /* =========================
+       QUESTION
+    ========================= */
+
+    .question {
+      margin-top: 34px;
+      text-align: center;
+    }
+
+    .question h1 {
+      font-size: 24px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .question p {
+      margin-top: 9px;
+
+      font-size: 14px;
+      line-height: 1.8;
+
+      color: #777;
+    }
+
+
+    /* =========================
+       INPUT
+    ========================= */
+
+    .input-area {
+      margin-top: 25px;
+    }
+
+    .input-area input {
+      width: 100%;
+      height: 58px;
+
+      border: 1px solid #dedede;
+      border-radius: 14px;
+
+      background: #fafafa;
+
+      padding: 0 18px;
+
+      font-size: 18px;
+
+      text-align: center;
+
+      outline: none;
+
+      transition:
+        border-color .2s,
+        background .2s;
+    }
+
+    .input-area input:focus {
+      border-color: #111;
+      background: #fff;
+    }
+
+    .input-area input::placeholder {
+      color: #aaa;
+    }
+
+
+    /* =========================
+       RESULT
+    ========================= */
+
+    .result {
+      margin-top: 18px;
+
+      min-height: 76px;
+
+      padding: 16px;
+
+      border-radius: 15px;
+
+      background: #f7f7f7;
+
+      border: 2px solid transparent;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      font-size: 14px;
+      line-height: 1.8;
+
+      color: #555;
+
+      transition:
+        border-color .2s,
+        color .2s,
+        background .2s;
+    }
+
+    .result.insufficient {
+      border-color: #e53935;
+      color: #e53935;
+      background: #fff5f5;
+    }
+
+    .result.sufficient {
+      border-color: #2e9d50;
+      color: #2e9d50;
+      background: #f4fff7;
+    }
+
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    .bottom {
+      margin-top: auto;
+      padding-top: 35px;
+    }
+
+    .continue-btn {
+      width: 100%;
+      height: 56px;
+
+      border: none;
+      border-radius: 16px;
+
+      background: #111;
+      color: #fff;
+
+      font-size: 16px;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition:
+        transform .15s,
+        opacity .15s;
+    }
+
+    .continue-btn:active {
+      transform: scale(.98);
+    }
+
+    .continue-btn:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <div class="page">
+
+
+    <div class="brand">
+      ELIT MAN
+    </div>
+
+
+    <div class="intro">
+
+      <p>
+        نكمل من اختيارك
+      </p>
+
+    </div>
+
+
+    <!-- =========================
+         PRICE
+    ========================= -->
+
+    <div class="price-area">
+
+      <div class="price-label">
+        هذا سعر المنتجات التي اخترتها
+      </div>
+
+
+      <div
+        class="price-display"
+        aria-label="ثمن المنتجات التي اخترتها"
+      >
+
+        <div class="digit-box">
+
+          <div
+            class="digit"
+            id="digit1"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="digit-box">
+
+          <div
+            class="digit"
+            id="digit2"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="digit-box">
+
+          <div
+            class="digit"
+            id="digit3"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <span class="currency">
+          DH
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         QUESTION
+    ========================= -->
+
+    <div class="question">
+
+      <h1>
+        كم لديك الآن؟
+      </h1>
+
+      <p>
+        اكتب المبلغ الموجود معك الآن.
+      </p>
+
+    </div>
+
+
+    <!-- =========================
+         INPUT
+    ========================= -->
+
+    <div class="input-area">
+
+      <input
+        type="number"
+        id="moneyInput"
+        inputmode="numeric"
+        min="0"
+        placeholder="اكتب المبلغ هنا"
+        autocomplete="off"
+      >
+
+    </div>
+
+
+    <!-- =========================
+         RESULT
+    ========================= -->
+
+    <div
+      class="result"
+      id="result"
+    >
+      اكتب المبلغ الموجود معك لنكمل.
+    </div>
+
+
+    <!-- =========================
+         BUTTON
+    ========================= -->
+
+    <div class="bottom">
+
+      <button
+        class="continue-btn"
+        id="continueBtn"
+        disabled
+      >
+        نكمل ←
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /* =====================================================
+       TRACKING CONFIG
+    ===================================================== */
+
+    const TRACKING_URL =
+      "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+
+    /* =====================================================
+       CLIENT ID
+    ===================================================== */
+
+    const CLIENT_KEY =
+      "closing_layer_client_id";
+
+    let clientId =
+      localStorage.getItem(
+        CLIENT_KEY
+      );
+
+    if (!clientId) {
+
+      clientId =
+        "CL-" +
+        crypto.randomUUID();
+
+      localStorage.setItem(
+        CLIENT_KEY,
+        clientId
+      );
+    }
+
+
+    /* =====================================================
+       SESSION ID
+    ===================================================== */
+
+    const SESSION_KEY =
+      "closing_layer_session_id";
+
+    const LAST_SESSION_KEY =
+      "closing_layer_last_session_id";
+
+    let sessionId =
+      sessionStorage.getItem(
+        SESSION_KEY
+      );
+
+    let isNewSession = false;
+
+    if (!sessionId) {
+
+      sessionId =
+        "S-" +
+        crypto.randomUUID();
+
+      sessionStorage.setItem(
+        SESSION_KEY,
+        sessionId
+      );
+
+      isNewSession = true;
+    }
+
+
+    /* =====================================================
+       RETURNED LATER
+    ===================================================== */
+
+    const previousSessionId =
+      localStorage.getItem(
+        LAST_SESSION_KEY
+      );
+
+    const returnedLater =
+      isNewSession &&
+      previousSessionId &&
+      previousSessionId !== sessionId;
+
+    localStorage.setItem(
+      LAST_SESSION_KEY,
+      sessionId
+    );
+
+
+    /* =====================================================
+       PAGE INFO
+    ===================================================== */
+
+    const CURRENT_PAGE =
+      "الصفحة 9";
+
+    const pageEnteredAt =
+      Date.now();
+
+    const pageEnteredISO =
+      new Date().toISOString();
+
+    let pageExitSent = false;
+
+
+    /* =====================================================
+       U — FULL PATH
+       تسجيل الصفحة لحظة الخروج
+    ===================================================== */
+
+    let pathExitSent = false;
+
+
+    function sendPathExit() {
+
+      if (pathExitSent) {
+        return;
+      }
+
+      pathExitSent = true;
+
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        event:
+          "path_page_exit",
+
+        page:
+          CURRENT_PAGE,
+
+        path_page:
+          CURRENT_PAGE,
+
+        timestamp:
+          new Date().toISOString()
+
+      };
+
+
+      const body =
+        JSON.stringify(payload);
+
+
+      try {
+
+        if (navigator.sendBeacon) {
+
+          const blob =
+            new Blob(
+              [body],
+              {
+                type:
+                  "text/plain;charset=UTF-8"
+              }
+            );
+
+          if (
+            navigator.sendBeacon(
+              TRACKING_URL,
+              blob
+            )
+          ) {
+
+            return;
+
+          }
+
+        }
+
+      } catch (error) {}
+
+
+      fetch(
+
+        TRACKING_URL,
+
+        {
+
+          method:
+            "POST",
+
+          headers:
+            {
+              "Content-Type":
+                "text/plain;charset=UTF-8"
+            },
+
+          body:
+            body,
+
+          mode:
+            "no-cors",
+
+          keepalive:
+            true,
+
+          cache:
+            "no-store"
+
+        }
+
+      ).catch(function () {});
+
+    }
+
+
+    /* =====================================================
+       SEND TRACKING
+    ===================================================== */
+
+    function sendTracking(data) {
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        ...data
+
+      };
+
+
+      fetch(
+        TRACKING_URL,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=UTF-8"
+          },
+
+          body:
+            JSON.stringify(payload),
+
+          mode:
+            "no-cors",
+
+          keepalive: true,
+
+          cache: "no-store"
+        }
+      ).catch(
+        function () {}
+      );
+    }
+
+
+    /* =====================================================
+       SESSION START
+    ===================================================== */
+
+    if (isNewSession) {
+
+      sendTracking({
+
+        event:
+          "session_start",
+
+        page:
+          CURRENT_PAGE,
+
+        path:
+          CURRENT_PAGE,
+
+        returned_later:
+          returnedLater
+            ? "نعم"
+            : "لا",
+
+        timestamp:
+          pageEnteredISO
+
+      });
+
+    }
+
+
+    /* =====================================================
+       PAGE VIEW
+    ===================================================== */
+
+    sendTracking({
+
+      event:
+        "page_view",
+
+      page:
+        CURRENT_PAGE,
+
+      path:
+        CURRENT_PAGE,
+
+      entered_at:
+        pageEnteredISO,
+
+      timestamp:
+        pageEnteredISO
+
+    });
+
+
+    /* =====================================================
+       BACK NAVIGATION
+    ===================================================== */
+
+    window.addEventListener(
+      "pageshow",
+      function () {
+
+        const navigation =
+          performance.getEntriesByType(
+            "navigation"
+          )[0];
+
+
+        if (
+          navigation &&
+          navigation.type ===
+            "back_forward"
+        ) {
+
+          sendTracking({
+
+            event:
+              "back_navigation",
+
+            page:
+              CURRENT_PAGE,
+
+            path:
+              CURRENT_PAGE,
+
+            went_back:
+              true,
+
+            back_count:
+              1,
+
+            interaction:
+              "رجع إلى الصفحة 9",
+
+            timestamp:
+              new Date().toISOString()
+
+          });
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       PAGE EXIT
+    ===================================================== */
+
+    function sendPageExit() {
+
+      if (pageExitSent) {
+        return;
+      }
+
+      pageExitSent = true;
+
+
+      const durationSeconds =
+        Math.round(
+          (Date.now() -
+            pageEnteredAt) / 1000
+        );
+
+
+      sendTracking({
+
+        event:
+          "page_exit",
+
+        page:
+          CURRENT_PAGE,
+
+        path:
+          CURRENT_PAGE,
+
+        duration:
+          durationSeconds,
+
+        timestamp:
+          new Date().toISOString()
+
+      });
+
+    }
+
+
+    /* =====================================================
+       PRODUCT COUNT
+    ===================================================== */
+
+    const savedProductCount =
+      localStorage.getItem(
+        "selected_products_count"
+      );
+
+    const productCount =
+      Number(
+        savedProductCount
+      );
+
+
+    /* =====================================================
+       PRICE TABLE
+    ===================================================== */
+
+    const prices = {
+
+      2: 100,
+
+      3: 129,
+
+      4: 159,
+
+      5: 179,
+
+      6: 199
+
+    };
+
+
+    const productPrice =
+      prices[productCount];
+
+
+    if (
+      productPrice === undefined
+    ) {
+
+      console.error(
+        "No price exists for product count:",
+        productCount
+      );
+
+    }
+
+
+    /* =====================================================
+       SAVE PRICE
+    ===================================================== */
+
+    if (
+      productPrice !== undefined
+    ) {
+
+      localStorage.setItem(
+        "product_price",
+        String(productPrice)
+      );
+
+
+      localStorage.setItem(
+        "productPrice",
+        String(productPrice)
+      );
+
+    }
+
+
+    localStorage.setItem(
+      "product_count",
+      String(productCount)
+    );
+
+
+    /* =====================================================
+       DIGITS
+    ===================================================== */
+
+    function setDigit(
+      id,
+      value
+    ) {
+
+      const element =
+        document.getElementById(
+          id
+        );
+
+
+      if (element) {
+
+        element.textContent =
+          String(value);
+
+      }
+
+    }
+
+
+    /* =====================================================
+       PRICE REVEAL
+    ===================================================== */
+
+    function spinDigit(
+      id,
+      finalNumber,
+      duration,
+      delay
+    ) {
+
+      setTimeout(
+        () => {
+
+          const start =
+            performance.now();
+
+          let lastNumber =
+            -1;
+
+
+          function animate(now) {
+
+            const elapsed =
+              now - start;
+
+
+            const progress =
+              Math.min(
+                elapsed / duration,
+                1
+              );
+
+
+            const eased =
+              1 -
+              Math.pow(
+                1 - progress,
+                4
+              );
+
+
+            if (
+              progress < 1
+            ) {
+
+              const number =
+                Math.floor(
+                  eased * 40
+                ) % 10;
+
+
+              if (
+                number !== lastNumber
+              ) {
+
+                setDigit(
+                  id,
+                  number
+                );
+
+
+                lastNumber =
+                  number;
+
+              }
+
+
+              requestAnimationFrame(
+                animate
+              );
+
+            }
+
+            else {
+
+              setDigit(
+                id,
+                finalNumber
+              );
+
+            }
+
+          }
+
+
+          requestAnimationFrame(
+            animate
+          );
+
+        },
+        delay
+      );
+
+    }
+
+
+    function revealPrice(
+      price
+    ) {
+
+      if (
+        !Number.isFinite(price)
+      ) {
+
+        return;
+
+      }
+
+
+      const digits =
+        String(price)
+          .padStart(3, "0")
+          .split("")
+          .map(Number);
+
+
+      setDigit(
+        "digit1",
+        0
+      );
+
+      setDigit(
+        "digit2",
+        0
+      );
+
+      setDigit(
+        "digit3",
+        0
+      );
+
+
+      spinDigit(
+        "digit1",
+        digits[0],
+        850,
+        0
+      );
+
+
+      spinDigit(
+        "digit2",
+        digits[1],
+        1000,
+        250
+      );
+
+
+      spinDigit(
+        "digit3",
+        digits[2],
+        1150,
+        500
+      );
+
+
+      setTimeout(
+        () => {
+
+          setDigit(
+            "digit1",
+            digits[0]
+          );
+
+          setDigit(
+            "digit2",
+            digits[1]
+          );
+
+          setDigit(
+            "digit3",
+            digits[2]
+          );
+
+        },
+        1800
+      );
+
+    }
+
+
+    /* =====================================================
+       MONEY
+    ===================================================== */
+
+    const moneyInput =
+      document.getElementById(
+        "moneyInput"
+      );
+
+
+    const result =
+      document.getElementById(
+        "result"
+      );
+
+
+    const continueBtn =
+      document.getElementById(
+        "continueBtn"
+      );
+
+
+    let currentMoney =
+      0;
+
+
+    let financialGap =
+      Number(productPrice) -
+      currentMoney;
+
+
+    function calculateMoney() {
+
+      const value =
+        Number(
+          moneyInput.value
+        );
+
+
+      if (
+        !Number.isFinite(value) ||
+        value < 0
+      ) {
+
+        currentMoney =
+          0;
+
+
+        financialGap =
+          Number(productPrice);
+
+
+        continueBtn.disabled =
+          true;
+
+
+        result.classList.remove(
+          "insufficient",
+          "sufficient"
+        );
+
+
+        result.textContent =
+          "اكتب المبلغ الموجود معك لنكمل.";
+
+
+        return;
+
+      }
+
+
+      currentMoney =
+        value;
+
+
+      financialGap =
+        Math.max(
+          Number(productPrice) -
+          currentMoney,
+          0
+        );
+
+
+      continueBtn.disabled =
+        false;
+
+
+      if (
+        currentMoney >=
+        Number(productPrice)
+      ) {
+
+        result.classList.remove(
+          "insufficient"
+        );
+
+        result.classList.add(
+          "sufficient"
+        );
+
+
+        result.textContent =
+          "المبلغ الموجود معك يكفي لهذا الاختيار.";
+
+      }
+
+      else {
+
+        result.classList.remove(
+          "sufficient"
+        );
+
+        result.classList.add(
+          "insufficient"
+        );
+
+
+        result.textContent =
+          "باقي لك " +
+          financialGap +
+          " DH للوصول إلى المبلغ المطلوب.";
+
+      }
+
+    }
+
+
+    moneyInput.addEventListener(
+      "input",
+      calculateMoney
+    );
+
+
+    /* =====================================================
+       REVEAL PRICE
+    ===================================================== */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+
+        revealPrice(
+          productPrice
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       CONTINUE
+    ===================================================== */
+
+    continueBtn.addEventListener(
+      "click",
+      () => {
+
+        if (
+          continueBtn.disabled
+        ) {
+
+          return;
+
+        }
+
+
+        const now =
+          new Date().toISOString();
+
+
+        const timeOnPage =
+          Math.round(
+            (Date.now() -
+              pageEnteredAt) / 1000
+          );
+
+
+        /* =================================================
+           NEXT PAGE
+           المبلغ الكافي → 11
+           المبلغ غير الكافي → 10
+        ================================================= */
+
+        const nextPage =
+          currentMoney >=
+          Number(productPrice)
+            ? 11
+            : 10;
+
+
+        /* =================================================
+           SAVE DATA LOCALLY
+        ================================================= */
+
+        localStorage.setItem(
+          "current_money",
+          String(currentMoney)
+        );
+
+
+        localStorage.setItem(
+          "financial_gap",
+          String(financialGap)
+        );
+
+
+        localStorage.setItem(
+          "product_price",
+          String(productPrice)
+        );
+
+
+        localStorage.setItem(
+          "product_count",
+          String(productCount)
+        );
+
+
+        /* =================================================
+           INTERACTION
+        ================================================= */
+
+        sendTracking({
+
+          event:
+            "interaction",
+
+          page:
+            CURRENT_PAGE,
+
+          path:
+            CURRENT_PAGE,
+
+          interaction:
+            "ضغط على زر: نكمل",
+
+          timestamp:
+            now
+
+        });
+
+
+        /* =================================================
+           PAGE 9 COMPLETED
+        ================================================= */
+
+        sendTracking({
+
+          event:
+            "page9_completed",
+
+          page:
+            CURRENT_PAGE,
+
+          path:
+            CURRENT_PAGE,
+
+          completed:
+            true,
+
+          current_money:
+            currentMoney,
+
+          product_count:
+            productCount,
+
+          product_price:
+            productPrice,
+
+          financial_gap:
+            financialGap,
+
+          time_on_page:
+            timeOnPage,
+
+          next_page:
+            "الصفحة " + nextPage,
+
+          timestamp:
+            now
+
+        });
+
+
+        /* =================================================
+           U — PATH EXIT
+        ================================================= */
+
+        sendPathExit();
+
+
+        /* =================================================
+           EXIT
+        ================================================= */
+
+        sendPageExit();
+
+
+        /* =================================================
+           TRANSITION
+        ================================================= */
+
+        sendTracking({
+
+          event:
+            "page9_to_next",
+
+          from_page:
+            CURRENT_PAGE,
+
+          to_page:
+            "الصفحة " + nextPage,
+
+          transitioned:
+            "نعم",
+
+          transition_at:
+            now
+
+        });
+
+
+        /* =================================================
+           GO TO NEXT PAGE
+        ================================================= */
+
+        setTimeout(
+          () => {
+
+            window.location.href =
+              nextPage === 11
+                ? "page11.html"
+                : "page10.html";
+
+          },
+          250
+        );
+
+      }
+
+    );
+
+
+    /* =====================================================
+       PAGE HIDE
+    ===================================================== */
+
+    window.addEventListener(
+      "pagehide",
+      function () {
+
+        sendPathExit();
+
+        sendPageExit();
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ELIT MAN</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f7f7f5;
+      color: #171717;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 520px;
+      min-height: 100vh;
+
+      margin: auto;
+
+      padding:
+        34px 24px 28px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* =========================
+       BRAND
+    ========================= */
+
+    .brand {
+      align-self: center;
+
+      padding: 7px 15px;
+
+      border: 1px solid #deded9;
+      border-radius: 999px;
+
+      background: rgba(255,255,255,.55);
+
+      color: #555;
+
+      font-size: 10px;
+      font-weight: 600;
+
+      letter-spacing: 2.2px;
+
+      opacity: 0;
+
+      transform: translateY(-8px);
+
+      animation:
+        brandIn .8s ease forwards;
+    }
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    .content {
+      flex: 1;
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+
+      padding: 30px 0 45px;
+    }
+
+    .intro {
+      margin-bottom: 18px;
+
+      color: #999;
+
+      font-size: 13px;
+
+      opacity: 0;
+      transform: translateY(8px);
+
+      animation:
+        fadeUp .8s ease .25s forwards;
+    }
+
+    .headline {
+      max-width: 340px;
+
+      font-size: 27px;
+      font-weight: 500;
+
+      line-height: 1.45;
+
+      letter-spacing: -.7px;
+
+      opacity: 0;
+      transform: translateY(10px);
+
+      animation:
+        fadeUp .9s ease .45s forwards;
+    }
+
+    .headline strong {
+      font-weight: 750;
+    }
+
+    .support {
+      max-width: 285px;
+
+      margin-top: 14px;
+
+      color: #8c8c8c;
+
+      font-size: 13px;
+
+      line-height: 1.8;
+
+      opacity: 0;
+      transform: translateY(8px);
+
+      animation:
+        fadeUp .8s ease .65s forwards;
+    }
+
+    /* =========================
+       GAP
+    ========================= */
+
+    .gap-box {
+      width: 100%;
+      max-width: 340px;
+
+      margin-top: 34px;
+
+      padding: 24px 20px;
+
+      border: 1px solid #e1e1dc;
+
+      border-radius: 18px;
+
+      background: rgba(255,255,255,.62);
+
+      box-shadow:
+        0 8px 30px rgba(0,0,0,.035);
+
+      opacity: 0;
+
+      transform:
+        translateY(15px)
+        scale(.98);
+
+      animation:
+        gapIn 1s cubic-bezier(.2,.8,.2,1) .85s forwards;
+    }
+
+    .gap-label {
+      margin-bottom: 10px;
+
+      color: #a0a0a0;
+
+      font-size: 11px;
+    }
+
+    .gap-value {
+      color: #191919;
+
+      font-size: 38px;
+      font-weight: 700;
+
+      line-height: 1.15;
+
+      letter-spacing: -1.2px;
+    }
+
+    .gap-description {
+      margin-top: 9px;
+
+      color: #8d8d8d;
+
+      font-size: 12px;
+
+      line-height: 1.7;
+    }
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    .error {
+      display: none;
+
+      max-width: 290px;
+
+      margin-top: 25px;
+
+      color: #888;
+
+      font-size: 13px;
+
+      line-height: 1.8;
+
+      text-align: center;
+    }
+
+    /* =========================
+       BOTTOM
+    ========================= */
+
+    .bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      opacity: 0;
+      transform: translateY(10px);
+
+      animation:
+        fadeUp .8s ease 1.15s forwards;
+    }
+
+    .continue-btn {
+      width: 100%;
+      max-width: 330px;
+
+      padding: 16px 20px;
+
+      border: none;
+      border-radius: 14px;
+
+      outline: none;
+
+      background: #171717;
+
+      color: #fff;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .continue-btn:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 9px 24px rgba(0,0,0,.12);
+    }
+
+    .continue-btn:active {
+      transform: scale(.98);
+    }
+
+    .micro {
+      margin-top: 12px;
+
+      color: #aaa;
+
+      font-size: 10px;
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    @keyframes brandIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gapIn {
+      0% {
+        opacity: 0;
+
+        transform:
+          translateY(15px)
+          scale(.98);
+      }
+
+      70% {
+        opacity: 1;
+
+        transform:
+          translateY(-2px)
+          scale(1.005);
+      }
+
+      100% {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    @media (max-width: 380px) {
+
+      .page {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .headline {
+        font-size: 24px;
+      }
+
+      .gap-value {
+        font-size: 34px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <main class="page">
+
+    <div class="brand">
+      ELIT MAN
+    </div>
+
+
+    <section class="content">
+
+      <div class="intro">
+        قبل أن نكمل...
+      </div>
+
+
+      <div class="headline">
+        عرفنا أين أنت الآن،
+        <br>
+        وإلى أين تريد الوصول.
+      </div>
+
+
+      <div class="support">
+        وبين النقطتين توجد مسافة واحدة
+        علينا أن نراها كما هي.
+      </div>
+
+
+      <div
+        class="gap-box"
+        id="gapBox"
+      >
+
+        <div class="gap-label">
+          المسافة الحالية
+        </div>
+
+        <div
+          class="gap-value"
+          id="gapValue"
+        >
+          —
+        </div>
+
+        <div class="gap-description">
+          المبلغ المتبقي للوصول إلى اختيارك
+        </div>
+
+      </div>
+
+
+      <div
+        class="error"
+        id="errorMessage"
+      >
+        لم نتمكن من استعادة بيانات اختيارك.
+        <br>
+        يرجى العودة إلى الخطوة السابقة.
+      </div>
+
+    </section>
+
+
+    <div class="bottom">
+
+      <button
+        class="continue-btn"
+        id="continueBtn"
+      >
+        نكمل من هنا ←
+      </button>
+
+      <div class="micro">
+        الخطوة القادمة مبنية على وضعك أنت
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    /* =====================================================
+       TRACKING CONFIG
+    ===================================================== */
+
+    const TRACKING_URL =
+      "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+
+    /* =====================================================
+       CLIENT ID
+    ===================================================== */
+
+    const CLIENT_KEY =
+      "closing_layer_client_id";
+
+    let clientId =
+      localStorage.getItem(
+        CLIENT_KEY
+      );
+
+    if (!clientId) {
+
+      clientId =
+        "CL-" +
+        crypto.randomUUID();
+
+      localStorage.setItem(
+        CLIENT_KEY,
+        clientId
+      );
+    }
+
+
+    /* =====================================================
+       SESSION ID
+    ===================================================== */
+
+    const SESSION_KEY =
+      "closing_layer_session_id";
+
+    const LAST_SESSION_KEY =
+      "closing_layer_last_session_id";
+
+    let sessionId =
+      sessionStorage.getItem(
+        SESSION_KEY
+      );
+
+    let isNewSession = false;
+
+    if (!sessionId) {
+
+      sessionId =
+        "S-" +
+        crypto.randomUUID();
+
+      sessionStorage.setItem(
+        SESSION_KEY,
+        sessionId
+      );
+
+      isNewSession = true;
+    }
+
+
+    /* =====================================================
+       RETURNED LATER
+    ===================================================== */
+
+    const previousSessionId =
+      localStorage.getItem(
+        LAST_SESSION_KEY
+      );
+
+    const returnedLater =
+      isNewSession &&
+      previousSessionId &&
+      previousSessionId !== sessionId;
+
+    localStorage.setItem(
+      LAST_SESSION_KEY,
+      sessionId
+    );
+
+
+    /* =====================================================
+       PAGE INFO
+    ===================================================== */
+
+    const CURRENT_PAGE =
+      "الصفحة 10";
+
+    const pageEnteredAt =
+      Date.now();
+
+    const pageEnteredISO =
+      new Date().toISOString();
+
+    let pageExitSent = false;
+
+    let pathExitSent = false;
+
+
+    /* =====================================================
+       FULL PATH — PAGE EXIT ONLY
+    ===================================================== */
+
+    function sendPathExit() {
+
+      if (pathExitSent) {
+        return;
+      }
+
+      pathExitSent = true;
+
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        event:
+          "path_page_exit",
+
+        page:
+          CURRENT_PAGE,
+
+        path_page:
+          CURRENT_PAGE,
+
+        timestamp:
+          new Date().toISOString()
+
+      };
+
+
+      const body =
+        JSON.stringify(payload);
+
+
+      try {
+
+        if (navigator.sendBeacon) {
+
+          const blob =
+            new Blob(
+              [body],
+              {
+                type:
+                  "text/plain;charset=UTF-8"
+              }
+            );
+
+          navigator.sendBeacon(
+            TRACKING_URL,
+            blob
+          );
+
+          return;
+        }
+
+      } catch (error) {}
+
+
+      fetch(
+        TRACKING_URL,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=UTF-8"
+          },
+
+          body:
+            body,
+
+          mode:
+            "no-cors",
+
+          keepalive:
+            true,
+
+          cache:
+            "no-store"
+        }
+      ).catch(
+        function () {}
+      );
+
+    }
+
+
+    /* =====================================================
+       SEND TRACKING
+    ===================================================== */
+
+    function sendTracking(data) {
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        ...data
+
+      };
+
+
+      fetch(
+        TRACKING_URL,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=UTF-8"
+          },
+
+          body:
+            JSON.stringify(payload),
+
+          mode:
+            "no-cors",
+
+          keepalive:
+            true,
+
+          cache:
+            "no-store"
+        }
+      ).catch(
+        function () {}
+      );
+    }
+
+
+    /* =====================================================
+       SESSION START
+    ===================================================== */
+
+    if (isNewSession) {
+
+      sendTracking({
+
+        event:
+          "session_start",
+
+        page:
+          CURRENT_PAGE,
+
+        path:
+          CURRENT_PAGE,
+
+        returned_later:
+          returnedLater
+            ? "نعم"
+            : "لا",
+
+        timestamp:
+          pageEnteredISO
+
+      });
+
+    }
+
+
+    /* =====================================================
+       PAGE VIEW
+    ===================================================== */
+
+    sendTracking({
+
+      event:
+        "page_view",
+
+      page:
+        CURRENT_PAGE,
+
+      path:
+        CURRENT_PAGE,
+
+      entered_at:
+        pageEnteredISO,
+
+      timestamp:
+        pageEnteredISO
+
+    });
+
+
+    /* =====================================================
+       BACK NAVIGATION
+    ===================================================== */
+
+    window.addEventListener(
+      "pageshow",
+      function () {
+
+        const navigation =
+          performance.getEntriesByType(
+            "navigation"
+          )[0];
+
+
+        if (
+          navigation &&
+          navigation.type ===
+            "back_forward"
+        ) {
+
+          sendTracking({
+
+            event:
+              "back_navigation",
+
+            page:
+              CURRENT_PAGE,
+
+            path:
+              CURRENT_PAGE,
+
+            went_back:
+              true,
+
+            back_count:
+              1,
+
+            interaction:
+              "رجع إلى الصفحة 10",
+
+            timestamp:
+              new Date().toISOString()
+
+          });
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       PAGE EXIT
+    ===================================================== */
+
+    function sendPageExit() {
+
+      if (pageExitSent) {
+        return;
+      }
+
+      pageExitSent = true;
+
+
+      const durationSeconds =
+        Math.round(
+          (Date.now() -
+            pageEnteredAt) / 1000
+        );
+
+
+      sendTracking({
+
+        event:
+          "page_exit",
+
+        page:
+          CURRENT_PAGE,
+
+        path:
+          CURRENT_PAGE,
+
+        duration:
+          durationSeconds,
+
+        timestamp:
+          new Date().toISOString()
+
+      });
+
+    }
+
+
+    /* =====================================================
+       READ BASIC DATA
+    ===================================================== */
+
+    const storedProductPrice =
+      localStorage.getItem(
+        "product_price"
+      );
+
+
+    const oldProductPrice =
+      localStorage.getItem(
+        "selected_product_price"
+      );
+
+
+    const productPrice =
+      Number(
+        storedProductPrice !== null
+          ? storedProductPrice
+          : oldProductPrice
+      );
+
+
+    const currentMoney =
+      Number(
+        localStorage.getItem(
+          "current_money"
+        )
+      );
+
+
+    const financialGapDirect =
+      Number(
+        localStorage.getItem(
+          "financial_gap"
+        )
+      );
+
+
+    /* =====================================================
+       READ CENTRAL DECISION STATE
+    ===================================================== */
+
+    let decisionState = {};
+
+    try {
+
+      decisionState =
+        JSON.parse(
+          localStorage.getItem(
+            "decision_state"
+          ) || "{}"
+        );
+
+    } catch (error) {
+
+      decisionState = {};
+
+    }
+
+
+    const financialGapState =
+      Number(
+        decisionState.financial_gap
+      );
+
+
+    /* =====================================================
+       DETERMINE GAP
+    ===================================================== */
+
+    let financialGap = null;
+
+
+    if (
+      Number.isFinite(financialGapDirect) &&
+      financialGapDirect >= 0
+    ) {
+
+      financialGap =
+        financialGapDirect;
+
+    }
+
+    else if (
+      Number.isFinite(financialGapState) &&
+      financialGapState >= 0
+    ) {
+
+      financialGap =
+        financialGapState;
+
+    }
+
+    else if (
+      Number.isFinite(productPrice) &&
+      Number.isFinite(currentMoney) &&
+      productPrice > currentMoney
+    ) {
+
+      financialGap =
+        productPrice -
+        currentMoney;
+
+    }
+
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const gapValue =
+      document.getElementById(
+        "gapValue"
+      );
+
+
+    const gapBox =
+      document.getElementById(
+        "gapBox"
+      );
+
+
+    const errorMessage =
+      document.getElementById(
+        "errorMessage"
+      );
+
+
+    const continueBtn =
+      document.getElementById(
+        "continueBtn"
+      );
+
+
+    /* =====================================================
+       PREVIOUS DATA — CONTEXT ONLY
+    ===================================================== */
+
+    const selectedProduct =
+      localStorage.getItem(
+        "selected_product"
+      ) || "";
+
+
+    const selectedProducts =
+      localStorage.getItem(
+        "selected_products"
+      ) || "";
+
+
+    const selectedIntent =
+      localStorage.getItem(
+        "selected_intent"
+      ) || "";
+
+
+    const selectedContext =
+      localStorage.getItem(
+        "selected_context"
+      ) || "";
+
+
+    /* =====================================================
+       VALIDATE AND DISPLAY
+    ===================================================== */
+
+    if (
+      Number.isFinite(financialGap) &&
+      financialGap > 0
+    ) {
+
+      gapValue.textContent =
+        `${financialGap} DH`;
+
+
+      localStorage.setItem(
+        "financial_gap",
+        String(financialGap)
+      );
+
+
+      localStorage.setItem(
+        "page10_gap",
+        String(financialGap)
+      );
+
+
+      if (
+        Number.isFinite(productPrice)
+      ) {
+
+        localStorage.setItem(
+          "page10_product_price",
+          String(productPrice)
+        );
+
+      }
+
+
+      if (
+        Number.isFinite(currentMoney)
+      ) {
+
+        localStorage.setItem(
+          "page10_current_money",
+          String(currentMoney)
+        );
+
+      }
+
+
+      /* =========================
+         CENTRAL STATE
+      ========================= */
+
+      decisionState.financial_gap =
+        financialGap;
+
+      decisionState.page10_entered =
+        true;
+
+      decisionState.page10_entered_at =
+        pageEnteredISO;
+
+
+      localStorage.setItem(
+        "decision_state",
+        JSON.stringify(
+          decisionState
+        )
+      );
+
+
+      localStorage.setItem(
+        "page10_entered_at",
+        pageEnteredISO
+      );
+
+
+      /* =========================
+         LOCAL EVENT
+      ========================= */
+
+      let events = [];
+
+      try {
+
+        events =
+          JSON.parse(
+            localStorage.getItem(
+              "decision_events"
+            ) || "[]"
+          );
+
+      } catch (error) {
+
+        events = [];
+
+      }
+
+
+      events.push({
+
+        event:
+          "page10_entered",
+
+        page:
+          "page10",
+
+        timestamp:
+          pageEnteredISO,
+
+        financial_gap:
+          financialGap,
+
+        current_money:
+          currentMoney,
+
+        product_price:
+          productPrice
+
+      });
+
+
+      localStorage.setItem(
+        "decision_events",
+        JSON.stringify(events)
+      );
+
+    }
+
+    else {
+
+      gapBox.style.display =
+        "none";
+
+      errorMessage.style.display =
+        "block";
+
+      continueBtn.disabled =
+        true;
+
+      continueBtn.style.opacity =
+        ".45";
+
+      continueBtn.style.cursor =
+        "not-allowed";
+
+    }
+
+
+    /* =====================================================
+       PAGE 10 VIEW TRACKING
+    ===================================================== */
+
+    sendTracking({
+
+      event:
+        "page_view",
+
+      page:
+        CURRENT_PAGE,
+
+      path:
+        CURRENT_PAGE,
+
+      product:
+        selectedProduct,
+
+      selected_products:
+        selectedProducts,
+
+      intent:
+        selectedIntent,
+
+      context:
+        selectedContext,
+
+      current_money:
+        Number.isFinite(currentMoney)
+          ? currentMoney
+          : "",
+
+      financial_gap:
+        Number.isFinite(financialGap)
+          ? financialGap
+          : "",
+
+      product_price:
+        Number.isFinite(productPrice)
+          ? productPrice
+          : "",
+
+      timestamp:
+        pageEnteredISO
+
+    });
+
+
+    /* =====================================================
+       CONTINUE
+       PAGE 10 → PAGE 17
+    ===================================================== */
+
+    continueBtn.addEventListener(
+      "click",
+      function () {
+
+        if (
+          continueBtn.disabled
+        ) {
+          return;
+        }
+
+
+        const completedAt =
+          new Date().toISOString();
+
+
+        const timeOnPage =
+          Math.round(
+            (Date.now() -
+              pageEnteredAt) / 1000
+          );
+
+
+        /* =========================
+           SAVE PAGE 10
+        ========================= */
+
+        localStorage.setItem(
+          "page10_completed",
+          "true"
+        );
+
+
+        localStorage.setItem(
+          "page10_completed_at",
+          completedAt
+        );
+
+
+        localStorage.setItem(
+          "page10_time_on_page",
+          String(timeOnPage)
+        );
+
+
+        localStorage.setItem(
+          "page10_gap",
+          String(financialGap)
+        );
+
+
+        /* =========================
+           CENTRAL STATE
+        ========================= */
+
+        decisionState.page10_completed =
+          true;
+
+        decisionState.page10_completed_at =
+          completedAt;
+
+        decisionState.page10_time_on_page =
+          timeOnPage;
+
+        decisionState.financial_gap =
+          financialGap;
+
+
+        localStorage.setItem(
+          "decision_state",
+          JSON.stringify(
+            decisionState
+          )
+        );
+
+
+        /* =========================
+           LOCAL EVENT
+        ========================= */
+
+        let events = [];
+
+        try {
+
+          events =
+            JSON.parse(
+              localStorage.getItem(
+                "decision_events"
+              ) || "[]"
+            );
+
+        } catch (error) {
+
+          events = [];
+
+        }
+
+
+        events.push({
+
+          event:
+            "page10_completed",
+
+          page:
+            "page10",
+
+          timestamp:
+            completedAt,
+
+          time_on_page:
+            timeOnPage,
+
+          financial_gap:
+            financialGap,
+
+          current_money:
+            currentMoney,
+
+          product_price:
+            productPrice,
+
+          next_page:
+            "page17"
+
+        });
+
+
+        localStorage.setItem(
+          "decision_events",
+          JSON.stringify(events)
+        );
+
+
+        /* =========================
+           INTERACTION
+        ========================= */
+
+        sendTracking({
+
+          event:
+            "interaction",
+
+          page:
+            CURRENT_PAGE,
+
+          path:
+            CURRENT_PAGE,
+
+          interaction:
+            "ضغط على زر: نكمل من هنا",
+
+          timestamp:
+            completedAt
+
+        });
+
+
+        /* =========================
+           PAGE COMPLETED
+        ========================= */
+
+        sendTracking({
+
+          event:
+            "page10_completed",
+
+          page:
+            CURRENT_PAGE,
+
+          path:
+            CURRENT_PAGE,
+
+          completed:
+            true,
+
+          product:
+            selectedProduct,
+
+          selected_products:
+            selectedProducts,
+
+          intent:
+            selectedIntent,
+
+          context:
+            selectedContext,
+
+          current_money:
+            currentMoney,
+
+          financial_gap:
+            financialGap,
+
+          product_price:
+            productPrice,
+
+          time_on_page:
+            timeOnPage,
+
+          next_page:
+            "الصفحة 17",
+
+          timestamp:
+            completedAt
+
+        });
+
+
+        /* =========================
+           FULL PATH EXIT
+        ========================= */
+
+        sendPathExit();
+
+
+        /* =========================
+           EXIT
+        ========================= */
+
+        sendPageExit();
+
+
+        /* =========================
+           TRANSITION
+        ========================= */
+
+        sendTracking({
+
+          event:
+            "page10_to_next",
+
+          from_page:
+            CURRENT_PAGE,
+
+          to_page:
+            "الصفحة 17",
+
+          transitioned:
+            "نعم",
+
+          timestamp:
+            completedAt
+
+        });
+
+
+        /* =========================
+           GO TO PAGE 17
+        ========================= */
+
+        setTimeout(
+          function () {
+
+            window.location.href =
+              "page17.html";
+
+          },
+          250
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       PAGE HIDE
+    ===================================================== */
+
+    window.addEventListener(
+      "pagehide",
+      function () {
+
+        sendPathExit();
+
+        sendPageExit();
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختيارك | ELIT MAN</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #fafafa;
+    color: #111;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 24px;
+}
+
+.container {
+    width: 100%;
+    max-width: 430px;
+    text-align: center;
+}
+
+
+/* =========================
+   BRAND
+========================= */
+
+.brand {
+    display: inline-block;
+
+    padding: 8px 16px;
+
+    border: 1px solid #e7e7e7;
+    border-radius: 30px;
+
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    margin-bottom: 48px;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.title {
+    font-size: 24px;
+    font-weight: 400;
+
+    line-height: 1.55;
+
+    margin-bottom: 9px;
+
+    transition: .3s ease;
+}
+
+.title strong {
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #777;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   OPTIONS
+========================= */
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 100%;
+}
+
+
+.option {
+    position: relative;
+
+    width: 100%;
+
+    background: #fff;
+
+    border: 1px solid #e7e7e7;
+
+    border-radius: 16px;
+
+    padding: 16px 18px;
+
+    text-align: right;
+
+    cursor: pointer;
+
+    transition:
+        border-color .22s ease,
+        transform .22s ease,
+        box-shadow .22s ease,
+        opacity .22s ease;
+}
+
+
+.option:hover {
+    border-color: #ccc;
+}
+
+
+.option:active {
+    transform: scale(.985);
+}
+
+
+/* =========================
+   SELECTED
+========================= */
+
+.option.selected {
+
+    border-color: #111;
+
+    box-shadow:
+        0 7px 25px rgba(0,0,0,.055);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   OTHER OPTIONS QUIET
+========================= */
+
+.options.has-selection .option:not(.selected) {
+    opacity: .58;
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.option-title {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.option-description {
+    margin-top: 4px;
+
+    font-size: 11px;
+    color: #999;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   CHECK
+========================= */
+
+.check {
+
+    float: left;
+
+    width: 19px;
+    height: 19px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 10px;
+
+    color: transparent;
+
+    transition: .2s ease;
+}
+
+.option.selected .check {
+
+    background: #111;
+
+    border-color: #111;
+
+    color: #fff;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================
+   CONFIRM BUTTON
+========================= */
+
+.confirm {
+
+    width: 100%;
+
+    margin-top: 21px;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background: #111;
+
+    color: #fff;
+
+    font-size: 14px;
+
+    opacity: .28;
+
+    pointer-events: none;
+
+    cursor: pointer;
+
+    transition:
+        opacity .25s ease,
+        transform .2s ease;
+}
+
+
+.confirm.active {
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+.confirm:active {
+    transform: scale(.985);
+}
+
+
+/* =========================
+   MICRO NOTE
+========================= */
+
+.note {
+
+    margin-top: 16px;
+
+    font-size: 11px;
+
+    color: #aaa;
+
+    transition: .25s ease;
+}
+
+
+/* =========================
+   CONFIRMATION STATE
+========================= */
+
+.confirmation {
+
+    display: none;
+
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+
+.confirmation.show {
+
+    display: block;
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+.confirmation-title {
+
+    font-size: 20px;
+
+    font-weight: 500;
+
+    margin-bottom: 10px;
+}
+
+
+.confirmation-text {
+
+    font-size: 13px;
+
+    color: #777;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   LOADING DOT
+========================= */
+
+.dot-loader {
+
+    margin: 20px auto 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 5px;
+}
+
+
+.dot-loader span {
+
+    width: 4px;
+    height: 4px;
+
+    background: #111;
+
+    border-radius: 50%;
+
+    animation: pulse 1s infinite ease-in-out;
+}
+
+
+.dot-loader span:nth-child(2) {
+    animation-delay: .15s;
+}
+
+
+.dot-loader span:nth-child(3) {
+    animation-delay: .3s;
+}
+
+
+@keyframes pulse {
+
+    0%,100% {
+        opacity: .2;
+        transform: scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:480px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .brand {
+        margin-bottom: 42px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="brand">
+    ELIT MAN
+</div>
+
+
+<div id="mainContent">
+
+    <h1 class="title">
+
+        اخترت هذا العطر...
+        <br>
+
+        <strong>لكن لماذا؟</strong>
+
+    </h1>
+
+
+    <p class="subtitle">
+
+        ما الشيء الذي تبحث عنه من هذا العطر؟
+
+    </p>
+
+
+    <div class="options" id="options">
+
+
+        <div class="option"
+             data-intent="confidence">
+
+            <span class="check">✓</span>
+
+            <div class="option-title">
+                أريد أن أشعر بالثقة
+            </div>
+
+            <div class="option-description">
+                أريد رائحة تجعلني أشعر بشكل مختلف
+            </div>
+
+        </div>
+
+
+        <div class="option"
+             data-intent="impression">
+
+            <span class="check">✓</span>
+
+            <div class="option-title">
+                أريد أن أترك انطباعًا جيدًا
+            </div>
+
+            <div class="option-description">
+                أريد شيئًا يلاحظه من حولي
+            </div>
+
+        </div>
+
+
+        <div class="option"
+             data-intent="identity">
+
+            <span class="check">✓</span>
+
+            <div class="option-title">
+                أريد رائحة تشبهني
+            </div>
+
+            <div class="option-description">
+                أبحث عن شيء أشعر أنه مناسب لي
+            </div>
+
+        </div>
+
+
+        <div class="option"
+             data-intent="occasion">
+
+            <span class="check">✓</span>
+
+            <div class="option-title">
+                أريده لمناسبة معينة
+            </div>
+
+            <div class="option-description">
+                مناسبة، لقاء، خروج أو لحظة خاصة
+            </div>
+
+        </div>
+
+
+        <div class="option"
+             data-intent="just_like">
+
+            <span class="check">✓</span>
+
+            <div class="option-title">
+                أعجبني وأريده فقط
+            </div>
+
+            <div class="option-description">
+                لم أفكر في سبب معين
+            </div>
+
+        </div>
+
+
+        <div class="option"
+             data-intent="other">
+
+            <span class="check">✓</span>
+
+            <div class="option-title">
+                شيء آخر
+            </div>
+
+            <div class="option-description">
+                السبب الذي أبحث عنه مختلف
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <button
+        class="confirm"
+        id="confirm">
+
+        هذا هو السبب ←
+
+    </button>
+
+
+    <div class="note" id="note">
+
+        لا يوجد اختيار صحيح أو خاطئ
+
+    </div>
+
+</div>
+
+
+<div
+    class="confirmation"
+    id="confirmation"
+>
+
+    <div class="confirmation-title">
+
+        فهمنا اختيارك.
+
+    </div>
+
+    <div class="confirmation-text">
+
+        الآن نكمل من النقطة التي تهمك.
+
+    </div>
+
+    <div class="dot-loader">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+</div>
+
+</div>
+
+<script>
+
+/* ======================================================
+   TRACKING URL
+====================================================== */
+
+const TRACKING_URL =
+    "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+
+/* ======================================================
+   CLIENT ID
+   نفس المعرف المستخدم في ص1 وص2 وص3
+====================================================== */
+
+const CLIENT_KEY =
+    "closing_layer_client_id";
+
+
+let clientId =
+    localStorage.getItem(
+        CLIENT_KEY
+    );
+
+
+if (!clientId) {
+
+    clientId =
+        "CL-" +
+        crypto.randomUUID();
+
+    localStorage.setItem(
+        CLIENT_KEY,
+        clientId
+    );
+
+}
+
+
+/* ======================================================
+   SESSION ID
+====================================================== */
+
+const SESSION_KEY =
+    "closing_layer_session_id";
+
+
+let sessionId =
+    sessionStorage.getItem(
+        SESSION_KEY
+    );
+
+
+let isNewSession = false;
+
+
+if (!sessionId) {
+
+    sessionId =
+        "S-" +
+        crypto.randomUUID();
+
+    sessionStorage.setItem(
+        SESSION_KEY,
+        sessionId
+    );
+
+    isNewSession = true;
+
+}
+
+
+/* ======================================================
+   RETURNED LATER
+====================================================== */
+
+const LAST_SESSION_KEY =
+    "closing_layer_last_session_id";
+
+
+const previousSessionId =
+    localStorage.getItem(
+        LAST_SESSION_KEY
+    );
+
+
+const returnedLater =
+    isNewSession &&
+    previousSessionId &&
+    previousSessionId !== sessionId;
+
+
+localStorage.setItem(
+    LAST_SESSION_KEY,
+    sessionId
+);
+
+
+/* ======================================================
+   PAGE
+====================================================== */
+
+const CURRENT_PAGE =
+    "الصفحة 4";
+
+
+const pageEnteredAt =
+    Date.now();
+
+
+let pageExitSent =
+    false;
+
+
+/* ======================================================
+   U — FULL PATH EXIT
+   تسجيل الصفحة التي خرج منها الزائر لحظيًا
+====================================================== */
+
+let pathExitSent = false;
+
+
+function sendPathExit() {
+
+    if (pathExitSent) {
+        return;
+    }
+
+    pathExitSent = true;
+
+
+    const payload = {
+
+        client_id:
+            clientId,
+
+        session_id:
+            sessionId,
+
+        event:
+            "path_page_exit",
+
+        page:
+            CURRENT_PAGE,
+
+        path_page:
+            CURRENT_PAGE,
+
+        timestamp:
+            new Date().toISOString()
+
+    };
+
+
+    const body =
+        JSON.stringify(payload);
+
+
+    try {
+
+        if (navigator.sendBeacon) {
+
+            const blob =
+                new Blob(
+                    [
+                        body
+                    ],
+                    {
+                        type:
+                            "text/plain;charset=UTF-8"
+                    }
+                );
+
+
+            navigator.sendBeacon(
+                TRACKING_URL,
+                blob
+            );
+
+            return;
+
+        }
+
+    }
+
+    catch (error) {}
+
+
+    fetch(
+        TRACKING_URL,
+        {
+
+            method:
+                "POST",
+
+            headers: {
+                "Content-Type":
+                    "text/plain;charset=UTF-8"
+            },
+
+            body:
+                body,
+
+            mode:
+                "no-cors",
+
+            keepalive:
+                true,
+
+            cache:
+                "no-store"
+
+        }
+    )
+    .catch(
+        function () {}
+    );
+
+}
+
+
+/* ======================================================
+   SEND TRACKING
+====================================================== */
+
+function sendTracking(data) {
+
+    const payload = {
+
+        client_id:
+            clientId,
+
+        session_id:
+            sessionId,
+
+        ...data
+
+    };
+
+
+    fetch(
+        TRACKING_URL,
+        {
+
+            method:
+                "POST",
+
+            headers: {
+                "Content-Type":
+                    "text/plain;charset=UTF-8"
+            },
+
+            body:
+                JSON.stringify(payload),
+
+            mode:
+                "no-cors",
+
+            keepalive:
+                true,
+
+            cache:
+                "no-store"
+
+        }
+    )
+    .catch(
+        function () {}
+    );
+
+}
+
+
+/* ======================================================
+   SESSION START
+====================================================== */
+
+if (isNewSession) {
+
+    sendTracking({
+
+        event:
+            "session_start",
+
+        page:
+            CURRENT_PAGE,
+
+        path:
+            CURRENT_PAGE,
+
+        returned_later:
+            returnedLater
+                ? "نعم"
+                : "لا",
+
+        timestamp:
+            new Date().toISOString()
+
+    });
+
+}
+
+
+/* ======================================================
+   PAGE VIEW
+====================================================== */
+
+sendTracking({
+
+    event:
+        "page_view",
+
+    page:
+        CURRENT_PAGE,
+
+    path:
+        CURRENT_PAGE,
+
+    entered_at:
+        new Date().toISOString()
+
+});
+
+
+/* ======================================================
+   SELECTED PRODUCTS
+   نستخدمها فقط كسياق سابق
+====================================================== */
+
+function getSelectedProducts() {
+
+    try {
+
+        const stored =
+            localStorage.getItem(
+                "selected_products"
+            );
+
+
+        if (!stored) {
+            return [];
+        }
+
+
+        const products =
+            JSON.parse(stored);
+
+
+        return Array.isArray(products)
+            ? products
+            : [];
+
+    }
+
+    catch (error) {
+
+        return [];
+
+    }
+
+}
+
+
+const selectedProducts =
+    getSelectedProducts();
+
+
+const selectedProductNames =
+    localStorage.getItem(
+        "selected_product_names"
+    ) ||
+    localStorage.getItem(
+        "selected_product"
+    ) ||
+    "";
+
+
+/* ======================================================
+   ELEMENTS
+====================================================== */
+
+let selectedIntent = null;
+
+
+let selectedIntentText = "";
+
+
+const options =
+    document.querySelectorAll(
+        ".option"
+    );
+
+
+const optionsContainer =
+    document.getElementById(
+        "options"
+    );
+
+
+const confirmButton =
+    document.getElementById(
+        "confirm"
+    );
+
+
+const mainContent =
+    document.getElementById(
+        "mainContent"
+    );
+
+
+const confirmation =
+    document.getElementById(
+        "confirmation"
+    );
+
+
+/* ======================================================
+   BACK NAVIGATION
+====================================================== */
+
+window.addEventListener(
+    "pageshow",
+    function () {
+
+        const navigation =
+            performance.getEntriesByType(
+                "navigation"
+            )[0];
+
+
+        if (
+            navigation &&
+            navigation.type ===
+                "back_forward"
+        ) {
+
+            sendTracking({
+
+                event:
+                    "back_navigation",
+
+                page:
+                    CURRENT_PAGE,
+
+                path:
+                    CURRENT_PAGE,
+
+                went_back:
+                    true,
+
+                back_count:
+                    1,
+
+                interaction:
+                    "رجع إلى الصفحة 4",
+
+                timestamp:
+                    new Date().toISOString()
+
+            });
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   PAGE EXIT
+====================================================== */
+
+function sendPageExit() {
+
+    if (pageExitSent) {
+        return;
+    }
+
+
+    pageExitSent = true;
+
+
+    const durationSeconds =
+        Math.round(
+            (
+                Date.now() -
+                pageEnteredAt
+            ) / 1000
+        );
+
+
+    sendTracking({
+
+        event:
+            "page_exit",
+
+        page:
+            CURRENT_PAGE,
+
+        path:
+            CURRENT_PAGE,
+
+        duration:
+            durationSeconds,
+
+        timestamp:
+            new Date().toISOString()
+
+    });
+
+}
+
+
+/* ======================================================
+   OPTION CLICK
+====================================================== */
+
+options.forEach(
+    function (option) {
+
+        option.addEventListener(
+            "click",
+            function () {
+
+                const previousOption =
+                    document.querySelector(
+                        ".option.selected"
+                    );
+
+
+                const previousText =
+                    previousOption
+                        ? previousOption
+                            .querySelector(
+                                ".option-title"
+                            )
+                            .textContent
+                            .trim()
+                        : "";
+
+
+                /* --------------------------------------
+                   إزالة الاختيار السابق
+                -------------------------------------- */
+
+                options.forEach(
+                    function (item) {
+
+                        item.classList.remove(
+                            "selected"
+                        );
+
+                    }
+                );
+
+
+                /* --------------------------------------
+                   اختيار الخيار الجديد
+                -------------------------------------- */
+
+                option.classList.add(
+                    "selected"
+                );
+
+
+                optionsContainer.classList.add(
+                    "has-selection"
+                );
+
+
+                selectedIntent =
+                    option.dataset.intent;
+
+
+                const textElement =
+                    option.querySelector(
+                        ".option-title"
+                    );
+
+
+                const descriptionElement =
+                    option.querySelector(
+                        ".option-description"
+                    );
+
+
+                selectedIntentText =
+                    textElement
+                        ? textElement
+                            .textContent
+                            .trim()
+                        : "";
+
+
+                const description =
+                    descriptionElement
+                        ? descriptionElement
+                            .textContent
+                            .trim()
+                        : "";
+
+
+                confirmButton.classList.add(
+                    "active"
+                );
+
+
+                /* --------------------------------------
+                   التفاعل الفعلي
+                -------------------------------------- */
+
+                sendTracking({
+
+                    event:
+                        "interaction",
+
+                    page:
+                        CURRENT_PAGE,
+
+                    path:
+                        CURRENT_PAGE,
+
+                    interaction:
+                        "اختار: " +
+                        selectedIntentText,
+
+                    selected_intent:
+                        selectedIntentText,
+
+                    selected_intent_code:
+                        selectedIntent,
+
+                    timestamp:
+                        new Date().toISOString()
+
+                });
+
+
+                /* --------------------------------------
+                   اختيار أول / تغيير اختيار
+                -------------------------------------- */
+
+                if (!previousOption) {
+
+                    sendTracking({
+
+                        event:
+                            "intention_selected",
+
+                        page:
+                            CURRENT_PAGE,
+
+                        path:
+                            CURRENT_PAGE,
+
+                        selected_intent:
+                            selectedIntentText,
+
+                        selected_intent_code:
+                            selectedIntent,
+
+                        option_description:
+                            description,
+
+                        timestamp:
+                            new Date().toISOString()
+
+                    });
+
+                }
+
+                else if (
+                    previousText !==
+                    selectedIntentText
+                ) {
+
+                    sendTracking({
+
+                        event:
+                            "choice_changed",
+
+                        page:
+                            CURRENT_PAGE,
+
+                        path:
+                            CURRENT_PAGE,
+
+                        first_choice:
+                            previousText,
+
+                        choice_previous:
+                            previousText,
+
+                        new_choice:
+                            selectedIntentText,
+
+                        choice_new:
+                            selectedIntentText,
+
+                        choice_changed:
+                            "نعم",
+
+                        interaction:
+                            "غيّر الاختيار من " +
+                            previousText +
+                            " إلى " +
+                            selectedIntentText,
+
+                        timestamp:
+                            new Date().toISOString()
+
+                    });
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* ======================================================
+   CONFIRM
+====================================================== */
+
+confirmButton.addEventListener(
+    "click",
+    function () {
+
+        if (!selectedIntent) {
+            return;
+        }
+
+
+        const selectedOption =
+            document.querySelector(
+                ".option.selected"
+            );
+
+
+        if (!selectedOption) {
+            return;
+        }
+
+
+        const textElement =
+            selectedOption.querySelector(
+                ".option-title"
+            );
+
+
+        const descriptionElement =
+            selectedOption.querySelector(
+                ".option-description"
+            );
+
+
+        const finalOptionText =
+            textElement
+                ? textElement
+                    .textContent
+                    .trim()
+                : "";
+
+
+        const finalDescription =
+            descriptionElement
+                ? descriptionElement
+                    .textContent
+                    .trim()
+                : "";
+
+
+        const timeOnPage =
+            Math.round(
+                (
+                    Date.now() -
+                    pageEnteredAt
+                ) / 1000
+            );
+
+
+        /* =================================================
+           حفظ الاختيار
+        ================================================= */
+
+        localStorage.setItem(
+            "selected_intent",
+            selectedIntent
+        );
+
+
+        localStorage.setItem(
+            "selected_intent_text",
+            finalOptionText
+        );
+
+
+        localStorage.setItem(
+            "selected_intent_description",
+            finalDescription
+        );
+
+
+        localStorage.setItem(
+            "intent_confirmed_at",
+            new Date().toISOString()
+        );
+
+
+        /* =================================================
+           DATA — العمود 4
+
+           القيمة الأساسية هنا هي النص الذي اختاره
+           العميل فعليًا.
+        ================================================= */
+
+        sendTracking({
+
+            event:
+                "intention_confirmed",
+
+            page:
+                CURRENT_PAGE,
+
+            path:
+                CURRENT_PAGE,
+
+            selected_intent:
+                finalOptionText,
+
+            selected_intent_code:
+                selectedIntent,
+
+            option_description:
+                finalDescription,
+
+            interaction:
+                "أكد السبب: " +
+                finalOptionText,
+
+            time_on_page:
+                timeOnPage,
+
+            next_page:
+                "الصفحة 5",
+
+            timestamp:
+                new Date().toISOString()
+
+        });
+
+
+        /* =================================================
+           JOURNEY
+        ================================================= */
+
+        sendTracking({
+
+            event:
+                "interaction",
+
+            page:
+                CURRENT_PAGE,
+
+            path:
+                CURRENT_PAGE,
+
+            interaction:
+                "ضغط على زر: هذا هو السبب",
+
+            timestamp:
+                new Date().toISOString()
+
+        });
+
+
+        /* =================================================
+           إظهار حالة التأكيد
+        ================================================= */
+
+        mainContent.style.display =
+            "none";
+
+
+        confirmation.classList.add(
+            "show"
+        );
+
+
+        /* =================================================
+           U — تسجيل الخروج قبل الانتقال
+        ================================================= */
+
+        sendPathExit();
+
+
+        /* =================================================
+           PAGE EXIT
+        ================================================= */
+
+        sendPageExit();
+
+
+        /* =================================================
+           الانتقال إلى ص5
+        ================================================= */
+
+        setTimeout(
+            function () {
+
+                window.location.href =
+                    "page5.html";
+
+            },
+            900
+        );
+
+    }
+);
+
+
+/* ======================================================
+   PAGE HIDE
+====================================================== */
+
+window.addEventListener(
+    "pagehide",
+    function () {
+
+        sendPathExit();
+
+        sendPageExit();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

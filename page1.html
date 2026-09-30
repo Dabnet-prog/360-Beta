@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ELIT MAN</title>
+
+  <!-- =====================================================
+       GOOGLE TAG MANAGER
+       ===================================================== -->
+
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TBKH8976');
+  </script>
+
+  <!-- End Google Tag Manager -->
+
+
+  <style>
+
+    :root {
+
+      --background: #f7f5f1;
+      --text: #111111;
+      --muted: #77736d;
+
+      --button-bg: #111111;
+      --button-text: #ffffff;
+
+      --font:
+        Arial,
+        "Noto Sans Arabic",
+        sans-serif;
+
+      --store-size: 13px;
+
+      --hello-size: clamp(58px, 14vw, 100px);
+
+      --sentence-size: clamp(18px, 4vw, 28px);
+      --sentence-weight: 300;
+
+      --highlight-size: 1.12em;
+      --highlight-weight: 700;
+
+      --button-width: 180px;
+      --button-height: 58px;
+      --button-size: 16px;
+
+      --bottom-text-size: 12px;
+
+    }
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+
+    body {
+
+      font-family: var(--font);
+
+      background: var(--background);
+
+      color: var(--text);
+
+      overflow: hidden;
+
+    }
+
+
+    .page {
+
+      width: 100%;
+      height: 100svh;
+
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+
+      padding: 30px 22px;
+
+    }
+
+
+    .store {
+
+      position: relative;
+
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 8px;
+
+      padding: 9px 17px;
+
+      border: 1px solid rgba(17,17,17,.16);
+
+      border-radius: 999px;
+
+      font-size: var(--store-size);
+
+      letter-spacing: 2px;
+
+      font-weight: 500;
+
+      margin-top: 2px;
+
+      z-index: 2;
+
+    }
+
+
+    .store-dot {
+
+      width: 5px;
+      height: 5px;
+
+      background: var(--text);
+
+      border-radius: 50%;
+
+      animation:
+        breathe 2.5s infinite ease-in-out;
+
+    }
+
+
+    .center {
+
+      flex: 1;
+
+      width: 100%;
+
+      max-width: 950px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      transform: translateY(-2%);
+
+    }
+
+
+    .hello {
+
+      font-size: var(--hello-size);
+
+      font-weight: 500;
+
+      line-height: 1;
+
+      letter-spacing: -3px;
+
+      margin-bottom: 28px;
+
+      opacity: 0;
+
+      animation:
+        appear .9s
+        cubic-bezier(.22,1,.36,1)
+        forwards;
+
+    }
+
+
+    .sentence {
+
+      font-size: var(--sentence-size);
+
+      font-weight: var(--sentence-weight);
+
+      line-height: 1.45;
+
+      color: var(--muted);
+
+      max-width: 900px;
+
+      white-space: nowrap;
+
+      opacity: 0;
+
+      animation:
+        appear .9s .15s
+        cubic-bezier(.22,1,.36,1)
+        forwards;
+
+    }
+
+
+    .highlight {
+
+      display: inline-block;
+
+      color: var(--text);
+
+      font-size: var(--highlight-size);
+
+      font-weight: var(--highlight-weight);
+
+      position: relative;
+
+      margin-right: 4px;
+
+    }
+
+
+    .highlight::after {
+
+      content: "";
+
+      position: absolute;
+
+      right: 0;
+      left: 0;
+
+      bottom: -3px;
+
+      height: 2px;
+
+      background: var(--text);
+
+      transform-origin: right;
+
+      transform: scaleX(0);
+
+      animation:
+        underline .7s .8s
+        cubic-bezier(.22,1,.36,1)
+        forwards;
+
+    }
+
+
+    .bottom {
+
+      width: 100%;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      padding-bottom: 5px;
+
+    }
+
+
+    .next-button {
+
+      width: var(--button-width);
+
+      height: var(--button-height);
+
+      border: none;
+
+      border-radius: 999px;
+
+      background: var(--button-bg);
+
+      color: var(--button-text);
+
+      font-family: inherit;
+
+      font-size: var(--button-size);
+
+      cursor: pointer;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 12px;
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.10);
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+      opacity: 0;
+
+      animation:
+        buttonAppear .8s .35s
+        cubic-bezier(.22,1,.36,1)
+        forwards;
+
+    }
+
+
+    .next-button:hover {
+
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 15px 35px rgba(0,0,0,.15);
+
+    }
+
+
+    .next-button:active {
+
+      transform: scale(.96);
+
+    }
+
+
+    .arrow {
+
+      font-size: 19px;
+
+      transition:
+        transform .25s ease;
+
+    }
+
+
+    .next-button:hover .arrow {
+
+      transform: translateX(-5px);
+
+    }
+
+
+    .bottom-text {
+
+      margin-top: 13px;
+
+      font-size: var(--bottom-text-size);
+
+      font-weight: 300;
+
+      color: var(--muted);
+
+      opacity: 0;
+
+      animation:
+        appear .8s .55s
+        cubic-bezier(.22,1,.36,1)
+        forwards;
+
+    }
+
+
+    .ambient {
+
+      position: absolute;
+
+      width: 420px;
+      height: 420px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(0,0,0,.035),
+          transparent 70%
+        );
+
+      top: 50%;
+      left: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      pointer-events: none;
+
+      animation:
+        ambient 8s ease-in-out infinite;
+
+    }
+
+
+    @keyframes appear {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateY(22px);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateY(0);
+
+      }
+
+    }
+
+
+    @keyframes buttonAppear {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateY(22px)
+          scale(.96);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+
+      }
+
+    }
+
+
+    @keyframes underline {
+
+      from {
+        transform: scaleX(0);
+      }
+
+      to {
+        transform: scaleX(1);
+      }
+
+    }
+
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+
+        transform: scale(1);
+
+        opacity: .5;
+
+      }
+
+      50% {
+
+        transform: scale(1.35);
+
+        opacity: 1;
+
+      }
+
+    }
+
+
+    @keyframes ambient {
+
+      0%,
+      100% {
+
+        transform:
+          translate(-50%, -50%)
+          scale(1);
+
+      }
+
+      50% {
+
+        transform:
+          translate(-50%, -50%)
+          scale(1.08);
+
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      .page {
+
+        padding-left: 20px;
+        padding-right: 20px;
+
+      }
+
+
+      .sentence {
+
+        font-size: clamp(16px, 4.4vw, 24px);
+
+        white-space: nowrap;
+
+      }
+
+
+      .hello {
+
+        margin-bottom: 24px;
+
+      }
+
+
+      .next-button {
+
+        width: min(
+          var(--button-width),
+          70vw
+        );
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <!-- =====================================================
+       GOOGLE TAG MANAGER (NOSCRIPT)
+       ===================================================== -->
+
+  <noscript>
+    <iframe
+      src="https://www.googletagmanager.com/ns.html?id=GTM-TBKH8976"
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+
+  <!-- End Google Tag Manager (noscript) -->
+
+
+  <main class="page">
+
+
+    <div class="ambient"></div>
+
+
+    <div class="store">
+
+      <span class="store-dot"></span>
+
+      <span>
+        ELIT MAN
+      </span>
+
+    </div>
+
+
+    <section class="center">
+
+      <h1 class="hello">
+        مرحبا
+      </h1>
+
+
+      <p class="sentence">
+
+        أهلاً بك في عالمٍ يبدأ فيه الاختيار من
+
+        <span class="highlight">
+          ذوقك
+        </span>
+
+      </p>
+
+    </section>
+
+
+    <div class="bottom">
+
+      <button
+        class="next-button"
+        id="nextButton"
+        type="button"
+      >
+
+        <span>
+          نكمل
+        </span>
+
+        <span class="arrow">
+          ←
+        </span>
+
+      </button>
+
+
+      <p class="bottom-text">
+        لحظة واحدة... ونبدأ
+      </p>
+
+    </div>
+
+
+  </main>
+
+
+  <iframe
+    name="trackingFrame"
+    style="display:none;">
+  </iframe>
+
+
+  <script>
+
+    /* =====================================================
+       CLOSING LAYER — TRACKER CORE
+       PAGE 1
+       ===================================================== */
+
+    const TRACKING_URL =
+      "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+
+    /* =====================================================
+       CLIENT ID
+       ===================================================== */
+
+    const CLIENT_KEY =
+      "closing_layer_client_id";
+
+
+    let clientId =
+      localStorage.getItem(
+        CLIENT_KEY
+      );
+
+
+    if (!clientId) {
+
+      clientId =
+        "CL-" +
+        crypto.randomUUID();
+
+      localStorage.setItem(
+        CLIENT_KEY,
+        clientId
+      );
+
+    }
+
+
+    /* =====================================================
+       SESSION ID
+       ===================================================== */
+
+    const SESSION_KEY =
+      "closing_layer_session_id";
+
+
+    const LAST_SESSION_KEY =
+      "closing_layer_last_session_id";
+
+
+    let sessionId =
+      sessionStorage.getItem(
+        SESSION_KEY
+      );
+
+
+    let isNewSession =
+      false;
+
+
+    if (!sessionId) {
+
+      sessionId =
+        "S-" +
+        crypto.randomUUID();
+
+      sessionStorage.setItem(
+        SESSION_KEY,
+        sessionId
+      );
+
+      isNewSession =
+        true;
+
+    }
+
+
+    /* =====================================================
+       هل عاد العميل لاحقًا؟
+       ===================================================== */
+
+    const previousSessionId =
+      localStorage.getItem(
+        LAST_SESSION_KEY
+      );
+
+
+    const returnedLater =
+      isNewSession &&
+      previousSessionId &&
+      previousSessionId !== sessionId;
+
+
+    localStorage.setItem(
+      LAST_SESSION_KEY,
+      sessionId
+    );
+
+
+    /* =====================================================
+       الصفحة الحالية
+       ===================================================== */
+
+    const CURRENT_PAGE =
+      "الصفحة 1";
+
+
+    /* =====================================================
+       وقت دخول الصفحة
+       ===================================================== */
+
+    const pageEnteredAt =
+      Date.now();
+
+
+    /* =====================================================
+       منع إرسال مدة الصفحة مرتين
+       ===================================================== */
+
+    let pageExitSent =
+      false;
+
+
+    /* =====================================================
+       منع إرسال المسار مرتين
+       ===================================================== */
+
+    let pathExitSent =
+      false;
+
+
+    /* =====================================================
+       SEND TRACKING
+       ===================================================== */
+
+    function sendTracking(data) {
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        ...data
+
+      };
+
+
+      fetch(
+        TRACKING_URL,
+        {
+          method:
+            "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=UTF-8"
+          },
+
+          body:
+            JSON.stringify(payload),
+
+          mode:
+            "no-cors",
+
+          keepalive:
+            true,
+
+          cache:
+            "no-store"
+
+        }
+      ).catch(
+        function() {
+
+          // لا نوقف الموقع إذا فشل التتبع
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       تسجيل خروج الصفحة للمسار
+       هذا خاص بالمسار U فقط
+       ===================================================== */
+
+    function sendPathExit() {
+
+      if (pathExitSent) {
+        return;
+      }
+
+
+      pathExitSent =
+        true;
+
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        event:
+          "path_page_exit",
+
+        page:
+          CURRENT_PAGE,
+
+        path_page:
+          CURRENT_PAGE,
+
+        timestamp:
+          new Date().toISOString()
+
+      };
+
+
+      const body =
+        JSON.stringify(payload);
+
+
+      /* -----------------------------------------------
+         الإرسال اللحظي عند الخروج
+         ----------------------------------------------- */
+
+      try {
+
+        if (
+          navigator.sendBeacon
+        ) {
+
+          const blob =
+            new Blob(
+              [body],
+              {
+                type:
+                  "text/plain;charset=UTF-8"
+              }
+            );
+
+
+          navigator.sendBeacon(
+            TRACKING_URL,
+            blob
+          );
+
+          return;
+
+        }
+
+      } catch (error) {}
+
+
+      /* -----------------------------------------------
+         احتياط إذا لم يدعم المتصفح sendBeacon
+         ----------------------------------------------- */
+
+      fetch(
+        TRACKING_URL,
+        {
+          method:
+            "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=UTF-8"
+          },
+
+          body:
+            body,
+
+          mode:
+            "no-cors",
+
+          keepalive:
+            true,
+
+          cache:
+            "no-store"
+
+        }
+      ).catch(
+        function() {}
+      );
+
+    }
+
+
+    /* =====================================================
+       SESSION START
+       ===================================================== */
+
+    if (isNewSession) {
+
+      sendTracking({
+
+        event:
+          "session_start",
+
+        page:
+          CURRENT_PAGE,
+
+        path:
+          CURRENT_PAGE,
+
+        returned_later:
+          returnedLater
+            ? "نعم"
+            : "لا",
+
+        timestamp:
+          new Date().toISOString()
+
+      });
+
+    }
+
+
+    /* =====================================================
+       PAGE VIEW
+       ===================================================== */
+
+    sendTracking({
+
+      event:
+        "page_view",
+
+      page:
+        CURRENT_PAGE,
+
+      path:
+        CURRENT_PAGE,
+
+      entered_at:
+        new Date().toISOString()
+
+    });
+
+
+    /* =====================================================
+       تسجيل الرجوع إلى الصفحة 1
+       ===================================================== */
+
+    window.addEventListener(
+      "pageshow",
+      function() {
+
+        const navigation =
+          performance.getEntriesByType(
+            "navigation"
+          )[0];
+
+
+        if (
+          navigation &&
+          navigation.type ===
+          "back_forward"
+        ) {
+
+          sendTracking({
+
+            event:
+              "back_navigation",
+
+            page:
+              CURRENT_PAGE,
+
+            path:
+              CURRENT_PAGE,
+
+            went_back:
+              true,
+
+            back_count:
+              1,
+
+            interaction:
+              "رجع إلى الصفحة 1",
+
+            timestamp:
+              new Date().toISOString()
+
+          });
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       مدة الصفحة
+       ===================================================== */
+
+    function sendPageExit() {
+
+      if (pageExitSent) {
+        return;
+      }
+
+
+      pageExitSent =
+        true;
+
+
+      const durationMs =
+        Date.now() -
+        pageEnteredAt;
+
+
+      const durationSeconds =
+        Math.round(
+          durationMs / 1000
+        );
+
+
+      sendTracking({
+
+        event:
+          "page_exit",
+
+        page:
+          CURRENT_PAGE,
+
+        path:
+          CURRENT_PAGE,
+
+        duration:
+          durationSeconds,
+
+        timestamp:
+          new Date().toISOString()
+
+      });
+
+    }
+
+
+    /* =====================================================
+       BUTTON
+       ===================================================== */
+
+    const nextButton =
+      document.getElementById(
+        "nextButton"
+      );
+
+
+    nextButton.addEventListener(
+      "click",
+      function() {
+
+
+        /* ================================================
+           آخر تفاعل
+           ================================================ */
+
+        sendTracking({
+
+          event:
+            "interaction",
+
+          page:
+            CURRENT_PAGE,
+
+          path:
+            CURRENT_PAGE,
+
+          interaction:
+            "ضغط على زر نكمل",
+
+          timestamp:
+            new Date().toISOString()
+
+        });
+
+
+        /* ================================================
+           مدة الصفحة
+           ================================================ */
+
+        sendPageExit();
+
+
+        /* ================================================
+           تسجيل الصفحة 1 في المسار
+           فور الخروج وقبل الانتقال
+           ================================================ */
+
+        sendPathExit();
+
+
+        /* ================================================
+           الانتقال إلى الصفحة 2
+           ================================================ */
+
+        setTimeout(
+          function() {
+
+            window.location.href =
+              "page2.html";
+
+          },
+          500
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       الخروج من الصفحة بدون الضغط على الزر
+       ===================================================== */
+
+    window.addEventListener(
+      "pagehide",
+      function() {
+
+        sendPageExit();
+
+        sendPathExit();
+
+      }
+    );
+
+
+  </script>
+
+
+</body>
+
+</html>

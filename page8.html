@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>نبدأ</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      background: #fff;
+      color: #111;
+      font-family: Arial, sans-serif;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 520px;
+      min-height: 100vh;
+
+      margin: auto;
+
+      padding: 30px 22px 25px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    /* =========================
+       اسم المتجر
+    ========================== */
+
+    .brand {
+      text-align: center;
+
+      font-size: 12px;
+      font-weight: 600;
+
+      letter-spacing: 2px;
+    }
+
+
+    /* =========================
+       المنطقة الوسطى
+    ========================== */
+
+    .center {
+
+      flex: 1;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding-bottom: 55px;
+
+      animation:
+        enter .9s cubic-bezier(.2,.7,.2,1)
+        both;
+    }
+
+
+    /* =========================
+       قبل البداية
+    ========================== */
+
+    .pause {
+
+      font-size: 12px;
+
+      color: #999;
+
+      margin-bottom: 18px;
+    }
+
+
+    /* =========================
+       خذ لحظة
+    ========================== */
+
+    .moment {
+
+      font-size: 17px;
+
+      color: #444;
+
+      margin-bottom: 4px;
+
+      line-height: 1.4;
+    }
+
+
+    /* =========================
+       ركز جيدًا
+    ========================== */
+
+    .focus {
+
+      font-size: 31px;
+
+      font-weight: 700;
+
+      line-height: 1.25;
+
+      letter-spacing: -.7px;
+    }
+
+
+    /* =========================
+       السبب
+    ========================== */
+
+    .reason {
+
+      margin-top: 19px;
+
+      font-size: 13px;
+
+      color: #888;
+
+      line-height: 1.7;
+
+      max-width: 285px;
+    }
+
+
+    .reason strong {
+
+      color: #444;
+
+      font-weight: 600;
+    }
+
+
+    /* =========================
+       منطقة الزر
+    ========================== */
+
+    .action {
+
+      width: 100%;
+
+      max-width: 420px;
+
+      text-align: center;
+    }
+
+
+    .button {
+
+      width: 100%;
+
+      border: none;
+
+      border-radius: 16px;
+
+      background: #111;
+
+      color: #fff;
+
+      padding: 18px 20px;
+
+      font-family: inherit;
+
+      font-size: 15px;
+
+      cursor: pointer;
+
+      transition:
+        transform .15s ease,
+        opacity .15s ease;
+    }
+
+
+    .button:active {
+
+      transform: scale(.985);
+    }
+
+
+    .under-button {
+
+      margin-top: 13px;
+
+      font-size: 11px;
+
+      color: #aaa;
+    }
+
+
+    /* =========================
+       الحركة
+    ========================== */
+
+    @keyframes enter {
+
+      from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <main class="page">
+
+
+    <!-- =========================
+         اسم المتجر
+    ========================== -->
+
+    <div class="brand">
+      ELIT MAN
+    </div>
+
+
+    <!-- =========================
+         الرسالة المركزية
+    ========================== -->
+
+    <section class="center">
+
+
+      <div class="pause">
+        قبل أن نبدأ...
+      </div>
+
+
+      <div class="moment">
+        خذ لحظة واحدة.
+      </div>
+
+
+      <div class="focus">
+        ركّز جيدًا.
+      </div>
+
+
+      <p class="reason">
+
+        لأن الخطوة القادمة
+        تعتمد على <strong>اختيارك أنت.</strong>
+
+      </p>
+
+
+    </section>
+
+
+    <!-- =========================
+         الزر
+    ========================== -->
+
+    <div class="action">
+
+      <button
+        id="startButton"
+        class="button"
+      >
+        أبدأ الآن ←
+      </button>
+
+
+      <div class="under-button">
+        هنا تبدأ العملية
+      </div>
+
+    </div>
+
+
+  </main>
+
+
+  <script>
+
+    /* =====================================================
+       TRACKING CONFIG
+    ===================================================== */
+
+    const TRACKING_URL =
+      "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+
+    /* =====================================================
+       CLIENT ID
+    ===================================================== */
+
+    const CLIENT_KEY =
+      "closing_layer_client_id";
+
+    let clientId =
+      localStorage.getItem(CLIENT_KEY);
+
+    if (!clientId) {
+
+      clientId =
+        "CL-" +
+        crypto.randomUUID();
+
+      localStorage.setItem(
+        CLIENT_KEY,
+        clientId
+      );
+    }
+
+
+    /* =====================================================
+       SESSION ID
+    ===================================================== */
+
+    const SESSION_KEY =
+      "closing_layer_session_id";
+
+    const LAST_SESSION_KEY =
+      "closing_layer_last_session_id";
+
+    let sessionId =
+      sessionStorage.getItem(SESSION_KEY);
+
+    let isNewSession = false;
+
+    if (!sessionId) {
+
+      sessionId =
+        "S-" +
+        crypto.randomUUID();
+
+      sessionStorage.setItem(
+        SESSION_KEY,
+        sessionId
+      );
+
+      isNewSession = true;
+    }
+
+
+    /* =====================================================
+       معرفة هل عاد العميل لاحقًا
+    ===================================================== */
+
+    const previousSessionId =
+      localStorage.getItem(
+        LAST_SESSION_KEY
+      );
+
+    const returnedLater =
+      isNewSession &&
+      previousSessionId &&
+      previousSessionId !== sessionId;
+
+    localStorage.setItem(
+      LAST_SESSION_KEY,
+      sessionId
+    );
+
+
+    /* =====================================================
+       معلومات الصفحة
+    ===================================================== */
+
+    const CURRENT_PAGE =
+      "الصفحة 8";
+
+    const pageEnteredAt =
+      Date.now();
+
+    const pageEnteredISO =
+      new Date().toISOString();
+
+    let pageExitSent = false;
+
+
+    /* =====================================================
+       U — FULL PATH
+       تسجيل الصفحة لحظة الخروج
+    ===================================================== */
+
+    let pathExitSent = false;
+
+
+    function sendPathExit() {
+
+      if (pathExitSent) {
+        return;
+      }
+
+      pathExitSent = true;
+
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        event:
+          "path_page_exit",
+
+        page:
+          CURRENT_PAGE,
+
+        path_page:
+          CURRENT_PAGE,
+
+        timestamp:
+          new Date().toISOString()
+
+      };
+
+
+      const body =
+        JSON.stringify(payload);
+
+
+      try {
+
+        if (navigator.sendBeacon) {
+
+          const blob =
+            new Blob(
+              [body],
+              {
+                type:
+                  "text/plain;charset=UTF-8"
+              }
+            );
+
+          if (
+            navigator.sendBeacon(
+              TRACKING_URL,
+              blob
+            )
+          ) {
+
+            return;
+
+          }
+
+        }
+
+      } catch (error) {}
+
+
+      fetch(
+
+        TRACKING_URL,
+
+        {
+
+          method:
+            "POST",
+
+          headers:
+            {
+              "Content-Type":
+                "text/plain;charset=UTF-8"
+            },
+
+          body:
+            body,
+
+          mode:
+            "no-cors",
+
+          keepalive:
+            true,
+
+          cache:
+            "no-store"
+
+        }
+
+      ).catch(function () {});
+
+    }
+
+
+    /* =====================================================
+       SEND TRACKING
+    ===================================================== */
+
+    function sendTracking(data) {
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        ...data
+
+      };
+
+
+      fetch(
+        TRACKING_URL,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=UTF-8"
+          },
+
+          body:
+            JSON.stringify(payload),
+
+          mode: "no-cors",
+
+          keepalive: true,
+
+          cache: "no-store"
+        }
+      ).catch(
+        function () {}
+      );
+    }
+
+
+    /* =====================================================
+       SESSION START
+    ===================================================== */
+
+    if (isNewSession) {
+
+      sendTracking({
+
+        event:
+          "session_start",
+
+        page:
+          CURRENT_PAGE,
+
+        path:
+          CURRENT_PAGE,
+
+        returned_later:
+          returnedLater
+            ? "نعم"
+            : "لا",
+
+        timestamp:
+          pageEnteredISO
+
+      });
+
+    }
+
+
+    /* =====================================================
+       PAGE VIEW
+    ===================================================== */
+
+    sendTracking({
+
+      event:
+        "page_view",
+
+      page:
+        CURRENT_PAGE,
+
+      path:
+        CURRENT_PAGE,
+
+      entered_at:
+        pageEnteredISO,
+
+      timestamp:
+        pageEnteredISO
+
+    });
+
+
+    /* =====================================================
+       BACK NAVIGATION
+    ===================================================== */
+
+    window.addEventListener(
+      "pageshow",
+      function () {
+
+        const navigation =
+          performance.getEntriesByType(
+            "navigation"
+          )[0];
+
+
+        if (
+          navigation &&
+          navigation.type ===
+            "back_forward"
+        ) {
+
+          sendTracking({
+
+            event:
+              "back_navigation",
+
+            page:
+              CURRENT_PAGE,
+
+            path:
+              CURRENT_PAGE,
+
+            went_back:
+              true,
+
+            back_count:
+              1,
+
+            interaction:
+              "رجع إلى الصفحة 8",
+
+            timestamp:
+              new Date().toISOString()
+
+          });
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       PAGE EXIT
+    ===================================================== */
+
+    function sendPageExit() {
+
+      if (pageExitSent) {
+        return;
+      }
+
+      pageExitSent = true;
+
+
+      const durationMs =
+        Date.now() -
+        pageEnteredAt;
+
+
+      const durationSeconds =
+        Math.round(
+          durationMs / 1000
+        );
+
+
+      sendTracking({
+
+        event:
+          "page_exit",
+
+        page:
+          CURRENT_PAGE,
+
+        path:
+          CURRENT_PAGE,
+
+        duration:
+          durationSeconds,
+
+        timestamp:
+          new Date().toISOString()
+
+      });
+
+    }
+
+
+    /* =====================================================
+       زر أبدأ الآن
+    ===================================================== */
+
+    const startButton =
+      document.getElementById(
+        "startButton"
+      );
+
+
+    startButton.addEventListener(
+      "click",
+      function () {
+
+
+        /* =========================
+           وقت الضغط
+        ========================== */
+
+        const clickedAt =
+          new Date().toISOString();
+
+
+        /* =========================
+           مدة البقاء
+        ========================== */
+
+        const timeOnPage =
+          Math.round(
+            (Date.now() -
+              pageEnteredAt) / 1000
+          );
+
+
+        /* =========================
+           تسجيل التفاعل
+        ========================== */
+
+        sendTracking({
+
+          event:
+            "interaction",
+
+          page:
+            CURRENT_PAGE,
+
+          path:
+            CURRENT_PAGE,
+
+          interaction:
+            "ضغط على زر: أبدأ الآن",
+
+          timestamp:
+            clickedAt
+
+        });
+
+
+        /* =========================
+           تسجيل إكمال الصفحة
+        ========================= */
+
+        sendTracking({
+
+          event:
+            "page8_completed",
+
+          page:
+            CURRENT_PAGE,
+
+          path:
+            CURRENT_PAGE,
+
+          completed:
+            true,
+
+          time_on_page:
+            timeOnPage,
+
+          next_page:
+            "الصفحة 9",
+
+          timestamp:
+            clickedAt
+
+        });
+
+
+        /* =========================
+           U — PATH EXIT
+        ========================= */
+
+        sendPathExit();
+
+
+        /* =========================
+           تسجيل الخروج
+        ========================= */
+
+        sendPageExit();
+
+
+        /* =========================
+           الانتقال
+        ========================= */
+
+        setTimeout(
+          function () {
+
+            window.location.href =
+              "page9.html";
+
+          },
+          250
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       PAGE HIDE
+    ===================================================== */
+
+    window.addEventListener(
+      "pagehide",
+      function () {
+
+        sendPathExit();
+
+        sendPageExit();
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
