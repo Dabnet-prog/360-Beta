@@ -346,7 +346,6 @@
       ELIT MAN
     </div>
 
-
     <section class="intro">
 
       <h1>
@@ -358,7 +357,6 @@
       </p>
 
     </section>
-
 
     <section class="carousel-wrapper">
 
@@ -382,6 +380,8 @@
             class="product-image"
             src="WhatsApp Image1 2026-09-27 at 20.18.34.jpeg"
             alt="Perfume 1"
+            loading="eager"
+            decoding="sync"
           >
 
           <div class="product-name">
@@ -398,7 +398,6 @@
 
         </article>
 
-
         <article
           class="product"
           data-index="1"
@@ -414,6 +413,8 @@
             class="product-image"
             src="WhatsApp Image2 2026-09-27 at 20.18.34.jpeg"
             alt="Perfume 2"
+            loading="eager"
+            decoding="sync"
           >
 
           <div class="product-name">
@@ -421,7 +422,7 @@
           </div>
 
           <div class="stars">
-            ★★★★★
+            ★★★★
           </div>
 
           <div class="rating-number">
@@ -429,7 +430,6 @@
           </div>
 
         </article>
-
 
         <article
           class="product"
@@ -446,6 +446,8 @@
             class="product-image"
             src="WhatsApp Image3 2026-09-27 at 20.18.34.jpeg"
             alt="Perfume 3"
+            loading="eager"
+            decoding="sync"
           >
 
           <div class="product-name">
@@ -462,7 +464,6 @@
 
         </article>
 
-
         <article
           class="product"
           data-index="3"
@@ -478,6 +479,8 @@
             class="product-image"
             src="WhatsApp Image4 2026-09-27 at 20.22.49.jpeg"
             alt="Perfume 4"
+            loading="eager"
+            decoding="sync"
           >
 
           <div class="product-name">
@@ -485,7 +488,7 @@
           </div>
 
           <div class="stars">
-            ★★★★★
+            ★★★★
           </div>
 
           <div class="rating-number">
@@ -493,7 +496,6 @@
           </div>
 
         </article>
-
 
         <article
           class="product"
@@ -510,6 +512,8 @@
             class="product-image"
             src="WhatsApp Image5 2026-09-27 at 20.22.49.jpeg"
             alt="Perfume 5"
+            loading="eager"
+            decoding="sync"
           >
 
           <div class="product-name">
@@ -526,7 +530,6 @@
 
         </article>
 
-
         <article
           class="product"
           data-index="5"
@@ -542,6 +545,8 @@
             class="product-image"
             src="WhatsApp Image6 2026-09-27 at 20.22.49.jpeg"
             alt="Perfume 6"
+            loading="eager"
+            decoding="sync"
           >
 
           <div class="product-name">
@@ -562,12 +567,10 @@
 
     </section>
 
-
     <div
       class="dots"
       id="dots"
     ></div>
-
 
     <section class="confirm-area">
 
@@ -575,7 +578,6 @@
         class="question"
         id="question"
       ></div>
-
 
       <button
         class="confirm-btn"
@@ -585,7 +587,6 @@
         يجب اختيار صورتين على الأقل
       </button>
 
-
       <div class="note">
         يمكنك اختيار أكثر من صورة
       </div>
@@ -593,11 +594,6 @@
     </section>
 
   </main>
-
-
-  <!-- =================================================
-       HIDDEN TRACKING IFRAME
-  ================================================= -->
 
   <iframe
     name="trackingFrame"
@@ -610,20 +606,10 @@
     "
   ></iframe>
 
-
   <script>
-
-    /* =================================================
-       CLOSING LAYER TRACKING
-    ================================================= */
 
     const TRACKING_URL =
       "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
-
-
-    /* =================================================
-       CLIENT ID
-    ================================================= */
 
     const CLIENT_KEY =
       "closing_layer_client_id";
@@ -645,11 +631,6 @@
       );
 
     }
-
-
-    /* =================================================
-       SESSION ID
-    ================================================= */
 
     const SESSION_KEY =
       "closing_layer_session_id";
@@ -676,11 +657,6 @@
 
     }
 
-
-    /* =================================================
-       RETURNED LATER
-    ================================================= */
-
     const LAST_SESSION_KEY =
       "closing_layer_last_session_id";
 
@@ -699,11 +675,6 @@
       sessionId
     );
 
-
-    /* =================================================
-       PAGE
-    ================================================= */
-
     const CURRENT_PAGE =
       "الصفحة 2";
 
@@ -715,10 +686,104 @@
 
     let pageExitSent = false;
 
+    let pathExitSent = false;
 
-    /* =================================================
-       TRACKING
-    ================================================= */
+    function sendPathExit() {
+
+      if (
+        pathExitSent
+      ) {
+        return;
+      }
+
+      pathExitSent = true;
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        event:
+          "path_page_exit",
+
+        page:
+          CURRENT_PAGE,
+
+        path_page:
+          CURRENT_PAGE,
+
+        timestamp:
+          new Date().toISOString()
+
+      };
+
+      const body =
+        JSON.stringify(
+          payload
+        );
+
+      try {
+
+        if (
+          navigator.sendBeacon
+        ) {
+
+          const blob =
+            new Blob(
+              [body],
+              {
+                type:
+                  "text/plain;charset=UTF-8"
+              }
+            );
+
+          navigator.sendBeacon(
+            TRACKING_URL,
+            blob
+          );
+
+          return;
+
+        }
+
+      }
+
+      catch (error) {}
+
+      fetch(
+        TRACKING_URL,
+        {
+          method:
+            "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=UTF-8"
+          },
+
+          body:
+            body,
+
+          mode:
+            "no-cors",
+
+          keepalive:
+            true,
+
+          cache:
+            "no-store"
+
+        }
+      )
+      .catch(
+        function() {}
+      );
+
+    }
+
 
     function sendTracking(data) {
 
@@ -739,7 +804,6 @@
       form.style.display =
         "none";
 
-
       const payload = {
 
         client_id:
@@ -754,7 +818,6 @@
         ...data
 
       };
-
 
       Object.keys(payload).forEach(
         function(key) {
@@ -786,13 +849,11 @@
         }
       );
 
-
       document.body.appendChild(
         form
       );
 
       form.submit();
-
 
       setTimeout(
         function() {
@@ -810,9 +871,103 @@
     }
 
 
-    /* =================================================
-       SESSION START
-    ================================================= */
+    function sendBackNavigation() {
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        event:
+          "back_navigation",
+
+        went_back:
+          "نعم",
+
+        back_count:
+          1,
+
+        page:
+          CURRENT_PAGE,
+
+        page_name:
+          "page2",
+
+        page_file:
+          "page2.html",
+
+        timestamp:
+          new Date().toISOString()
+
+      };
+
+      const body =
+        JSON.stringify(
+          payload
+        );
+
+      try {
+
+        if (
+          navigator.sendBeacon
+        ) {
+
+          const blob =
+            new Blob(
+              [body],
+              {
+                type:
+                  "text/plain;charset=UTF-8"
+              }
+            );
+
+          navigator.sendBeacon(
+            TRACKING_URL,
+            blob
+          );
+
+          return;
+
+        }
+
+      }
+
+      catch (error) {}
+
+      fetch(
+        TRACKING_URL,
+        {
+          method:
+            "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=UTF-8"
+          },
+
+          body:
+            body,
+
+          mode:
+            "no-cors",
+
+          keepalive:
+            true,
+
+          cache:
+            "no-store"
+
+        }
+      )
+      .catch(
+        function() {}
+      );
+
+    }
+
 
     if (isNewSession) {
 
@@ -836,11 +991,6 @@
       });
 
     }
-
-
-    /* =================================================
-       PAGE VIEW
-    ================================================= */
 
     sendTracking({
 
@@ -867,10 +1017,6 @@
     });
 
 
-    /* =================================================
-       BACK NAVIGATION
-    ================================================= */
-
     window.addEventListener(
       "pageshow",
       function(event) {
@@ -890,31 +1036,13 @@
           )
         ) {
 
-          sendTracking({
-
-            event:
-              "back_navigation",
-
-            page:
-              CURRENT_PAGE,
-
-            page_name:
-              "page2",
-
-            page_file:
-              "page2.html"
-
-          });
+          sendBackNavigation();
 
         }
 
       }
     );
 
-
-    /* =================================================
-       SETTINGS
-    ================================================= */
 
     const MIN_SELECTIONS = 2;
 
@@ -926,21 +1054,11 @@
     const AUTO_DELAY =
       2800;
 
-
-    /* =================================================
-       PRODUCTS
-    ================================================= */
-
     const products = [
       ...document.querySelectorAll(
         ".product"
       )
     ];
-
-
-    /* =================================================
-       VALIDATION
-    ================================================= */
 
     if (
       !Number.isInteger(
@@ -958,7 +1076,6 @@
       );
 
     }
-
 
     if (
       products.length <
@@ -992,38 +1109,25 @@
 
     }
 
-
-    /* =================================================
-       ELEMENTS
-    ================================================= */
-
     const question =
       document.getElementById(
         "question"
       );
-
 
     const confirmBtn =
       document.getElementById(
         "confirmBtn"
       );
 
-
     const dotsContainer =
       document.getElementById(
         "dots"
       );
 
-
     const carousel =
       document.getElementById(
         "carousel"
       );
-
-
-    /* =================================================
-       STATE
-    ================================================= */
 
     let currentIndex = 0;
 
@@ -1031,31 +1135,16 @@
 
     let autoTimer = null;
 
-
-    /* =================================================
-       FIRST CHOICE
-    ================================================= */
-
     let firstChoice = null;
 
     let hasChangedChoice = false;
 
     let latestChoice = null;
 
-
-    /* =================================================
-       PAGE ENTRY TIME
-    ================================================= */
-
     localStorage.setItem(
       "page2_entered_at",
       pageEnteredISO
     );
-
-
-    /* =================================================
-       DOTS
-    ================================================= */
 
     products.forEach(
       (_, index) => {
@@ -1078,7 +1167,6 @@
 
         }
 
-
         dot.addEventListener(
           "click",
           () => {
@@ -1093,7 +1181,6 @@
           }
         );
 
-
         dotsContainer.appendChild(
           dot
         );
@@ -1101,18 +1188,11 @@
       }
     );
 
-
     const dots = [
       ...document.querySelectorAll(
         ".dot"
       )
     ];
-
-
-    /* =================================================
-       RENDER
-       نفس حركة الصور الأصلية
-    ================================================= */
 
     function render() {
 
@@ -1130,7 +1210,6 @@
             "hidden"
           );
 
-
           const distance =
             (
               index -
@@ -1138,7 +1217,6 @@
               products.length
             ) %
             products.length;
-
 
           if (
             distance === 0
@@ -1192,7 +1270,6 @@
         }
       );
 
-
       dots.forEach(
         (
           dot,
@@ -1209,14 +1286,7 @@
 
     }
 
-
     render();
-
-
-    /* =================================================
-       AUTO SLIDE
-       نفس الـ animation الأصلي
-    ================================================= */
 
     function startAuto() {
 
@@ -1227,7 +1297,6 @@
         return;
 
       }
-
 
       autoTimer =
         setInterval(
@@ -1241,13 +1310,11 @@
 
             }
 
-
             currentIndex =
               (
                 currentIndex + 1
               ) %
               products.length;
-
 
             render();
 
@@ -1256,7 +1323,6 @@
         );
 
     }
-
 
     function stopAuto() {
 
@@ -1268,11 +1334,9 @@
 
     }
 
-
     function restartAuto() {
 
       stopAuto();
-
 
       if (
         selectedProducts.length === 0
@@ -1284,19 +1348,12 @@
 
     }
 
-
     startAuto();
-
-
-    /* =================================================
-       UPDATE BUTTON / MESSAGE
-    ================================================= */
 
     function updateSelectionUI() {
 
       const count =
         selectedProducts.length;
-
 
       if (
         count < MIN_SELECTIONS
@@ -1320,7 +1377,6 @@
 
       }
 
-
       confirmBtn.textContent =
         "تأكيد الاختيار ←";
 
@@ -1330,7 +1386,6 @@
 
       confirmBtn.disabled =
         false;
-
 
       question.textContent =
         `تم اختيار ${count} صور`;
@@ -1342,10 +1397,6 @@
     }
 
 
-    /* =================================================
-       PRODUCT SELECTION
-    ================================================= */
-
     products.forEach(
       (
         product,
@@ -1355,7 +1406,6 @@
         product.addEventListener(
           "click",
           () => {
-
 
             if (
               index !== currentIndex
@@ -1372,16 +1422,10 @@
 
             }
 
-
             const alreadySelected =
               selectedProducts.includes(
                 product
               );
-
-
-            /* =========================
-               REMOVE SELECTION
-            ========================= */
 
             if (
               alreadySelected
@@ -1393,16 +1437,13 @@
                     item !== product
                 );
 
-
               product.classList.remove(
                 "selected"
               );
 
-
               saveSelectedProducts();
 
               updateSelectionUI();
-
 
               addTrackingEvent({
 
@@ -1433,15 +1474,9 @@
 
               });
 
-
               return;
 
             }
-
-
-            /* =========================
-               MAXIMUM
-            ========================= */
 
             if (
               selectedProducts.length >=
@@ -1459,27 +1494,19 @@
 
             }
 
-
-            /* =========================
-               ADD SELECTION
-            ========================= */
-
             selectedProducts.push(
               product
             );
 
-
             product.classList.add(
               "selected"
             );
-
 
             stopAuto();
 
             updateSelectionUI();
 
             saveSelectedProducts();
-
 
             const selectedName =
               product
@@ -1488,11 +1515,6 @@
                 )
                 ?.textContent
                 .trim();
-
-
-            /*
-              أول اختيار فعلي
-            */
 
             if (
               firstChoice === null
@@ -1508,19 +1530,8 @@
 
             }
 
-
-            /*
-              أحدث اختيار
-            */
-
             latestChoice =
               selectedName;
-
-
-            /*
-              إذا اختار شيئًا جديدًا
-              بعد اختياره الأول
-            */
 
             if (
               firstChoice !== null &&
@@ -1531,7 +1542,6 @@
                 true;
 
             }
-
 
             addTrackingEvent({
 
@@ -1561,6 +1571,12 @@
               latest_choice:
                 latestChoice || "",
 
+              choice_previous:
+                firstChoice || "",
+
+              choice_new:
+                latestChoice || "",
+
               choice_changed:
                 hasChangedChoice
                   ? "نعم"
@@ -1574,10 +1590,6 @@
       }
     );
 
-
-    /* =================================================
-       SAVE SELECTED PRODUCTS
-    ================================================= */
 
     function saveSelectedProducts() {
 
@@ -1623,7 +1635,6 @@
           }
         );
 
-
       localStorage.setItem(
         "selected_products",
         JSON.stringify(
@@ -1631,18 +1642,12 @@
         )
       );
 
-
       localStorage.setItem(
         "selected_products_count",
         String(
           selectedData.length
         )
       );
-
-
-      /*
-        أسماء المنتجات الظاهرة
-      */
 
       const selectedNames =
         selectedData
@@ -1652,16 +1657,10 @@
           )
           .join(", ");
 
-
       localStorage.setItem(
         "selected_product_names",
         selectedNames
       );
-
-
-      /*
-        IDs التقنية
-      */
 
       const selectedIds =
         selectedData
@@ -1671,12 +1670,10 @@
           )
           .join(", ");
 
-
       localStorage.setItem(
         "selected_product_ids",
         selectedIds
       );
-
 
       if (
         selectedData.length > 0
@@ -1685,18 +1682,15 @@
         const first =
           selectedData[0];
 
-
         localStorage.setItem(
           "selected_product",
           first.id
         );
 
-
         localStorage.setItem(
           "selected_product_name",
           first.name
         );
-
 
         localStorage.setItem(
           "selected_product_price",
@@ -1704,7 +1698,6 @@
             first.price
           )
         );
-
 
         localStorage.setItem(
           "selected_product_image",
@@ -1715,10 +1708,6 @@
 
     }
 
-
-    /* =================================================
-       LOCAL EVENTS
-    ================================================= */
 
     function getEvents() {
 
@@ -1731,7 +1720,6 @@
             ) ||
             "[]"
           );
-
 
         return Array.isArray(saved)
           ? saved
@@ -1755,7 +1743,6 @@
       const events =
         getEvents();
 
-
       events.push({
 
         ...eventData,
@@ -1765,7 +1752,6 @@
             .toISOString()
 
       });
-
 
       localStorage.setItem(
         "decision_events",
@@ -1777,10 +1763,6 @@
     }
 
 
-    /* =================================================
-       TRACKING EVENT
-    ================================================= */
-
     function addTrackingEvent(
       eventData
     ) {
@@ -1791,11 +1773,9 @@
 
       };
 
-
       addEvent(
         eventData
       );
-
 
       sendTracking(
         data
@@ -1804,15 +1784,9 @@
     }
 
 
-    /* =================================================
-       TOUCH / SWIPE
-       نفس الحركة الأصلية
-    ================================================= */
-
     let startX = 0;
 
     let endX = 0;
-
 
     carousel.addEventListener(
       "touchstart",
@@ -1828,7 +1802,6 @@
       }
     );
 
-
     carousel.addEventListener(
       "touchend",
       event => {
@@ -1837,11 +1810,9 @@
           event.changedTouches[0]
             .clientX;
 
-
         const difference =
           startX -
           endX;
-
 
         if (
           Math.abs(difference) < 50
@@ -1850,7 +1821,6 @@
           return;
 
         }
-
 
         if (
           difference > 0
@@ -1875,7 +1845,6 @@
 
         }
 
-
         render();
 
         restartAuto();
@@ -1886,10 +1855,6 @@
       }
     );
 
-
-    /* =================================================
-       CONFIRM
-    ================================================= */
 
     confirmBtn.addEventListener(
       "click",
@@ -1904,24 +1869,19 @@
 
         }
 
-
         const completedAt =
           Date.now();
-
 
         const timeOnPage =
           completedAt -
           pageEnteredAt;
 
-
         saveSelectedProducts();
-
 
         localStorage.setItem(
           "page2_completed_at",
           new Date().toISOString()
         );
-
 
         localStorage.setItem(
           "page2_time_on_page",
@@ -1930,7 +1890,6 @@
           )
         );
 
-
         const selectedData =
           JSON.parse(
             localStorage.getItem(
@@ -1938,11 +1897,6 @@
             ) ||
             "[]"
           );
-
-
-        /* =================================================
-           DECISION STATE
-        ================================================= */
 
         let oldState = {};
 
@@ -1963,7 +1917,6 @@
           oldState = {};
 
         }
-
 
         const decisionState = {
 
@@ -1986,18 +1939,12 @@
 
         };
 
-
         localStorage.setItem(
           "decision_state",
           JSON.stringify(
             decisionState
           )
         );
-
-
-        /* =================================================
-           FINAL DATA
-        ================================================= */
 
         const selectedIds =
           selectedData
@@ -2007,7 +1954,6 @@
             )
             .join(", ");
 
-
         const selectedNames =
           selectedData
             .map(
@@ -2016,32 +1962,19 @@
             )
             .join(", ");
 
-
-        /*
-          إذا كان هناك اختيار واحد فقط
-          يصبح هو الأول والجديد نفسه.
-        */
-
         const finalFirstChoice =
           firstChoice ||
           selectedData[0]?.name ||
           "";
 
-
         const finalNewChoice =
           selectedNames;
-
 
         const finalChoiceChanged =
           selectedData.length > 1 ||
           hasChangedChoice
             ? "نعم"
             : "لا";
-
-
-        /* =================================================
-           FINAL TRACKING
-        ================================================= */
 
         sendTracking({
 
@@ -2080,6 +2013,12 @@
           new_choice:
             finalNewChoice,
 
+          choice_previous:
+            finalFirstChoice,
+
+          choice_new:
+            finalNewChoice,
+
           choice_changed:
             finalChoiceChanged,
 
@@ -2109,11 +2048,6 @@
 
         });
 
-
-        /* =================================================
-           LOCAL EVENT
-        ================================================= */
-
         addEvent({
 
           event:
@@ -2142,19 +2076,11 @@
 
         });
 
-
-        /* =================================================
-           PAGE EXIT
-        ================================================= */
+        sendPathExit();
 
         sendPageExit(
           true
         );
-
-
-        /* =================================================
-           NEXT PAGE
-        ================================================= */
 
         window.location.href =
           NEXT_PAGE;
@@ -2162,10 +2088,6 @@
       }
     );
 
-
-    /* =================================================
-       PAGE EXIT
-    ================================================= */
 
     function sendPageExit(
       completed = false
@@ -2179,15 +2101,12 @@
 
       }
 
-
       pageExitSent =
         true;
-
 
       const timeOnPage =
         Date.now() -
         pageEnteredAt;
-
 
       sendTracking({
 
@@ -2233,17 +2152,14 @@
       "pagehide",
       function() {
 
+        sendPathExit();
+
         sendPageExit(
           false
         );
 
       }
     );
-
-
-    /* =================================================
-       INITIAL STATE
-    ================================================= */
 
     updateSelectionUI();
 
