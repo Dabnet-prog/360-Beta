@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>اختر ما يشبه ذوقك</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #fff;
+      color: #111;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      margin: auto;
+      padding: 28px 20px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand {
+      align-self: center;
+      padding: 7px 15px;
+      border: 1px solid #111;
+      border-radius: 30px;
+      font-size: 11px;
+      letter-spacing: 1.8px;
+      font-weight: 700;
+      margin-bottom: 35px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .intro h1 {
+      font-size: 23px;
+      line-height: 1.4;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    .intro p {
+      margin-top: 9px;
+      font-size: 13px;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+      height: 390px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: pan-y;
+    }
+
+    .product {
+      position: absolute;
+      width: 230px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 13px;
+      text-align: center;
+
+      border: 2px solid transparent;
+
+      transition:
+        transform .65s cubic-bezier(.22,.61,.36,1),
+        opacity .65s ease,
+        filter .65s ease,
+        box-shadow .65s ease,
+        border-color .35s ease;
+
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 285px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      background: #f4f4f4;
+
+      pointer-events: none;
+    }
+
+    .product-name {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .stars {
+      margin-top: 7px;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .rating-number {
+      margin-top: 4px;
+      font-size: 10px;
+      color: #aaa;
+    }
+
+    .product.active {
+      transform:
+        translateX(0)
+        scale(1);
+
+      opacity: 1;
+      z-index: 5;
+      filter: blur(0);
+
+      box-shadow:
+        0 14px 35px
+        rgba(0,0,0,.08);
+    }
+
+    .product.next {
+      transform:
+        translateX(-105px)
+        scale(.88);
+
+      opacity: .42;
+      z-index: 3;
+      filter: blur(.5px);
+    }
+
+    .product.next2 {
+      transform:
+        translateX(-175px)
+        scale(.76);
+
+      opacity: .16;
+      z-index: 2;
+      filter: blur(1px);
+    }
+
+    .product.prev {
+      transform:
+        translateX(105px)
+        scale(.88);
+
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .product.hidden {
+      transform:
+        translateX(180px)
+        scale(.75);
+
+      opacity: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .product.selected {
+      border-color: #111;
+
+      box-shadow:
+        0 16px 38px
+        rgba(0,0,0,.13);
+    }
+
+    .check {
+      position: absolute;
+
+      top: 18px;
+      right: 18px;
+
+      width: 28px;
+      height: 28px;
+
+      border-radius: 50%;
+
+      background: #111;
+      color: #fff;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      font-size: 14px;
+      z-index: 10;
+    }
+
+    .product.selected .check {
+      display: flex;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: #ddd;
+
+      transition: .3s ease;
+
+      cursor: pointer;
+    }
+
+    .dot.active {
+      width: 18px;
+      border-radius: 10px;
+      background: #111;
+    }
+
+    .confirm-area {
+      margin-top: auto;
+      padding-top: 25px;
+      text-align: center;
+    }
+
+    .question {
+      min-height: 22px;
+
+      font-size: 14px;
+      color: #555;
+
+      margin-bottom: 13px;
+
+      opacity: 0;
+      transform: translateY(8px);
+
+      pointer-events: none;
+
+      transition: .45s ease;
+    }
+
+    .question.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .confirm-btn {
+      width: 100%;
+      height: 52px;
+
+      border: none;
+      border-radius: 15px;
+
+      background: #111;
+      color: #fff;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      cursor: not-allowed;
+
+      opacity: .28;
+
+      pointer-events: none;
+
+      transition:
+        opacity .35s ease,
+        transform .15s ease;
+    }
+
+    .confirm-btn.ready {
+      opacity: 1;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    .confirm-btn:active {
+      transform: scale(.98);
+    }
+
+    .note {
+      margin-top: 10px;
+
+      font-size: 10px;
+
+      color: #aaa;
+    }
+
+    @media (max-width: 360px) {
+
+      .product {
+        width: 205px;
+      }
+
+      .product-image {
+        height: 260px;
+      }
+
+      .carousel-wrapper {
+        height: 360px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <div class="brand">
+      ELIT MAN
+    </div>
+
+    <section class="intro">
+
+      <h1>
+        اختر ما يشبه ذوقك
+      </h1>
+
+      <p>
+        خذ لحظة، وانظر إلى الخيارات أمامك.
+      </p>
+
+    </section>
+
+    <section class="carousel-wrapper">
+
+      <div
+        class="carousel"
+        id="carousel"
+      >
+
+        <article
+          class="product"
+          data-index="0"
+          data-id="product_1"
+          data-price="130"
+        >
+
+          <div class="check">
+            ✓
+          </div>
+
+          <img
+            class="product-image"
+            src="WhatsApp Image1 2026-09-27 at 20.18.34.jpeg"
+            alt="Perfume 1"
+          >
+
+          <div class="product-name">
+            Perfume 1
+          </div>
+
+          <div class="stars">
+            ★★★★★
+          </div>
+
+          <div class="rating-number">
+            —
+          </div>
+
+        </article>
+
+        <article
+          class="product"
+          data-index="1"
+          data-id="product_2"
+          data-price="130"
+        >
+
+          <div class="check">
+            ✓
+          </div>
+
+          <img
+            class="product-image"
+            src="WhatsApp Image2 2026-09-27 at 20.18.34.jpeg"
+            alt="Perfume 2"
+          >
+
+          <div class="product-name">
+            Perfume 2
+          </div>
+
+          <div class="stars">
+            ★★★★
+          </div>
+
+          <div class="rating-number">
+            —
+          </div>
+
+        </article>
+
+        <article
+          class="product"
+          data-index="2"
+          data-id="product_3"
+          data-price="130"
+        >
+
+          <div class="check">
+            ✓
+          </div>
+
+          <img
+            class="product-image"
+            src="WhatsApp Image3 2026-09-27 at 20.18.34.jpeg"
+            alt="Perfume 3"
+          >
+
+          <div class="product-name">
+            Perfume 3
+          </div>
+
+          <div class="stars">
+            ★★★★★
+          </div>
+
+          <div class="rating-number">
+            —
+          </div>
+
+        </article>
+
+        <article
+          class="product"
+          data-index="3"
+          data-id="product_4"
+          data-price="130"
+        >
+
+          <div class="check">
+            ✓
+          </div>
+
+          <img
+            class="product-image"
+            src="WhatsApp Image4 2026-09-27 at 20.22.49.jpeg"
+            alt="Perfume 4"
+          >
+
+          <div class="product-name">
+            Perfume 4
+          </div>
+
+          <div class="stars">
+            ★★★★
+          </div>
+
+          <div class="rating-number">
+            —
+          </div>
+
+        </article>
+
+        <article
+          class="product"
+          data-index="4"
+          data-id="product_5"
+          data-price="130"
+        >
+
+          <div class="check">
+            ✓
+          </div>
+
+          <img
+            class="product-image"
+            src="WhatsApp Image5 2026-09-27 at 20.22.49.jpeg"
+            alt="Perfume 5"
+          >
+
+          <div class="product-name">
+            Perfume 5
+          </div>
+
+          <div class="stars">
+            ★★★★★
+          </div>
+
+          <div class="rating-number">
+            —
+          </div>
+
+        </article>
+
+        <article
+          class="product"
+          data-index="5"
+          data-id="product_6"
+          data-price="130"
+        >
+
+          <div class="check">
+            ✓
+          </div>
+
+          <img
+            class="product-image"
+            src="WhatsApp Image6 2026-09-27 at 20.22.49.jpeg"
+            alt="Perfume 6"
+          >
+
+          <div class="product-name">
+            Perfume 6
+          </div>
+
+          <div class="stars">
+            ★★★★★
+          </div>
+
+          <div class="rating-number">
+            —
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <div
+      class="dots"
+      id="dots"
+    ></div>
+
+    <section class="confirm-area">
+
+      <div
+        class="question"
+        id="question"
+      ></div>
+
+      <button
+        class="confirm-btn"
+        id="confirmBtn"
+        disabled
+      >
+        يجب اختيار صورتين على الأقل
+      </button>
+
+      <div class="note">
+        يمكنك اختيار أكثر من صورة
+      </div>
+
+    </section>
+
+  </main>
+
+  <iframe
+    name="trackingFrame"
+    id="trackingFrame"
+    style="
+      display:none;
+      width:0;
+      height:0;
+      border:0;
+    "
+  ></iframe>
+
+  <script>
+
+    const TRACKING_URL =
+      "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+    const CLIENT_KEY =
+      "closing_layer_client_id";
+
+    let clientId =
+      localStorage.getItem(
+        CLIENT_KEY
+      );
+
+    if (!clientId) {
+
+      clientId =
+        "CL-" +
+        crypto.randomUUID();
+
+      localStorage.setItem(
+        CLIENT_KEY,
+        clientId
+      );
+
+    }
+
+    const SESSION_KEY =
+      "closing_layer_session_id";
+
+    let sessionId =
+      sessionStorage.getItem(
+        SESSION_KEY
+      );
+
+    let isNewSession = false;
+
+    if (!sessionId) {
+
+      sessionId =
+        "S-" +
+        crypto.randomUUID();
+
+      sessionStorage.setItem(
+        SESSION_KEY,
+        sessionId
+      );
+
+      isNewSession = true;
+
+    }
+
+    const LAST_SESSION_KEY =
+      "closing_layer_last_session_id";
+
+    const previousSessionId =
+      localStorage.getItem(
+        LAST_SESSION_KEY
+      );
+
+    const returnedLater =
+      isNewSession &&
+      previousSessionId &&
+      previousSessionId !== sessionId;
+
+    localStorage.setItem(
+      LAST_SESSION_KEY,
+      sessionId
+    );
+
+    const CURRENT_PAGE =
+      "الصفحة 2";
+
+    const pageEnteredAt =
+      Date.now();
+
+    const pageEnteredISO =
+      new Date().toISOString();
+
+    let pageExitSent = false;
+
+    let pathExitSent = false;
+
+    function sendPathExit() {
+
+      if (
+        pathExitSent
+      ) {
+        return;
+      }
+
+      pathExitSent = true;
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        event:
+          "path_page_exit",
+
+        page:
+          CURRENT_PAGE,
+
+        path_page:
+          CURRENT_PAGE,
+
+        timestamp:
+          new Date().toISOString()
+
+      };
+
+      const body =
+        JSON.stringify(
+          payload
+        );
+
+      try {
+
+        if (
+          navigator.sendBeacon
+        ) {
+
+          const blob =
+            new Blob(
+              [body],
+              {
+                type:
+                  "text/plain;charset=UTF-8"
+              }
+            );
+
+          navigator.sendBeacon(
+            TRACKING_URL,
+            blob
+          );
+
+          return;
+
+        }
+
+      }
+
+      catch (error) {}
+
+      fetch(
+        TRACKING_URL,
+        {
+          method:
+            "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=UTF-8"
+          },
+
+          body:
+            body,
+
+          mode:
+            "no-cors",
+
+          keepalive:
+            true,
+
+          cache:
+            "no-store"
+
+        }
+      )
+      .catch(
+        function() {}
+      );
+
+    }
+
+
+    function sendTracking(data) {
+
+      const form =
+        document.createElement(
+          "form"
+        );
+
+      form.method =
+        "POST";
+
+      form.action =
+        TRACKING_URL;
+
+      form.target =
+        "trackingFrame";
+
+      form.style.display =
+        "none";
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        timestamp:
+          new Date().toISOString(),
+
+        ...data
+
+      };
+
+      Object.keys(payload).forEach(
+        function(key) {
+
+          const input =
+            document.createElement(
+              "input"
+            );
+
+          input.type =
+            "hidden";
+
+          input.name =
+            key;
+
+          const value =
+            payload[key];
+
+          input.value =
+            value === undefined ||
+            value === null
+              ? ""
+              : String(value);
+
+          form.appendChild(
+            input
+          );
+
+        }
+      );
+
+      document.body.appendChild(
+        form
+      );
+
+      form.submit();
+
+      setTimeout(
+        function() {
+
+          if (form.parentNode) {
+
+            form.remove();
+
+          }
+
+        },
+        1000
+      );
+
+    }
+
+
+    /*
+      إصلاح الرجوع فقط:
+      إرسال الحدث مباشرة إلى Apps Script
+      مع الحقول التي ينتظرها U/V.
+    */
+
+    function sendBackNavigation() {
+
+      const payload = {
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        event:
+          "back_navigation",
+
+        went_back:
+          "نعم",
+
+        back_count:
+          1,
+
+        page:
+          CURRENT_PAGE,
+
+        page_name:
+          "page2",
+
+        page_file:
+          "page2.html",
+
+        timestamp:
+          new Date().toISOString()
+
+      };
+
+      const body =
+        JSON.stringify(
+          payload
+        );
+
+      try {
+
+        if (
+          navigator.sendBeacon
+        ) {
+
+          const blob =
+            new Blob(
+              [body],
+              {
+                type:
+                  "text/plain;charset=UTF-8"
+              }
+            );
+
+          navigator.sendBeacon(
+            TRACKING_URL,
+            blob
+          );
+
+          return;
+
+        }
+
+      }
+
+      catch (error) {}
+
+      fetch(
+        TRACKING_URL,
+        {
+          method:
+            "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=UTF-8"
+          },
+
+          body:
+            body,
+
+          mode:
+            "no-cors",
+
+          keepalive:
+            true,
+
+          cache:
+            "no-store"
+
+        }
+      )
+      .catch(
+        function() {}
+      );
+
+    }
+
+
+    if (isNewSession) {
+
+      sendTracking({
+
+        event:
+          "session_start",
+
+        page:
+          CURRENT_PAGE,
+
+        page_name:
+          "page2",
+
+        page_file:
+          "page2.html",
+
+        time:
+          pageEnteredISO
+
+      });
+
+    }
+
+    sendTracking({
+
+      event:
+        "page_view",
+
+      page:
+        CURRENT_PAGE,
+
+      page_name:
+        "page2",
+
+      page_file:
+        "page2.html",
+
+      time:
+        pageEnteredISO,
+
+      returned_later:
+        returnedLater
+          ? "نعم"
+          : "لا"
+
+    });
+
+
+    window.addEventListener(
+      "pageshow",
+      function(event) {
+
+        const navigation =
+          performance
+            .getEntriesByType(
+              "navigation"
+            )[0];
+
+        if (
+          event.persisted ||
+          (
+            navigation &&
+            navigation.type ===
+              "back_forward"
+          )
+        ) {
+
+          sendBackNavigation();
+
+        }
+
+      }
+    );
+
+
+    const MIN_SELECTIONS = 2;
+
+    const MAX_SELECTIONS = 3;
+
+    const NEXT_PAGE =
+      "page3.html";
+
+    const AUTO_DELAY =
+      2800;
+
+    const products = [
+      ...document.querySelectorAll(
+        ".product"
+      )
+    ];
+
+    if (
+      !Number.isInteger(
+        MIN_SELECTIONS
+      ) ||
+      !Number.isInteger(
+        MAX_SELECTIONS
+      ) ||
+      MIN_SELECTIONS < 1 ||
+      MAX_SELECTIONS < MIN_SELECTIONS
+    ) {
+
+      throw new Error(
+        "MIN_SELECTIONS / MAX_SELECTIONS غير صحيحين."
+      );
+
+    }
+
+    if (
+      products.length <
+      MIN_SELECTIONS
+    ) {
+
+      document.body.innerHTML = `
+
+        <div style="
+          min-height:100vh;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          padding:30px;
+          text-align:center;
+          font-family:Arial;
+          line-height:1.8;
+        ">
+
+          يجب إضافة
+          ${MIN_SELECTIONS}
+          صور على الأقل.
+
+        </div>
+
+      `;
+
+      throw new Error(
+        "Not enough products."
+      );
+
+    }
+
+    const question =
+      document.getElementById(
+        "question"
+      );
+
+    const confirmBtn =
+      document.getElementById(
+        "confirmBtn"
+      );
+
+    const dotsContainer =
+      document.getElementById(
+        "dots"
+      );
+
+    const carousel =
+      document.getElementById(
+        "carousel"
+      );
+
+    let currentIndex = 0;
+
+    let selectedProducts = [];
+
+    let autoTimer = null;
+
+    let firstChoice = null;
+
+    let hasChangedChoice = false;
+
+    let latestChoice = null;
+
+    localStorage.setItem(
+      "page2_entered_at",
+      pageEnteredISO
+    );
+
+    products.forEach(
+      (_, index) => {
+
+        const dot =
+          document.createElement(
+            "div"
+          );
+
+        dot.className =
+          "dot";
+
+        if (
+          index === 0
+        ) {
+
+          dot.classList.add(
+            "active"
+          );
+
+        }
+
+        dot.addEventListener(
+          "click",
+          () => {
+
+            currentIndex =
+              index;
+
+            render();
+
+            restartAuto();
+
+          }
+        );
+
+        dotsContainer.appendChild(
+          dot
+        );
+
+      }
+    );
+
+    const dots = [
+      ...document.querySelectorAll(
+        ".dot"
+      )
+    ];
+
+    function render() {
+
+      products.forEach(
+        (
+          product,
+          index
+        ) => {
+
+          product.classList.remove(
+            "active",
+            "next",
+            "next2",
+            "prev",
+            "hidden"
+          );
+
+          const distance =
+            (
+              index -
+              currentIndex +
+              products.length
+            ) %
+            products.length;
+
+          if (
+            distance === 0
+          ) {
+
+            product.classList.add(
+              "active"
+            );
+
+          }
+
+          else if (
+            distance === 1
+          ) {
+
+            product.classList.add(
+              "next"
+            );
+
+          }
+
+          else if (
+            distance === 2
+          ) {
+
+            product.classList.add(
+              "next2"
+            );
+
+          }
+
+          else if (
+            distance ===
+            products.length - 1
+          ) {
+
+            product.classList.add(
+              "prev"
+            );
+
+          }
+
+          else {
+
+            product.classList.add(
+              "hidden"
+            );
+
+          }
+
+        }
+      );
+
+      dots.forEach(
+        (
+          dot,
+          index
+        ) => {
+
+          dot.classList.toggle(
+            "active",
+            index === currentIndex
+          );
+
+        }
+      );
+
+    }
+
+    render();
+
+    function startAuto() {
+
+      if (
+        products.length <= 1
+      ) {
+
+        return;
+
+      }
+
+      autoTimer =
+        setInterval(
+          () => {
+
+            if (
+              selectedProducts.length > 0
+            ) {
+
+              return;
+
+            }
+
+            currentIndex =
+              (
+                currentIndex + 1
+              ) %
+              products.length;
+
+            render();
+
+          },
+          AUTO_DELAY
+        );
+
+    }
+
+    function stopAuto() {
+
+      clearInterval(
+        autoTimer
+      );
+
+      autoTimer = null;
+
+    }
+
+    function restartAuto() {
+
+      stopAuto();
+
+      if (
+        selectedProducts.length === 0
+      ) {
+
+        startAuto();
+
+      }
+
+    }
+
+    startAuto();
+
+    function updateSelectionUI() {
+
+      const count =
+        selectedProducts.length;
+
+      if (
+        count < MIN_SELECTIONS
+      ) {
+
+        confirmBtn.textContent =
+          `يجب اختيار ${MIN_SELECTIONS} صور على الأقل`;
+
+        confirmBtn.classList.remove(
+          "ready"
+        );
+
+        confirmBtn.disabled =
+          true;
+
+        question.classList.remove(
+          "show"
+        );
+
+        return;
+
+      }
+
+      confirmBtn.textContent =
+        "تأكيد الاختيار ←";
+
+      confirmBtn.classList.add(
+        "ready"
+      );
+
+      confirmBtn.disabled =
+        false;
+
+      question.textContent =
+        `تم اختيار ${count} صور`;
+
+      question.classList.add(
+        "show"
+      );
+
+    }
+
+
+    products.forEach(
+      (
+        product,
+        index
+      ) => {
+
+        product.addEventListener(
+          "click",
+          () => {
+
+            if (
+              index !== currentIndex
+            ) {
+
+              currentIndex =
+                index;
+
+              render();
+
+              restartAuto();
+
+              return;
+
+            }
+
+            const alreadySelected =
+              selectedProducts.includes(
+                product
+              );
+
+            if (
+              alreadySelected
+            ) {
+
+              selectedProducts =
+                selectedProducts.filter(
+                  item =>
+                    item !== product
+                );
+
+              product.classList.remove(
+                "selected"
+              );
+
+              saveSelectedProducts();
+
+              updateSelectionUI();
+
+              addTrackingEvent({
+
+                event:
+                  "product_unselected",
+
+                page:
+                  CURRENT_PAGE,
+
+                product:
+                  product.dataset.id,
+
+                product_name:
+                  product
+                    .querySelector(
+                      ".product-name"
+                    )
+                    ?.textContent
+                    .trim(),
+
+                product_index:
+                  Number(
+                    product.dataset.index
+                  ),
+
+                selected_count:
+                  selectedProducts.length
+
+              });
+
+              return;
+
+            }
+
+            if (
+              selectedProducts.length >=
+              MAX_SELECTIONS
+            ) {
+
+              confirmBtn.textContent =
+                `يمكنك اختيار ${MAX_SELECTIONS} صور كحد أقصى`;
+
+              confirmBtn.classList.add(
+                "ready"
+              );
+
+              return;
+
+            }
+
+            selectedProducts.push(
+              product
+            );
+
+            product.classList.add(
+              "selected"
+            );
+
+            stopAuto();
+
+            updateSelectionUI();
+
+            saveSelectedProducts();
+
+            const selectedName =
+              product
+                .querySelector(
+                  ".product-name"
+                )
+                ?.textContent
+                .trim();
+
+            if (
+              firstChoice === null
+            ) {
+
+              firstChoice =
+                selectedName;
+
+              localStorage.setItem(
+                "page2_first_choice",
+                firstChoice
+              );
+
+            }
+
+            latestChoice =
+              selectedName;
+
+            if (
+              firstChoice !== null &&
+              selectedName !== firstChoice
+            ) {
+
+              hasChangedChoice =
+                true;
+
+            }
+
+            /*
+              إصلاح تغيير الاختيار فقط:
+              إرسال أسماء الحقول التي يفهمها Apps Script.
+            */
+
+            addTrackingEvent({
+
+              event:
+                "product_selected",
+
+              page:
+                CURRENT_PAGE,
+
+              product:
+                product.dataset.id,
+
+              product_name:
+                selectedName,
+
+              product_index:
+                Number(
+                  product.dataset.index
+                ),
+
+              selected_count:
+                selectedProducts.length,
+
+              first_choice:
+                firstChoice || "",
+
+              latest_choice:
+                latestChoice || "",
+
+              choice_previous:
+                firstChoice || "",
+
+              choice_new:
+                latestChoice || "",
+
+              choice_changed:
+                hasChangedChoice
+                  ? "نعم"
+                  : "لا"
+
+            });
+
+          }
+        );
+
+      }
+    );
+
+
+    function saveSelectedProducts() {
+
+      const selectedData =
+        selectedProducts.map(
+          product => {
+
+            return {
+
+              id:
+                product.dataset.id,
+
+              name:
+                product
+                  .querySelector(
+                    ".product-name"
+                  )
+                  ?.textContent
+                  .trim(),
+
+              price:
+                Number(
+                  product.dataset.price ||
+                  130
+                ),
+
+              image:
+                product
+                  .querySelector(
+                    "img"
+                  )
+                  ?.getAttribute(
+                    "src"
+                  ),
+
+              index:
+                Number(
+                  product.dataset.index
+                )
+
+            };
+
+          }
+        );
+
+      localStorage.setItem(
+        "selected_products",
+        JSON.stringify(
+          selectedData
+        )
+      );
+
+      localStorage.setItem(
+        "selected_products_count",
+        String(
+          selectedData.length
+        )
+      );
+
+      const selectedNames =
+        selectedData
+          .map(
+            item =>
+              item.name
+          )
+          .join(", ");
+
+      localStorage.setItem(
+        "selected_product_names",
+        selectedNames
+      );
+
+      const selectedIds =
+        selectedData
+          .map(
+            item =>
+              item.id
+          )
+          .join(", ");
+
+      localStorage.setItem(
+        "selected_product_ids",
+        selectedIds
+      );
+
+      if (
+        selectedData.length > 0
+      ) {
+
+        const first =
+          selectedData[0];
+
+        localStorage.setItem(
+          "selected_product",
+          first.id
+        );
+
+        localStorage.setItem(
+          "selected_product_name",
+          first.name
+        );
+
+        localStorage.setItem(
+          "selected_product_price",
+          String(
+            first.price
+          )
+        );
+
+        localStorage.setItem(
+          "selected_product_image",
+          first.image
+        );
+
+      }
+
+    }
+
+
+    function getEvents() {
+
+      try {
+
+        const saved =
+          JSON.parse(
+            localStorage.getItem(
+              "decision_events"
+            ) ||
+            "[]"
+          );
+
+        return Array.isArray(saved)
+          ? saved
+          : [];
+
+      }
+
+      catch(error) {
+
+        return [];
+
+      }
+
+    }
+
+
+    function addEvent(
+      eventData
+    ) {
+
+      const events =
+        getEvents();
+
+      events.push({
+
+        ...eventData,
+
+        timestamp:
+          new Date()
+            .toISOString()
+
+      });
+
+      localStorage.setItem(
+        "decision_events",
+        JSON.stringify(
+          events
+        )
+      );
+
+    }
+
+
+    function addTrackingEvent(
+      eventData
+    ) {
+
+      const data = {
+
+        ...eventData
+
+      };
+
+      addEvent(
+        eventData
+      );
+
+      sendTracking(
+        data
+      );
+
+    }
+
+
+    let startX = 0;
+
+    let endX = 0;
+
+    carousel.addEventListener(
+      "touchstart",
+      event => {
+
+        startX =
+          event.touches[0]
+            .clientX;
+
+      },
+      {
+        passive: true
+      }
+    );
+
+    carousel.addEventListener(
+      "touchend",
+      event => {
+
+        endX =
+          event.changedTouches[0]
+            .clientX;
+
+        const difference =
+          startX -
+          endX;
+
+        if (
+          Math.abs(difference) < 50
+        ) {
+
+          return;
+
+        }
+
+        if (
+          difference > 0
+        ) {
+
+          currentIndex =
+            (
+              currentIndex + 1
+            ) %
+            products.length;
+
+        }
+
+        else {
+
+          currentIndex =
+            (
+              currentIndex - 1 +
+              products.length
+            ) %
+            products.length;
+
+        }
+
+        render();
+
+        restartAuto();
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    confirmBtn.addEventListener(
+      "click",
+      () => {
+
+        if (
+          selectedProducts.length <
+          MIN_SELECTIONS
+        ) {
+
+          return;
+
+        }
+
+        const completedAt =
+          Date.now();
+
+        const timeOnPage =
+          completedAt -
+          pageEnteredAt;
+
+        saveSelectedProducts();
+
+        localStorage.setItem(
+          "page2_completed_at",
+          new Date().toISOString()
+        );
+
+        localStorage.setItem(
+          "page2_time_on_page",
+          String(
+            timeOnPage
+          )
+        );
+
+        const selectedData =
+          JSON.parse(
+            localStorage.getItem(
+              "selected_products"
+            ) ||
+            "[]"
+          );
+
+        let oldState = {};
+
+        try {
+
+          oldState =
+            JSON.parse(
+              localStorage.getItem(
+                "decision_state"
+              ) ||
+              "{}"
+            );
+
+        }
+
+        catch(error) {
+
+          oldState = {};
+
+        }
+
+        const decisionState = {
+
+          ...oldState,
+
+          selected_products:
+            selectedData,
+
+          selected_products_count:
+            selectedData.length,
+
+          page2_completed:
+            true,
+
+          page2_time_on_page:
+            timeOnPage,
+
+          page2_completed_at:
+            new Date().toISOString()
+
+        };
+
+        localStorage.setItem(
+          "decision_state",
+          JSON.stringify(
+            decisionState
+          )
+        );
+
+        const selectedIds =
+          selectedData
+            .map(
+              item =>
+                item.id
+            )
+            .join(", ");
+
+        const selectedNames =
+          selectedData
+            .map(
+              item =>
+                item.name
+            )
+            .join(", ");
+
+        const finalFirstChoice =
+          firstChoice ||
+          selectedData[0]?.name ||
+          "";
+
+        const finalNewChoice =
+          selectedNames;
+
+        const finalChoiceChanged =
+          selectedData.length > 1 ||
+          hasChangedChoice
+            ? "نعم"
+            : "لا";
+
+        sendTracking({
+
+          event:
+            "products_confirmed",
+
+          page:
+            CURRENT_PAGE,
+
+          page_name:
+            "page2",
+
+          page_file:
+            "page2.html",
+
+          selected_products:
+            selectedNames,
+
+          selected_product_names:
+            selectedNames,
+
+          selected_product_ids:
+            selectedIds,
+
+          selected_products_json:
+            JSON.stringify(
+              selectedData
+            ),
+
+          selected_count:
+            selectedData.length,
+
+          first_choice:
+            finalFirstChoice,
+
+          new_choice:
+            finalNewChoice,
+
+          choice_previous:
+            finalFirstChoice,
+
+          choice_new:
+            finalNewChoice,
+
+          choice_changed:
+            finalChoiceChanged,
+
+          selected_product:
+            selectedData
+              .map(
+                item =>
+                  item.name
+              )
+              .join(", "),
+
+          selected_product_price:
+            selectedData[0]?.price ||
+            "",
+
+          time_on_page:
+            timeOnPage,
+
+          next_page:
+            "page3",
+
+          completed:
+            true,
+
+          completed_at:
+            new Date().toISOString()
+
+        });
+
+        addEvent({
+
+          event:
+            "products_confirmed",
+
+          page:
+            CURRENT_PAGE,
+
+          selected_products:
+            selectedData,
+
+          selected_count:
+            selectedData.length,
+
+          first_choice:
+            finalFirstChoice,
+
+          new_choice:
+            finalNewChoice,
+
+          choice_changed:
+            finalChoiceChanged,
+
+          time_on_page:
+            timeOnPage
+
+        });
+
+        sendPathExit();
+
+        sendPageExit(
+          true
+        );
+
+        window.location.href =
+          NEXT_PAGE;
+
+      }
+    );
+
+
+    function sendPageExit(
+      completed = false
+    ) {
+
+      if (
+        pageExitSent
+      ) {
+
+        return;
+
+      }
+
+      pageExitSent =
+        true;
+
+      const timeOnPage =
+        Date.now() -
+        pageEnteredAt;
+
+      sendTracking({
+
+        event:
+          "page_exit",
+
+        page:
+          CURRENT_PAGE,
+
+        page_name:
+          "page2",
+
+        page_file:
+          "page2.html",
+
+        time_on_page:
+          timeOnPage,
+
+        completed:
+          completed
+            ? "نعم"
+            : "لا",
+
+        selected_products:
+          selectedProducts
+            .map(
+              product =>
+                product
+                  .querySelector(
+                    ".product-name"
+                  )
+                  ?.textContent
+                  .trim()
+            )
+            .join(", ")
+
+      });
+
+    }
+
+
+    window.addEventListener(
+      "pagehide",
+      function() {
+
+        sendPathExit();
+
+        sendPageExit(
+          false
+        );
+
+      }
+    );
+
+    updateSelectionUI();
+
+  </script>
+
+</body>
+</html>

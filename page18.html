@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ELIT MAN</title>
+
+  <style>
+    :root {
+      --bg: #f5f2ed;
+      --card: rgba(255,255,255,.9);
+      --text: #151515;
+      --muted: #96918a;
+      --line: rgba(0,0,0,.075);
+      --font: Arial, "Noto Sans Arabic", sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      overflow-x: hidden;
+    }
+
+    .glow {
+      position: fixed;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,255,255,.88),
+          transparent 70%
+        );
+      pointer-events: none;
+      animation:
+        glowMove 10s ease-in-out infinite;
+    }
+
+    @keyframes glowMove {
+
+      0%,100% {
+        transform:
+          translate(-50%, -50%)
+          scale(1);
+        opacity: .85;
+      }
+
+      50% {
+        transform:
+          translate(-50%, -50%)
+          scale(1.1);
+        opacity: 1;
+      }
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 760px;
+      margin: auto;
+      padding:
+        24px 14px
+        45px;
+    }
+
+    .header {
+      text-align: center;
+      margin:
+        0 auto
+        30px;
+      animation:
+        headerIn
+        .8s
+        cubic-bezier(.22,1,.36,1)
+        both;
+    }
+
+    .small-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding:
+        7px 13px;
+      border:
+        1px solid
+        var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background:
+        rgba(255,255,255,.48);
+      font-size: 10px;
+      margin-bottom: 18px;
+
+      animation:
+        labelFloat
+        4s
+        ease-in-out
+        infinite;
+    }
+
+    .small-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #111;
+
+      animation:
+        dotPulse
+        2.5s
+        ease-in-out
+        infinite;
+    }
+
+    .title {
+      font-size:
+        clamp(31px, 7vw, 51px);
+      line-height: 1.08;
+      letter-spacing: -1.8px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      max-width: 500px;
+      margin: auto;
+      color: var(--muted);
+      font-size:
+        clamp(13px, 3.5vw, 16px);
+      line-height: 1.8;
+    }
+
+    @keyframes headerIn {
+
+      from {
+        opacity: 0;
+        transform:
+          translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0);
+      }
+    }
+
+    @keyframes labelFloat {
+
+      0%,100% {
+        transform:
+          translateY(0);
+      }
+
+      50% {
+        transform:
+          translateY(-2px);
+      }
+    }
+
+    @keyframes dotPulse {
+
+      0%,100% {
+        transform:
+          scale(1);
+        opacity: .65;
+      }
+
+      50% {
+        transform:
+          scale(1.45);
+        opacity: 1;
+      }
+    }
+
+    .comments {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0,1fr));
+      gap: 9px;
+    }
+
+    .comment {
+      position: relative;
+      background:
+        var(--card);
+      border:
+        1px solid
+        var(--line);
+      border-radius: 18px;
+      padding:
+        13px 13px
+        12px;
+      box-shadow:
+        0 9px 25px
+        rgba(0,0,0,.045);
+      overflow: hidden;
+      opacity: 0;
+      transform:
+        translateY(20px);
+
+      animation:
+        commentIn
+        .65s
+        cubic-bezier(.22,1,.36,1)
+        forwards;
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .comment:nth-child(1)  { animation-delay: .06s; }
+    .comment:nth-child(2)  { animation-delay: .11s; }
+    .comment:nth-child(3)  { animation-delay: .16s; }
+    .comment:nth-child(4)  { animation-delay: .21s; }
+    .comment:nth-child(5)  { animation-delay: .26s; }
+    .comment:nth-child(6)  { animation-delay: .31s; }
+    .comment:nth-child(7)  { animation-delay: .36s; }
+    .comment:nth-child(8)  { animation-delay: .41s; }
+    .comment:nth-child(9)  { animation-delay: .46s; }
+    .comment:nth-child(10) { animation-delay: .51s; }
+    .comment:nth-child(11) { animation-delay: .56s; }
+    .comment:nth-child(12) { animation-delay: .61s; }
+
+    @keyframes commentIn {
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0);
+      }
+    }
+
+    .comment:hover {
+      transform:
+        translateY(-2px);
+      box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.07);
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 10px;
+    }
+
+    .avatar {
+      width: 37px;
+      height: 37px;
+      flex:
+        0 0 37px;
+      border-radius: 50%;
+      object-fit: cover;
+      border:
+        2px solid
+        #fff;
+      box-shadow:
+        0 3px 10px
+        rgba(0,0,0,.09);
+
+      transition:
+        transform .3s ease;
+    }
+
+    .comment:hover .avatar {
+      transform:
+        scale(1.05);
+    }
+
+    .profile-info {
+      min-width: 0;
+    }
+
+    .name-line {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 2px;
+    }
+
+    .name {
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tiny-check {
+      width: 11px;
+      height: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #171717;
+      color: #fff;
+      font-size: 6px;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 8px;
+    }
+
+    .text {
+      font-size: 12px;
+      line-height: 1.8;
+      color: #242424;
+      min-height: 44px;
+    }
+
+    .comment-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 9px;
+      padding-top: 7px;
+      border-top:
+        1px solid
+        rgba(0,0,0,.045);
+    }
+
+    .heart-button {
+      border: none;
+      background: transparent;
+      padding: 2px 3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #96918a;
+      font-family: inherit;
+      font-size: 9px;
+      cursor: pointer;
+      transition:
+        color .2s ease,
+        transform .2s ease;
+    }
+
+    .heart-icon {
+      font-size: 16px;
+      line-height: 1;
+      color: #8e8982;
+      transition:
+        color .2s ease,
+        transform .22s ease;
+    }
+
+    .heart-button:hover .heart-icon {
+      transform:
+        scale(1.15);
+    }
+
+    .heart-button.liked {
+      color: #111;
+    }
+
+    .heart-button.liked .heart-icon {
+      color: #111;
+      transform:
+        scale(1.18);
+    }
+
+    .heart-button:active .heart-icon {
+      transform:
+        scale(.82);
+    }
+
+    .like-count {
+      min-width: 8px;
+      color: #96918a;
+      font-size: 8px;
+    }
+
+    .heart-button.liked .like-count {
+      color: #111;
+    }
+
+    .date {
+      color: #aaa49d;
+      font-size: 8px;
+    }
+
+    .more {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin:
+        17px 0
+        26px;
+      color: var(--muted);
+      font-size: 10px;
+      opacity: 0;
+
+      animation:
+        fadeIn
+        .8s
+        1s
+        forwards;
+    }
+
+    .more-line {
+      width: 25px;
+      height: 1px;
+      background:
+        rgba(0,0,0,.12);
+    }
+
+    @keyframes fadeIn {
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .final {
+      text-align: center;
+      opacity: 0;
+
+      animation:
+        finalIn
+        .8s
+        1.1s
+        cubic-bezier(.22,1,.36,1)
+        forwards;
+    }
+
+    @keyframes finalIn {
+
+      from {
+        opacity: 0;
+        transform:
+          translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0);
+      }
+    }
+
+    .final-text {
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 17px;
+    }
+
+    .final-text strong {
+      font-weight: 700;
+    }
+
+    .main-button {
+      position: relative;
+      width:
+        min(320px, 90vw);
+      height: 55px;
+      border: none;
+      border-radius: 999px;
+      background: #111;
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow:
+        0 14px 30px
+        rgba(0,0,0,.13);
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+      animation:
+        buttonBreath
+        4s
+        ease-in-out
+        1.8s
+        infinite;
+    }
+
+    .main-button:hover {
+      transform:
+        translateY(-3px);
+      box-shadow:
+        0 19px 38px
+        rgba(0,0,0,.17);
+    }
+
+    .main-button:active {
+      transform:
+        scale(.96);
+      animation: none;
+    }
+
+    @keyframes buttonBreath {
+
+      0%,100% {
+        box-shadow:
+          0 14px 30px
+          rgba(0,0,0,.13);
+      }
+
+      50% {
+        box-shadow:
+          0 17px 35px
+          rgba(0,0,0,.19);
+      }
+    }
+
+    .arrow {
+      display: inline-block;
+      margin-right: 8px;
+      transition:
+        transform .25s ease;
+    }
+
+    .main-button:hover .arrow {
+      transform:
+        translateX(-5px);
+    }
+
+    .rethink {
+      display: block;
+      margin:
+        12px auto
+        0;
+      border: none;
+      background: transparent;
+      color: #99938b;
+      font-family: inherit;
+      font-size: 10px;
+      cursor: pointer;
+
+      transition:
+        color .25s ease,
+        transform .25s ease;
+    }
+
+    .rethink:hover {
+      color: #111;
+      transform:
+        translateY(-1px);
+    }
+
+    .rethink:active {
+      transform:
+        scale(.96);
+    }
+
+    @media (max-width: 600px) {
+
+      .page {
+        padding:
+          21px 10px
+          38px;
+      }
+
+      .header {
+        margin-bottom: 24px;
+      }
+
+      .title {
+        font-size: 33px;
+      }
+
+      .subtitle {
+        font-size: 12.5px;
+        padding: 0 10px;
+      }
+
+      .comments {
+        grid-template-columns:
+          repeat(2, minmax(0,1fr));
+        gap: 7px;
+      }
+
+      .comment {
+        padding:
+          12px 10px
+          11px;
+        border-radius: 16px;
+      }
+
+      .profile {
+        gap: 7px;
+      }
+
+      .avatar {
+        width: 33px;
+        height: 33px;
+        flex-basis: 33px;
+      }
+
+      .name {
+        font-size: 10px;
+      }
+
+      .meta {
+        font-size: 7px;
+      }
+
+      .text {
+        font-size: 10.7px;
+        line-height: 1.78;
+        min-height: 45px;
+      }
+
+      .heart-button {
+        font-size: 8px;
+      }
+
+      .heart-icon {
+        font-size: 15px;
+      }
+
+      .like-count {
+        font-size: 7px;
+      }
+
+      .date {
+        font-size: 7px;
+      }
+
+      .more {
+        font-size: 9px;
+      }
+    }
+
+    @media (max-width: 360px) {
+
+      .page {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      .comments {
+        gap: 6px;
+      }
+
+      .comment {
+        padding:
+          11px 9px
+          10px;
+      }
+
+      .avatar {
+        width: 30px;
+        height: 30px;
+        flex-basis: 30px;
+      }
+
+      .text {
+        font-size: 10.2px;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <div class="glow"></div>
+
+  <main class="page">
+
+    <header class="header">
+
+      <div class="small-label">
+        <span class="small-dot"></span>
+        ناس جربو قبل
+      </div>
+
+      <h1 class="title">
+        شوف كيفاش<br>
+        عاشو الاختيار.
+      </h1>
+
+      <p class="subtitle">
+        كل واحد عندو ذوقو وطريقتو...
+        وهذه بعض التجارب كما عاشها أصحابها.
+      </p>
+
+    </header>
+
+
+    <section class="comments">
+
+
+      <!-- 01 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=12"
+            alt="محمد">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">محمد</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              البارح · تجربة شراء
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          صراحة جربتو البارح، الريحة بقات فيا حتى من بعد... زوين.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="1"
+            aria-label="أعجبني">
+
+            <span class="heart-icon">❣</span>
+            <span>أعجبني</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            أمس
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- 02 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=47"
+            alt="Sara">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">Sara</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              il y a 2 jours
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          Franchement عجبني، ما كنتش متوقعو هكا... très bonne surprise.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="2"
+            aria-label="J'aime">
+
+            <span class="heart-icon">❣</span>
+            <span>J'aime</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            2 j
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- 03 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=33"
+            alt="أمين">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">أمين</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              البارح · من مراكش
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          كنت محتار بين جوج، ولكن هادا عجبني أكثر. ريحتو هادئة.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="3"
+            aria-label="أعجبني">
+
+            <span class="heart-icon">❣</span>
+            <span>أعجبني</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            أمس
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- 04 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=44"
+            alt="Lina">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">Lina</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              il y a 4 jours
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          Très bon choix، خصوصا إلا كنتي كتحب شي حاجة حاضرة بلا مبالغة.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="4"
+            aria-label="J'aime">
+
+            <span class="heart-icon">❣</span>
+            <span>J'aime</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            4 j
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- 05 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=68"
+            alt="عمر">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">عمر</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              قبل 5 أيام
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          وصلني البارح، honestly ريحتو زوينة أكثر مما كنت متوقع.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="5"
+            aria-label="أعجبني">
+
+            <span class="heart-icon">❣</span>
+            <span>أعجبني</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            5 د
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- 06 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=45"
+            alt="Imane">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">Imane</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              منذ أسبوع
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          ما كنتش عارف شنو نختار، ولكن هادا حسيتو ديالي من اللول.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="6"
+            aria-label="أعجبني">
+
+            <span class="heart-icon">❣</span>
+            <span>أعجبني</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            7 د
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- 07 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=59"
+            alt="Karim">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">Karim</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              il y a 8 jours
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          Wallah ما ندمتش عليه، كيجيني مناسب بزاف للنهار.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="7"
+            aria-label="J'aime">
+
+            <span class="heart-icon">❣</span>
+            <span>J'aime</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            8 j
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- 08 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=48"
+            alt="Nour">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">Nour</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              قبل أسبوعين
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          ماشي ديما كنحب العطور القوية، هادا équilibré مزيان.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="8"
+            aria-label="أعجبني">
+
+            <span class="heart-icon">❣</span>
+            <span>أعجبني</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            2 س
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- 09 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=69"
+            alt="مروان">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">مروان</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              البارح · تجربة شخصية
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          أول مرة خديتو كنت غير باغي نجرب، دابا ولى من الاختيارات ديالي.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="9"
+            aria-label="أعجبني">
+
+            <span class="heart-icon">❣</span>
+            <span>أعجبني</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            أمس
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- 10 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=49"
+            alt="Salma">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">Salma</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              il y a 3 semaines
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          franchement ما توقعتش يعجبني لهاد الدرجة... mais oui.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="10"
+            aria-label="J'aime">
+
+            <span class="heart-icon">❣</span>
+            <span>J'aime</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            3 س
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- 11 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=52"
+            alt="طارق">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">طارق</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              منذ شهر
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          b7al haka كنت باغي شي حاجة بسيطة، ولكن فيها présence.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="11"
+            aria-label="أعجبني">
+
+            <span class="heart-icon">❣</span>
+            <span>أعجبني</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            1 س
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- 12 -->
+
+      <article class="comment">
+
+        <div class="profile">
+
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/100?img=8"
+            alt="Maya">
+
+          <div class="profile-info">
+
+            <div class="name-line">
+              <span class="name">Maya</span>
+              <span class="tiny-check">✓</span>
+            </div>
+
+            <span class="meta">
+              قبل شهر
+            </span>
+
+          </div>
+
+        </div>
+
+        <p class="text">
+          صراحة هادي هي النقطة لي كنت كنقلب عليها، ريحة كتجي معايا.
+        </p>
+
+        <div class="comment-bottom">
+
+          <button
+            class="heart-button"
+            type="button"
+            data-comment-id="12"
+            aria-label="J'aime">
+
+            <span class="heart-icon">❣</span>
+            <span>J'aime</span>
+            <span class="like-count">0</span>
+
+          </button>
+
+          <span class="date">
+            2 س
+          </span>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <div class="more">
+
+      <span class="more-line"></span>
+
+      <span>
+        +105 تعليق آخر
+      </span>
+
+      <span class="more-line"></span>
+
+    </div>
+
+
+    <section class="final">
+
+      <p class="final-text">
+        <strong>الاختيار يبقى لك.</strong>
+        <br>
+        خذه عندما تشعر أنه يعبر عنك.
+      </p>
+
+      <button
+        id="mainButton"
+        class="main-button"
+        type="button">
+
+        هذا اختياري
+
+        <span class="arrow">
+          ←
+        </span>
+
+      </button>
+
+      <button
+        id="rethinkButton"
+        class="rethink"
+        type="button">
+
+        أريد إعادة التفكير
+
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /* =====================================================
+       TRACKING
+       ===================================================== */
+
+    const TRACKING_URL =
+      "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2H2ivM6tsw/exec";
+
+
+    const pageStartTime =
+      Date.now();
+
+
+    const clientId =
+      localStorage.getItem(
+        "closing_layer_client_id"
+      ) || "";
+
+
+    const sessionId =
+      sessionStorage.getItem(
+        "closing_layer_session_id"
+      ) || "";
+
+
+    let page18DurationSent =
+      false;
+
+
+    function getPage18DurationSeconds(){
+
+      return (
+        (Date.now() - pageStartTime) /
+        1000
+      );
+
+    }
+
+
+    function sendPage18Duration(){
+
+      if(page18DurationSent){
+        return;
+      }
+
+      page18DurationSent = true;
+
+
+      const durationSeconds =
+        getPage18DurationSeconds();
+
+
+      const payload = {
+
+        action:
+          "page18_duration",
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId,
+
+        page:
+          "الصفحة 18",
+
+        page18_duration_seconds:
+          durationSeconds,
+
+        timestamp:
+          new Date().toISOString()
+
+      };
+
+
+      try {
+
+        fetch(
+          TRACKING_URL,
+          {
+            method:
+              "POST",
+
+            headers: {
+              "Content-Type":
+                "text/plain;charset=UTF-8"
+            },
+
+            body:
+              JSON.stringify(payload),
+
+            mode:
+              "no-cors",
+
+            keepalive:
+              true,
+
+            cache:
+              "no-store"
+          }
+        ).catch(
+          function(){}
+        );
+
+      }
+      catch(error){}
+
+    }
+
+
+    /* =====================================================
+       COMMENT LIKES
+       ===================================================== */
+
+    const likeButtons =
+      document.querySelectorAll(
+        ".heart-button"
+      );
+
+
+    const LIKED_STORAGE_KEY =
+      "closing_layer_liked_comments";
+
+
+    /*
+     * تخزين أعداد الإعجابات محليًا.
+     * هذا يمنع رجوع العدد إلى 0
+     * عند إعادة فتح الصفحة.
+     */
+
+    const LIKE_COUNTS_STORAGE_KEY =
+      "closing_layer_comment_like_counts";
+
+
+    function getLikedComments(){
+
+      try {
+
+        const saved =
+          localStorage.getItem(
+            LIKED_STORAGE_KEY
+          );
+
+
+        if(!saved){
+          return [];
+        }
+
+
+        const parsed =
+          JSON.parse(saved);
+
+
+        return Array.isArray(parsed)
+          ? parsed.map(String)
+          : [];
+
+      }
+      catch(error){
+
+        return [];
+
+      }
+
+    }
+
+
+    function saveLikedComments(
+      likedComments
+    ){
+
+      try {
+
+        localStorage.setItem(
+          LIKED_STORAGE_KEY,
+          JSON.stringify(
+            likedComments
+          )
+        );
+
+      }
+      catch(error){}
+
+    }
+
+
+    function getLocalLikeCounts(){
+
+      try {
+
+        const saved =
+          localStorage.getItem(
+            LIKE_COUNTS_STORAGE_KEY
+          );
+
+
+        if(!saved){
+          return {};
+        }
+
+
+        const parsed =
+          JSON.parse(saved);
+
+
+        return parsed &&
+          typeof parsed === "object"
+          ? parsed
+          : {};
+
+      }
+      catch(error){
+
+        return {};
+
+      }
+
+    }
+
+
+    function saveLocalLikeCounts(
+      counts
+    ){
+
+      try {
+
+        localStorage.setItem(
+          LIKE_COUNTS_STORAGE_KEY,
+          JSON.stringify(counts)
+        );
+
+      }
+      catch(error){}
+
+    }
+
+
+    /* =====================================================
+       تطبيق حالة الإعجاب والعدد المحلي
+       ===================================================== */
+
+    function applyLocalLikeState(){
+
+      const likedComments =
+        getLikedComments();
+
+
+      const localCounts =
+        getLocalLikeCounts();
+
+
+      likeButtons.forEach(
+        function(button){
+
+          const commentId =
+            String(
+              button.dataset.commentId
+            );
+
+
+          const countElement =
+            button.querySelector(
+              ".like-count"
+            );
+
+
+          if(
+            likedComments.includes(
+              commentId
+            )
+          ){
+
+            button.classList.add(
+              "liked"
+            );
+
+          }
+          else {
+
+            button.classList.remove(
+              "liked"
+            );
+
+          }
+
+
+          if(
+            countElement &&
+            localCounts[commentId] !== undefined
+          ){
+
+            const savedCount =
+              Number(
+                localCounts[commentId]
+              );
+
+
+            if(
+              !isNaN(savedCount) &&
+              savedCount >= 0
+            ){
+
+              countElement.textContent =
+                savedCount;
+
+            }
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       جلب الأعداد المركزية
+       ===================================================== */
+
+    function loadCommentLikes(){
+
+      /*
+       * أولًا:
+       * نظهر البيانات المحلية فورًا.
+       */
+
+      applyLocalLikeState();
+
+
+      fetch(
+        TRACKING_URL +
+        "?action=get_comment_likes",
+        {
+          method:
+            "GET",
+
+          cache:
+            "no-store"
+        }
+      )
+      .then(
+        function(response){
+
+          return response.json();
+
+        }
+      )
+      .then(
+        function(data){
+
+          if(
+            !data ||
+            !data.success ||
+            !data.likes
+          ){
+
+            return;
+
+          }
+
+
+          const localCounts =
+            getLocalLikeCounts();
+
+
+          const likedComments =
+            getLikedComments();
+
+
+          likeButtons.forEach(
+            function(button){
+
+              const commentId =
+                String(
+                  button.dataset.commentId
+                );
+
+
+              const countElement =
+                button.querySelector(
+                  ".like-count"
+                );
+
+
+              if(!countElement){
+                return;
+              }
+
+
+              const serverValue =
+                Number(
+                  data.likes[commentId]
+                );
+
+
+              const localValue =
+                Number(
+                  localCounts[commentId]
+                );
+
+
+              const safeServerValue =
+                !isNaN(serverValue) &&
+                serverValue >= 0
+                  ? serverValue
+                  : 0;
+
+
+              const safeLocalValue =
+                !isNaN(localValue) &&
+                localValue >= 0
+                  ? localValue
+                  : 0;
+
+
+              /*
+               * نستخدم العدد الأكبر حتى لا يتم
+               * استبدال إعجاب محفوظ محليًا
+               * بقيمة قديمة من الخادم.
+               */
+
+              let finalCount =
+                Math.max(
+                  safeServerValue,
+                  safeLocalValue
+                );
+
+
+              /*
+               * إذا كان هذا المتصفح قد أعجب
+               * بالتعليق، فالعدد لا يمكن أن
+               * يكون أقل من 1.
+               */
+
+              if(
+                likedComments.includes(
+                  commentId
+                ) &&
+                finalCount < 1
+              ){
+
+                finalCount = 1;
+
+              }
+
+
+              countElement.textContent =
+                finalCount;
+
+
+              localCounts[commentId] =
+                finalCount;
+
+            }
+          );
+
+
+          saveLocalLikeCounts(
+            localCounts
+          );
+
+
+          applyLocalLikeState();
+
+        }
+      )
+      .catch(
+        function(){
+
+          /*
+           * إذا فشل الاتصال بالخادم،
+           * تبقى البيانات المحلية كما هي.
+           */
+
+          applyLocalLikeState();
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       إرسال الإعجاب / إزالة الإعجاب
+       ===================================================== */
+
+    function sendCommentLike(
+      commentId,
+      action
+    ){
+
+      const payload = {
+
+        action:
+          action,
+
+        comment_id:
+          commentId,
+
+        client_id:
+          clientId,
+
+        session_id:
+          sessionId
+
+      };
+
+
+      try {
+
+        fetch(
+          TRACKING_URL,
+          {
+            method:
+              "POST",
+
+            headers: {
+              "Content-Type":
+                "text/plain;charset=UTF-8"
+            },
+
+            body:
+              JSON.stringify(payload),
+
+            mode:
+              "no-cors",
+
+            keepalive:
+              true,
+
+            cache:
+              "no-store"
+          }
+        ).catch(
+          function(){}
+        );
+
+      }
+      catch(error){}
+
+    }
+
+
+    /* =====================================================
+       الضغط على الإعجاب
+       ===================================================== */
+
+    likeButtons.forEach(
+      function(button){
+
+        button.addEventListener(
+          "click",
+          function(){
+
+            const commentId =
+              String(
+                button.dataset.commentId
+              );
+
+
+            const countElement =
+              button.querySelector(
+                ".like-count"
+              );
+
+
+            const likedComments =
+              getLikedComments();
+
+
+            const localCounts =
+              getLocalLikeCounts();
+
+
+            const alreadyLiked =
+              likedComments.includes(
+                commentId
+              );
+
+
+            let currentCount =
+              Number(
+                countElement
+                  ? countElement.textContent
+                  : localCounts[commentId]
+              );
+
+
+            if(
+              isNaN(currentCount) ||
+              currentCount < 0
+            ){
+
+              currentCount = 0;
+
+            }
+
+
+            if(alreadyLiked){
+
+              /* =========================================
+                 إزالة الإعجاب
+                 ========================================= */
+
+              const newLikedComments =
+                likedComments.filter(
+                  function(id){
+
+                    return id !== commentId;
+
+                  }
+                );
+
+
+              saveLikedComments(
+                newLikedComments
+              );
+
+
+              button.classList.remove(
+                "liked"
+              );
+
+
+              const newCount =
+                Math.max(
+                  0,
+                  currentCount - 1
+                );
+
+
+              if(countElement){
+
+                countElement.textContent =
+                  newCount;
+
+              }
+
+
+              localCounts[commentId] =
+                newCount;
+
+
+              saveLocalLikeCounts(
+                localCounts
+              );
+
+
+              sendCommentLike(
+                commentId,
+                "comment_unlike"
+              );
+
+            }
+            else {
+
+              /* =========================================
+                 إضافة الإعجاب
+                 ========================================= */
+
+              likedComments.push(
+                commentId
+              );
+
+
+              saveLikedComments(
+                likedComments
+              );
+
+
+              button.classList.add(
+                "liked"
+              );
+
+
+              const newCount =
+                currentCount + 1;
+
+
+              if(countElement){
+
+                countElement.textContent =
+                  newCount;
+
+              }
+
+
+              localCounts[commentId] =
+                newCount;
+
+
+              saveLocalLikeCounts(
+                localCounts
+              );
+
+
+              sendCommentLike(
+                commentId,
+                "comment_like"
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       عند دخول الصفحة
+       ===================================================== */
+
+    loadCommentLikes();
+
+
+    /* =====================================================
+       الأزرار النهائية
+       ===================================================== */
+
+    const mainButton =
+      document.getElementById(
+        "mainButton"
+      );
+
+
+    const rethinkButton =
+      document.getElementById(
+        "rethinkButton"
+      );
+
+
+    /* =====================================================
+       الزر الرئيسي
+       ===================================================== */
+
+    mainButton.addEventListener(
+      "click",
+      function() {
+
+        sendPage18Duration();
+
+
+        mainButton.style.transform =
+          "scale(.96)";
+
+
+        setTimeout(
+          function() {
+
+            mainButton.style.transform =
+              "scale(1)";
+
+
+            window.location.href =
+              "page11.html";
+
+          },
+          140
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       أريد إعادة التفكير
+       ===================================================== */
+
+    rethinkButton.addEventListener(
+      "click",
+      function() {
+
+        rethinkButton.style.transform =
+          "scale(.96)";
+
+
+        setTimeout(
+          function() {
+
+            rethinkButton.style.transform =
+              "scale(1)";
+
+          },
+          120
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       PAGEHIDE
+       ===================================================== */
+
+    window.addEventListener(
+      "pagehide",
+      function(){
+
+        sendPage18Duration();
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>

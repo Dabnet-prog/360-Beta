@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ELIT MAN</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #ffffff 0%,
+            #f8f8f6 48%,
+            #f2f2ef 100%
+        );
+
+    color:#171717;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    overflow-x:hidden;
+}
+
+
+/* =========================================
+   AMBIENT LIGHT
+========================================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:380px;
+    height:380px;
+
+    top:50%;
+    left:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.95),
+            rgba(255,255,255,0) 70%
+        );
+
+    pointer-events:none;
+
+    animation:
+        breathe 8s ease-in-out infinite;
+}
+
+@keyframes breathe{
+
+    0%,
+    100%{
+        opacity:.45;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.95);
+    }
+
+    50%{
+        opacity:.9;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.07);
+    }
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.page{
+
+    width:100%;
+
+    max-width:520px;
+
+    min-height:100vh;
+
+    margin:auto;
+
+    padding:
+        28px 22px
+        24px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.brand{
+
+    align-self:center;
+
+    padding:
+        7px 15px;
+
+    border:
+        1px solid #deded9;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.65);
+
+    color:#555;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    letter-spacing:2.2px;
+
+    opacity:0;
+
+    transform:
+        translateY(-8px);
+
+    animation:
+        fadeDown .8s
+        cubic-bezier(.2,.8,.2,1)
+        .15s forwards;
+}
+
+@keyframes fadeDown{
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:
+        20px 0
+        35px;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.intro{
+
+    color:#999;
+
+    font-size:12px;
+
+    margin-bottom:18px;
+
+    opacity:0;
+
+    transform:
+        translateY(10px);
+
+    animation:
+        fadeUp .8s
+        cubic-bezier(.2,.8,.2,1)
+        .55s forwards;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+h1{
+
+    max-width:370px;
+
+    font-size:28px;
+
+    font-weight:430;
+
+    line-height:1.55;
+
+    letter-spacing:-.8px;
+
+    opacity:0;
+
+    transform:
+        translateY(13px)
+        scale(.985);
+
+    animation:
+        titleIn 1s
+        cubic-bezier(.2,.8,.2,1)
+        .72s forwards;
+}
+
+h1 strong{
+    font-weight:780;
+}
+
+@keyframes titleIn{
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   PATH
+========================================= */
+
+.path-display{
+
+    margin-top:18px;
+
+    padding:
+        8px 16px;
+
+    border:
+        1px solid #e2e2dd;
+
+    border-radius:999px;
+
+    background:#fff;
+
+    color:#555;
+
+    font-size:11px;
+
+    opacity:0;
+
+    transform:
+        scale(.94)
+        translateY(8px);
+
+    animation:
+        pathIn .7s
+        cubic-bezier(.2,.8,.2,1)
+        1.05s forwards;
+}
+
+@keyframes pathIn{
+
+    to{
+
+        opacity:1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   QUESTION
+========================================= */
+
+.question{
+
+    margin-top:28px;
+
+    font-size:16px;
+
+    font-weight:650;
+
+    line-height:1.7;
+
+    opacity:0;
+
+    transform:
+        translateY(12px);
+
+    animation:
+        fadeUp .8s
+        cubic-bezier(.2,.8,.2,1)
+        1.25s forwards;
+}
+
+
+/* =========================================
+   ACTION OPTIONS
+========================================= */
+
+.options{
+
+    width:100%;
+
+    max-width:390px;
+
+    margin-top:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    opacity:0;
+
+    transform:
+        translateY(15px);
+
+    animation:
+        fadeUp .8s
+        cubic-bezier(.2,.8,.2,1)
+        1.45s forwards;
+}
+
+.option{
+
+    width:100%;
+
+    padding:
+        15px 16px;
+
+    border:
+        1px solid #deded9;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    color:#222;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    cursor:pointer;
+
+    transition:
+        border .3s ease,
+        box-shadow .3s ease,
+        transform .3s ease;
+}
+
+.option:hover{
+
+    border-color:#aaa;
+
+    transform:
+        translateY(-1px);
+}
+
+.option.selected{
+
+    border-color:#171717;
+
+    box-shadow:
+        0 10px 28px
+        rgba(0,0,0,.06);
+
+    transform:
+        translateY(-1px);
+}
+
+.option.selected::before{
+
+    content:"✓";
+
+    margin-left:8px;
+
+    font-size:12px;
+}
+
+
+/* =========================================
+   EXTRA
+========================================= */
+
+.extra{
+
+    width:100%;
+
+    max-width:390px;
+
+    margin-top:14px;
+
+    display:none;
+
+    opacity:0;
+}
+
+.extra.show{
+
+    display:block;
+
+    animation:
+        extraIn .5s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+@keyframes extraIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(8px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.extra-label{
+
+    color:#999;
+
+    font-size:11px;
+
+    margin-bottom:7px;
+}
+
+textarea{
+
+    width:100%;
+
+    min-height:95px;
+
+    padding:14px;
+
+    border:
+        1px solid #deded9;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    outline:none;
+
+    resize:none;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    line-height:1.8;
+
+    text-align:center;
+
+    transition:
+        border .3s ease,
+        box-shadow .3s ease;
+}
+
+textarea:focus{
+
+    border-color:#999;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(0,0,0,.035);
+}
+
+
+/* =========================================
+   BOTTOM
+========================================= */
+
+.bottom{
+
+    padding-top:16px;
+
+    opacity:0;
+
+    transform:
+        translateY(10px);
+
+    animation:
+        fadeUp .8s
+        cubic-bezier(.2,.8,.2,1)
+        1.7s forwards;
+}
+
+.next-btn{
+
+    width:100%;
+
+    padding:
+        16px 20px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#171717;
+
+    color:#fff;
+
+    font-family:inherit;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    opacity:.3;
+
+    transition:
+        opacity .35s ease,
+        transform .25s ease,
+        box-shadow .35s ease;
+}
+
+.next-btn.active{
+
+    opacity:1;
+}
+
+.next-btn.active:hover{
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.14);
+}
+
+.next-btn:active{
+
+    transform:
+        scale(.985);
+}
+
+.micro{
+
+    margin-top:10px;
+
+    text-align:center;
+
+    color:#aaa;
+
+    font-size:10px;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes fadeUp{
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   SMALL SCREENS
+========================================= */
+
+@media(max-height:700px){
+
+    .content{
+
+        padding-top:12px;
+        padding-bottom:20px;
+    }
+
+    h1{
+
+        font-size:24px;
+    }
+
+    .question{
+
+        margin-top:20px;
+    }
+
+    .options{
+
+        margin-top:15px;
+    }
+
+    .option{
+
+        padding:
+            12px 14px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<main class="page">
+
+
+    <!-- =====================================
+         BRAND
+    ====================================== -->
+
+    <div class="brand">
+        ELIT MAN
+    </div>
+
+
+    <!-- =====================================
+         CONTENT
+    ====================================== -->
+
+    <section class="content">
+
+
+        <div class="intro">
+            الآن ننتقل من التفكير إلى الخطوة الأولى.
+        </div>
+
+
+        <h1>
+            لو قررت أن تبدأ...
+            <br>
+            <strong>ما أول شيء ستفعله؟</strong>
+        </h1>
+
+
+        <!-- الطريق الذي اختاره في Page 13 -->
+
+        <div
+            class="path-display"
+            id="pathDisplay"
+        >
+            الطريق الذي اخترته
+        </div>
+
+
+        <!-- =================================
+             ACTION OPTIONS
+================================== -->
+
+        <div class="question">
+            ماذا ستفعل الآن؟
+        </div>
+
+
+        <div class="options">
+
+
+            <button
+                class="option"
+                data-value="now"
+                type="button"
+            >
+                سأبدأ بها الآن
+            </button>
+
+
+            <button
+                class="option"
+                data-value="later"
+                type="button"
+            >
+                سأبدأ بها لاحقًا
+            </button>
+
+
+            <button
+                class="option"
+                data-value="not_do"
+                type="button"
+            >
+                لن أبدأ بها
+            </button>
+
+
+        </div>
+
+
+        <!-- =================================
+             EXTRA QUESTION
+        ================================== -->
+
+        <div
+            class="extra"
+            id="extra"
+        >
+
+            <div
+                class="extra-label"
+                id="extraLabel"
+            >
+                ما الذي يجعلك تؤجلها؟
+            </div>
+
+
+            <textarea
+                id="extraInput"
+                placeholder="اكتب بطريقتك..."
+            ></textarea>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================
+         BUTTON
+    ====================================== -->
+
+    <div class="bottom">
+
+        <button
+            class="next-btn"
+            id="nextBtn"
+            type="button"
+        >
+            نكمل ←
+        </button>
+
+
+        <div class="micro">
+            لا توجد إجابة صحيحة أو خاطئة
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   TRACKING CONFIG
+===================================================== */
+
+const TRACKING_URL =
+    "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+
+/* =====================================================
+   CLIENT ID
+===================================================== */
+
+const CLIENT_KEY =
+    "closing_layer_client_id";
+
+
+let clientId =
+    localStorage.getItem(
+        CLIENT_KEY
+    );
+
+
+if(!clientId){
+
+    clientId =
+        "CL-" +
+        crypto.randomUUID();
+
+    localStorage.setItem(
+        CLIENT_KEY,
+        clientId
+    );
+
+}
+
+
+/* =====================================================
+   SESSION ID
+===================================================== */
+
+const SESSION_KEY =
+    "closing_layer_session_id";
+
+
+let sessionId =
+    sessionStorage.getItem(
+        SESSION_KEY
+    );
+
+
+let isNewSession =
+    false;
+
+
+if(!sessionId){
+
+    sessionId =
+        "S-" +
+        crypto.randomUUID();
+
+    sessionStorage.setItem(
+        SESSION_KEY,
+        sessionId
+    );
+
+    isNewSession =
+        true;
+
+}
+
+
+/* =====================================================
+   RETURNED LATER
+===================================================== */
+
+const LAST_SESSION_KEY =
+    "closing_layer_last_session_id";
+
+
+const previousSessionId =
+    localStorage.getItem(
+        LAST_SESSION_KEY
+    );
+
+
+const returnedLater =
+    isNewSession &&
+    previousSessionId &&
+    previousSessionId !== sessionId;
+
+
+localStorage.setItem(
+    LAST_SESSION_KEY,
+    sessionId
+);
+
+
+/* =====================================================
+   PAGE CONFIG
+===================================================== */
+
+const CURRENT_PAGE =
+    "الصفحة 16";
+
+
+const startedAt =
+    Date.now();
+
+
+const pageEnteredAt =
+    new Date().toISOString();
+
+
+let pageExitSent =
+    false;
+
+
+/* =====================================================
+   TRACKING SEND
+===================================================== */
+
+function sendTracking(data){
+
+    try{
+
+        const payload = {
+
+            client_id:
+                clientId,
+
+            session_id:
+                sessionId,
+
+            ...data
+
+        };
+
+
+        fetch(
+            TRACKING_URL,
+            {
+                method:
+                    "POST",
+
+                headers:{
+                    "Content-Type":
+                        "text/plain;charset=UTF-8"
+                },
+
+                body:
+                    JSON.stringify(
+                        payload
+                    ),
+
+                mode:
+                    "no-cors",
+
+                keepalive:
+                    true,
+
+                cache:
+                    "no-store"
+            }
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Tracking error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   SESSION START
+===================================================== */
+
+if(isNewSession){
+
+    sendTracking({
+
+        event:
+            "session_start",
+
+        page:
+            CURRENT_PAGE,
+
+        timestamp:
+            pageEnteredAt
+
+    });
+
+}
+
+
+/* =====================================================
+   CENTRAL STATE
+===================================================== */
+
+let state = {};
+
+try{
+
+    state =
+        JSON.parse(
+            localStorage.getItem(
+                "decision_state"
+            ) || "{}"
+        );
+
+}
+catch(error){
+
+    state = {};
+
+}
+
+
+/* =====================================================
+   RECOVER PAGE 13
+===================================================== */
+
+const selectedPath =
+    localStorage.getItem(
+        "selected_financial_path"
+    )
+    ||
+    state.selected_financial_path
+    ||
+    "";
+
+
+const customPath =
+    localStorage.getItem(
+        "selected_financial_path_text"
+    )
+    ||
+    state.selected_financial_path_text
+    ||
+    "";
+
+
+/* =====================================================
+   RECOVER PAGE 14
+===================================================== */
+
+const pathExplanation =
+    localStorage.getItem(
+        "financial_path_explanation"
+    )
+    ||
+    localStorage.getItem(
+        "page14_answer"
+    )
+    ||
+    state.financial_path_explanation
+    ||
+    "";
+
+
+/* =====================================================
+   RECOVER PAGE 15
+===================================================== */
+
+const feasibility =
+    localStorage.getItem(
+        "financial_path_feasibility_text"
+    )
+    ||
+    localStorage.getItem(
+        "financial_path_feasibility"
+    )
+    ||
+    state.financial_path_feasibility
+    ||
+    "";
+
+
+const difficulty =
+    localStorage.getItem(
+        "financial_path_difficulty"
+    )
+    ||
+    state.financial_path_difficulty
+    ||
+    "";
+
+
+/* =====================================================
+   PATH LABEL
+===================================================== */
+
+const pathLabels = {
+
+    sell_asset:
+        "نبيع شيئًا",
+
+    ask_person:
+        "نستعين بشخص",
+
+    save_wait:
+        "ننتظر ونجمعه",
+
+    other:
+        customPath ||
+        "طريق آخر"
+
+};
+
+
+document.getElementById(
+    "pathDisplay"
+).textContent =
+    pathLabels[selectedPath]
+    ||
+    customPath
+    ||
+    "الطريق الذي اخترته";
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const options =
+    document.querySelectorAll(
+        ".option"
+    );
+
+
+const extra =
+    document.getElementById(
+        "extra"
+    );
+
+
+const extraLabel =
+    document.getElementById(
+        "extraLabel"
+    );
+
+
+const extraInput =
+    document.getElementById(
+        "extraInput"
+    );
+
+
+const nextBtn =
+    document.getElementById(
+        "nextBtn"
+    );
+
+
+/* =====================================================
+   CURRENT PAGE STATE
+===================================================== */
+
+let actionDecision =
+    null;
+
+
+/* =====================================================
+   PAGE VIEW
+===================================================== */
+
+sendTracking({
+
+    event:
+        "page_view",
+
+    page:
+        CURRENT_PAGE,
+
+    timestamp:
+        pageEnteredAt,
+
+    selected_path:
+        selectedPath,
+
+    selected_path_text:
+        customPath,
+
+    path_explanation:
+        pathExplanation,
+
+    feasibility:
+        feasibility,
+
+    difficulty:
+        difficulty
+
+});
+
+
+/* =====================================================
+   BACK NAVIGATION
+===================================================== */
+
+window.addEventListener(
+    "pageshow",
+    function(event){
+
+        if(
+            event.persisted
+        ){
+
+            sendTracking({
+
+                event:
+                    "back_navigation",
+
+                page:
+                    CURRENT_PAGE,
+
+                timestamp:
+                    new Date().toISOString(),
+
+                from:
+                    CURRENT_PAGE
+
+            });
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CHOICE CHANGE
+===================================================== */
+
+function sendChoiceChanged(
+    previousOption,
+    newOption
+){
+
+    if(
+        !previousOption ||
+        !newOption ||
+        previousOption === newOption
+    ){
+
+        return;
+
+    }
+
+
+    const previousText =
+        previousOption.textContent.trim();
+
+
+    const newText =
+        newOption.textContent.trim();
+
+
+    sendTracking({
+
+        event:
+            "choice_changed",
+
+        page:
+            CURRENT_PAGE,
+
+        path:
+            CURRENT_PAGE,
+
+        choice_changed:
+            "نعم",
+
+        choice_previous:
+            previousText,
+
+        choice_new:
+            newText,
+
+        previous_choice:
+            previousText,
+
+        new_choice:
+            newText,
+
+        timestamp:
+            new Date().toISOString()
+
+    });
+
+}
+
+
+/* =====================================================
+   OPTION SELECTION
+===================================================== */
+
+options.forEach(
+    option => {
+
+        option.addEventListener(
+            "click",
+            function(){
+
+                const previousOption =
+                    document.querySelector(
+                        ".option.selected"
+                    );
+
+
+                if(
+                    previousOption &&
+                    previousOption !== this
+                ){
+
+                    sendChoiceChanged(
+                        previousOption,
+                        this
+                    );
+
+                }
+
+
+                options.forEach(
+                    item => {
+
+                        item.classList.remove(
+                            "selected"
+                        );
+
+                    }
+                );
+
+
+                this.classList.add(
+                    "selected"
+                );
+
+
+                actionDecision =
+                    this.dataset.value;
+
+
+                /*
+                   تسجيل التفاعل نفسه،
+                   بالنص الذي رآه العميل.
+                */
+
+                sendTracking({
+
+                    event:
+                        "interaction",
+
+                    page:
+                        CURRENT_PAGE,
+
+                    interaction:
+                        "next_action_selected",
+
+                    value:
+                        this.textContent.trim(),
+
+                    timestamp:
+                        new Date().toISOString()
+
+                });
+
+
+                /* =================================
+                   NOW
+                ================================== */
+
+                if(
+                    actionDecision ===
+                    "now"
+                ){
+
+                    extra.classList.remove(
+                        "show"
+                    );
+
+
+                    extraInput.value =
+                        "";
+
+
+                    nextBtn.classList.add(
+                        "active"
+                    );
+
+
+                    return;
+                }
+
+
+                /* =================================
+                   LATER
+                ================================== */
+
+                if(
+                    actionDecision ===
+                    "later"
+                ){
+
+                    extraLabel.textContent =
+                        "متى تتوقع أن تبدأ؟";
+
+
+                    extraInput.placeholder =
+                        "اكتب الوقت أو الفترة...";
+
+
+                    extra.classList.add(
+                        "show"
+                    );
+
+
+                    nextBtn.classList.remove(
+                        "active"
+                    );
+
+
+                    return;
+
+                }
+
+
+                /* =================================
+                   NOT DO
+                ================================== */
+
+                if(
+                    actionDecision ===
+                    "not_do"
+                ){
+
+                    extraLabel.textContent =
+                        "ما السبب؟";
+
+
+                    extraInput.placeholder =
+                        "اكتب بطريقتك...";
+
+
+                    extra.classList.add(
+                        "show"
+                    );
+
+
+                    nextBtn.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   EXTRA INPUT
+===================================================== */
+
+extraInput.addEventListener(
+    "input",
+    function(){
+
+        if(
+            actionDecision ===
+            "now"
+        ){
+
+            nextBtn.classList.add(
+                "active"
+            );
+
+            return;
+
+        }
+
+
+        const valid =
+            this.value
+                .trim()
+                .length >= 2;
+
+
+        nextBtn.classList.toggle(
+            "active",
+            valid
+        );
+
+    }
+);
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+nextBtn.addEventListener(
+    "click",
+    function(){
+
+        if(!actionDecision){
+
+            return;
+
+        }
+
+
+        const extraAnswer =
+            extraInput
+                .value
+                .trim();
+
+
+        /*
+           LATER / NOT DO
+           يحتاجان إلى إجابة إضافية.
+        */
+
+        if(
+            actionDecision !== "now"
+            &&
+            extraAnswer.length < 2
+        ){
+
+            return;
+
+        }
+
+
+        const timestamp =
+            new Date().toISOString();
+
+
+        const timeOnPage =
+            Date.now() -
+            startedAt;
+
+
+        /* =================================================
+           EXACT VISIBLE ACTION
+        ================================================= */
+
+        const selectedOption =
+            document.querySelector(
+                `.option[data-value="${actionDecision}"]`
+            );
+
+
+        const actionText =
+            selectedOption
+                ? selectedOption
+                    .textContent
+                    .trim()
+                : "";
+
+
+        /* =================================================
+           SAVE LOCAL STORAGE
+        ================================================= */
+
+        localStorage.setItem(
+            "financial_action_decision",
+            actionDecision
+        );
+
+
+        localStorage.setItem(
+            "financial_action_decision_text",
+            actionText
+        );
+
+
+        localStorage.setItem(
+            "financial_action_followup",
+            extraAnswer
+        );
+
+
+        localStorage.setItem(
+            "page16_completed_at",
+            timestamp
+        );
+
+
+        /* =================================================
+           UPDATE CENTRAL STATE
+        ================================================= */
+
+        state.selected_financial_path =
+            selectedPath;
+
+
+        state.selected_financial_path_text =
+            customPath;
+
+
+        state.financial_path_explanation =
+            pathExplanation;
+
+
+        state.financial_path_feasibility =
+            feasibility;
+
+
+        state.financial_path_difficulty =
+            difficulty;
+
+
+        state.financial_action_decision =
+            actionDecision;
+
+
+        /*
+           النص الذي رآه العميل فعليًا.
+        */
+
+        state.financial_action_decision_text =
+            actionText;
+
+
+        /*
+           جواب المتابعة الإضافي.
+        */
+
+        state.financial_action_followup =
+            extraAnswer;
+
+
+        state.page16_completed =
+            true;
+
+
+        state.page16_completed_at =
+            timestamp;
+
+
+        localStorage.setItem(
+            "decision_state",
+            JSON.stringify(
+                state
+            )
+        );
+
+
+        /* =================================================
+           LOCAL EVENT HISTORY
+        ================================================= */
+
+        let events = [];
+
+
+        try{
+
+            events =
+                JSON.parse(
+                    localStorage.getItem(
+                        "decision_events"
+                    ) || "[]"
+                );
+
+        }
+        catch(error){
+
+            events = [];
+
+        }
+
+
+        events.push({
+
+            event:
+                "financial_action_decision",
+
+            page:
+                CURRENT_PAGE,
+
+            timestamp:
+                timestamp,
+
+            selected_path:
+                selectedPath,
+
+            selected_path_text:
+                customPath,
+
+            path_explanation:
+                pathExplanation,
+
+            feasibility:
+                feasibility,
+
+            difficulty:
+                difficulty,
+
+            action_decision:
+                actionDecision,
+
+            action_text:
+                actionText,
+
+            action_followup:
+                extraAnswer,
+
+            time_on_page:
+                timeOnPage
+
+        });
+
+
+        localStorage.setItem(
+            "decision_events",
+            JSON.stringify(
+                events
+            )
+        );
+
+
+        /* =================================================
+           SERVER EVENT
+           
+           360-2 M = actionText
+        ================================================= */
+
+        sendTracking({
+
+            event:
+                "financial_action_decision",
+
+            page:
+                CURRENT_PAGE,
+
+            timestamp:
+                timestamp,
+
+            selected_financial_path:
+                selectedPath,
+
+            selected_financial_path_text:
+                customPath,
+
+            financial_path_explanation:
+                pathExplanation,
+
+            financial_path_feasibility:
+                feasibility,
+
+            financial_path_difficulty:
+                difficulty,
+
+            /*
+               القيمة التي ستدخل إلى
+               360-2 M
+            */
+
+            next_action:
+                actionText,
+
+            /*
+               القيمة التقنية تبقى منفصلة
+               ولا تدخل إلى M.
+            */
+
+            next_action_value:
+                actionDecision,
+
+            /*
+               جواب العميل الإضافي:
+               متى سيبدأ / لماذا لن يبدأ
+            */
+
+            action_followup:
+                extraAnswer,
+
+            time_on_page:
+                timeOnPage
+
+        });
+
+
+        /* =================================================
+           PAGE 16 COMPLETED
+        ================================================= */
+
+        sendTracking({
+
+            event:
+                "page16_completed",
+
+            page:
+                CURRENT_PAGE,
+
+            timestamp:
+                timestamp,
+
+            selected_path:
+                selectedPath,
+
+            selected_path_text:
+                customPath,
+
+            path_explanation:
+                pathExplanation,
+
+            feasibility:
+                feasibility,
+
+            difficulty:
+                difficulty,
+
+            /*
+               360-2 M
+            */
+
+            next_action:
+                actionText,
+
+            next_action_value:
+                actionDecision,
+
+            action_followup:
+                extraAnswer,
+
+            completed:
+                true,
+
+            time_on_page:
+                timeOnPage,
+
+            next_page:
+                "page11"
+
+        });
+
+
+        /* =================================================
+           PATH EXIT — U
+===================================================== */
+
+        sendPathExit();
+
+
+        /* =================================================
+           PAGE EXIT
+        ================================================= */
+
+        if(!pageExitSent){
+
+            pageExitSent =
+                true;
+
+
+            sendTracking({
+
+                event:
+                    "page_exit",
+
+                page:
+                    CURRENT_PAGE,
+
+                timestamp:
+                    new Date().toISOString(),
+
+                duration:
+                    Date.now() -
+                    startedAt
+
+            });
+
+        }
+
+
+        /* =================================================
+           PAGE 16 → PAGE 18
+           
+           Page 18 = التعليقات والتجارب
+        ================================================= */
+
+        window.location.href =
+            "page18.html";
+
+    }
+);
+
+
+/* =====================================================
+   PATH EXIT — FULL PATH U
+===================================================== */
+
+let pathExitSent =
+    false;
+
+
+function sendPathExit(){
+
+    if(pathExitSent){
+
+        return;
+
+    }
+
+
+    pathExitSent =
+        true;
+
+
+    const payload = {
+
+        client_id:
+            clientId,
+
+        session_id:
+            sessionId,
+
+        event:
+            "path_page_exit",
+
+        page:
+            CURRENT_PAGE,
+
+        path_page:
+            CURRENT_PAGE,
+
+        timestamp:
+            new Date().toISOString()
+
+    };
+
+
+    const body =
+        JSON.stringify(
+            payload
+        );
+
+
+    try{
+
+        if(navigator.sendBeacon){
+
+            const blob =
+                new Blob(
+                    [body],
+                    {
+                        type:
+                            "text/plain;charset=UTF-8"
+                    }
+                );
+
+
+            navigator.sendBeacon(
+                TRACKING_URL,
+                blob
+            );
+
+            return;
+
+        }
+
+    }
+    catch(error){}
+
+
+    fetch(
+        TRACKING_URL,
+        {
+            method:
+                "POST",
+
+            headers:{
+                "Content-Type":
+                    "text/plain;charset=UTF-8"
+            },
+
+            body:
+                body,
+
+            mode:
+                "no-cors",
+
+            keepalive:
+                true,
+
+            cache:
+                "no-store"
+        }
+    ).catch(
+        function(){}
+    );
+
+}
+
+
+/* =====================================================
+   PAGEHIDE
+===================================================== */
+
+window.addEventListener(
+    "pagehide",
+    function(){
+
+        /*
+           U — تسجيل الصفحة 16
+           لحظة الخروج إذا لم يكن
+           الانتقال عبر الزر.
+        */
+
+        sendPathExit();
+
+
+        if(pageExitSent){
+
+            return;
+
+        }
+
+
+        pageExitSent =
+            true;
+
+
+        sendTracking({
+
+            event:
+                "page_exit",
+
+            page:
+                CURRENT_PAGE,
+
+            timestamp:
+                new Date().toISOString(),
+
+            duration:
+                Date.now() -
+                startedAt
+
+        });
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
