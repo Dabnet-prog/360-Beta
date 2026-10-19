@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f5f1">
+  <title>ELIT MAN — متابعة الطلب</title>
+
+  <!-- POSTHOG -->
+  <script>
+    !function(t,e){
+      var o,n,p,r;
+      e.__SV=1;
+      window.posthog=e;
+      e._i=[];
+      e.init=function(i,s,a){
+        function g(t,e){
+          var o=e.split(".");
+          2===o.length&&(t=t[o[0]],e=o[1]);
+          t[e]=function(){
+            t.push([e].concat(Array.prototype.slice.call(arguments)));
+          };
+        }
+        p=t.createElement("script");
+        p.type="text/javascript";
+        p.async=!0;
+        p.crossOrigin="anonymous";
+        p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+
+          "/static/array.js";
+        r=t.getElementsByTagName("script")[0];
+        r.parentNode.insertBefore(p,r);
+
+        var u=e;
+        void 0!==a ? u=e[a]=[] : a="posthog";
+        u.people=u.people||[];
+        u.toString=function(t){
+          var e="posthog";
+          return "posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e;
+        };
+        u.people.toString=function(){
+          return u.toString(1)+".people (stub)";
+        };
+
+        o=("init capture identify alias people.set people.set_once people.unset "+
+           "reset group setPersonPropertiesForFlags getFeatureFlag "+
+           "getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags "+
+           "onFeatureFlags").split(" ");
+
+        for(n=0;n<o.length;n++)g(u,o[n]);
+        e._i.push([i,s,a]);
+      };
+    }(document,window.posthog||[]);
+
+    posthog.init(
+      "phc_CA8RL6Xwzr4Na8ZkAPJCsdPwGPAxybxvE3Rx63CGWkv8",
+      {
+        api_host:"https://us.i.posthog.com",
+        autocapture:true,
+        capture_pageview:false,
+        capture_pageleave:false,
+        disable_session_recording:false,
+        person_profiles:"identified_only"
+      }
+    );
+  </script>
+
+  <style>
+    :root {
+      --bg: #f7f5f1;
+      --text: #25231f;
+      --muted: #77736c;
+      --border: #e5e0d7;
+      --dark: #25231f;
+      --gold: #9a805a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      margin: 0;
+      padding:
+        max(20px, env(safe-area-inset-top))
+        20px
+        max(16px, env(safe-area-inset-bottom));
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .ambient {
+      position: fixed;
+      z-index: 0;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(
+        ellipse at 50% 43%,
+        rgba(220, 210, 193, 0.26) 0%,
+        rgba(247, 245, 241, 0) 64%
+      );
+      animation: ambient 8s ease-in-out infinite alternate;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 460px;
+      height: 100%;
+      min-height: 0;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* أعلى الصفحة: اسم المتجر */
+    .brand {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      margin-top: 0;
+      padding: 8px 15px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      direction: ltr;
+      animation: fadeDown 0.7s ease both;
+    }
+
+    /* وسط الصفحة: الهووك والنص المرافق */
+    .hero {
+      width: 100%;
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-block: 16px;
+    }
+
+    .symbol {
+      flex: 0 0 auto;
+      margin: 0 0 23px;
+      color: var(--gold);
+      font-size: 22px;
+      line-height: 1;
+      animation: symbolIn 0.9s ease both;
+    }
+
+    .eyebrow {
+      margin: 0 0 17px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      line-height: 1.9;
+      animation: fadeUp 0.75s 0.1s ease both;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(29px, 7vw, 37px);
+      font-weight: 500;
+      line-height: 1.65;
+      letter-spacing: -0.8px;
+      animation: fadeUp 0.8s 0.18s ease both;
+    }
+
+    h1 span {
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    h1 span::after {
+      position: absolute;
+      right: 0;
+      bottom: 1px;
+      left: 0;
+      height: 1px;
+      background: var(--gold);
+      content: "";
+      transform: scaleX(0);
+      transform-origin: right;
+      animation: underline 0.9s 0.8s ease forwards;
+    }
+
+    .description {
+      max-width: 330px;
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 2.1;
+      animation: fadeUp 0.8s 0.28s ease both;
+    }
+
+    /* أسفل الصفحة: الزر ثم العبارة المطلوبة */
+    .action-area {
+      flex: 0 0 auto;
+      width: 100%;
+      margin: 0;
+      padding-bottom: 12px;
+      animation: buttonIn 0.8s 0.4s ease both;
+    }
+
+    .cta {
+      position: relative;
+      display: flex;
+      width: 100%;
+      min-height: 58px;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      padding: 16px 22px;
+      border: 1px solid var(--dark);
+      border-radius: 3px;
+      background: var(--dark);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        opacity 0.25s ease;
+      animation: buttonPulse 4s 2s ease-in-out infinite;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .cta:hover {
+      background: transparent;
+      color: var(--dark);
+      animation-play-state: paused;
+    }
+
+    .cta:active {
+      transform: scale(0.99);
+    }
+
+    .cta:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    .cta:disabled {
+      cursor: wait;
+      opacity: 0.72;
+      animation: none;
+    }
+
+    .arrow {
+      display: inline-block;
+      font-size: 18px;
+      line-height: 1;
+      transition: transform 0.25s ease;
+    }
+
+    .cta:hover .arrow {
+      transform: translateX(-4px);
+    }
+
+    .cta.loading .arrow {
+      opacity: 0;
+    }
+
+    .cta.loading::after {
+      position: absolute;
+      width: 17px;
+      height: 17px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-top-color: #fff;
+      border-radius: 50%;
+      content: "";
+      animation: spin 0.7s linear infinite;
+    }
+
+    .footnote {
+      margin: 19px 0 0;
+      color: #969087;
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes symbolIn {
+      from { opacity: 0; transform: scale(0.6) rotate(-25deg); }
+      to { opacity: 1; transform: scale(1) rotate(0); }
+    }
+
+    @keyframes underline {
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes buttonIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(37, 35, 31, 0);
+      }
+      50% {
+        box-shadow: 0 0 0 4px rgba(37, 35, 31, 0.035);
+      }
+    }
+
+    @keyframes ambient {
+      from { opacity: 0.6; }
+      to { opacity: 1; }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 360px) {
+      body {
+        padding-inline: 17px;
+      }
+
+      .hero {
+        padding-block: 10px;
+      }
+
+      .symbol {
+        margin-bottom: 17px;
+      }
+
+      .eyebrow {
+        margin-bottom: 12px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .description {
+        margin-top: 22px;
+        font-size: 13px;
+      }
+
+      .action-area {
+        padding-bottom: 4px;
+      }
+    }
+
+    @media (max-height: 650px) {
+      body {
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+      }
+
+      .hero {
+        padding-block: 8px;
+      }
+
+      .symbol {
+        margin-bottom: 12px;
+      }
+
+      .eyebrow {
+        margin-bottom: 8px;
+      }
+
+      h1 {
+        font-size: clamp(25px, 6vw, 32px);
+        line-height: 1.5;
+      }
+
+      .description {
+        margin-top: 22px;
+        font-size: 12px;
+        line-height: 1.8;
+      }
+
+      .action-area {
+        padding-bottom: 0;
+      }
+
+      .cta {
+        min-height: 52px;
+        padding-block: 12px;
+      }
+
+      .footnote {
+        margin-top: 19px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <main class="page">
+    <div class="brand">ELIT MAN</div>
+
+    <section class="hero" aria-label="متابعة الطلب">
+      <div class="symbol" aria-hidden="true">✦</div>
+
+      <h1>
+        ما زال بإمكانك<br>
+        <span>إتمام طلبك.</span>
+      </h1>
+
+      <p class="description">
+        أكمل بيانات التوصيل،<br>
+        وسنتواصل معك لمناقشة إمكانية إتمام طلبك.
+      </p>
+    </section>
+
+    <div class="action-area">
+      <button
+        class="cta"
+        id="continueButton"
+        type="button"
+        aria-label="متابعة الطلب"
+      >
+        <span>متابعة الطلب</span>
+        <span class="arrow" aria-hidden="true">←</span>
+      </button>
+
+      <p class="footnote">متابعة طلبك تبدأ من هنا</p>
+    </div>
+  </main>
+
+  <!-- TRACKING + NAVIGATION -->
+  <script>
+    (function () {
+      "use strict";
+
+      const TRACKING_URL =
+        "https://script.google.com/macros/s/AKfycby-S633ZoJlCFrxYIwPhv1CtxHe9OwppAOzSd1i16gClDmiZyvMsZXygwz2Hh2ivM6tsw/exec";
+
+      const CURRENT_PAGE = "page19_closing_layer";
+      const NEXT_PAGE = "page11.html";
+
+      const CLIENT_KEY = "closing_layer_client_id";
+      const SESSION_KEY = "closing_layer_session_id";
+      const LAST_SESSION_KEY = "closing_layer_last_session_id";
+
+      const button = document.getElementById("continueButton");
+      const enteredAt = Date.now();
+
+      let exitSent = false;
+      let navigating = false;
+
+      function createId(prefix) {
+        let id = "";
+
+        try {
+          if (window.crypto &&
+              typeof window.crypto.randomUUID === "function") {
+            id = window.crypto.randomUUID();
+          }
+        } catch (error) {}
+
+        if (!id) {
+          id = Date.now().toString(36) + "-" +
+            Math.random().toString(36).slice(2) + "-" +
+            Math.random().toString(36).slice(2);
+        }
+
+        return prefix + id;
+      }
+
+      function getOrCreateId(storage, key, prefix) {
+        try {
+          let id = storage.getItem(key);
+
+          if (!id) {
+            id = createId(prefix);
+            storage.setItem(key, id);
+          }
+
+          return id;
+        } catch (error) {
+          return createId(prefix);
+        }
+      }
+
+      const clientId = getOrCreateId(
+        window.localStorage,
+        CLIENT_KEY,
+        "CL-"
+      );
+
+      let previousSessionId = null;
+      let existingSessionId = null;
+
+      try {
+        previousSessionId = localStorage.getItem(LAST_SESSION_KEY);
+        existingSessionId = sessionStorage.getItem(SESSION_KEY);
+      } catch (error) {}
+
+      const isNewSession = !existingSessionId;
+
+      const sessionId = getOrCreateId(
+        window.sessionStorage,
+        SESSION_KEY,
+        "S-"
+      );
+
+      const returnLater = Boolean(
+        previousSessionId && previousSessionId !== sessionId
+      );
+
+      try {
+        localStorage.setItem(LAST_SESSION_KEY, sessionId);
+      } catch (error) {}
+
+      function getDurationSeconds() {
+        return Math.max(0, Math.round((Date.now() - enteredAt) / 1000));
+      }
+
+      function buildPayload(eventName, extra) {
+        return Object.assign({
+          client_id: clientId,
+          session_id: sessionId,
+          page: CURRENT_PAGE,
+          event: eventName,
+          event_name: eventName,
+          timestamp: new Date().toISOString(),
+          duration_seconds: getDurationSeconds(),
+          user_agent: navigator.userAgent,
+          referrer: document.referrer || "",
+          return_later: returnLater
+        }, extra || {});
+      }
+
+      function sendToGoogle(payload) {
+        try {
+          fetch(TRACKING_URL, {
+            method: "POST",
+            mode: "no-cors",
+            cache: "no-store",
+            keepalive: true,
+            headers: {
+              "Content-Type": "text/plain;charset=UTF-8"
+            },
+            body: JSON.stringify(payload)
+          }).catch(function () {});
+        } catch (error) {}
+      }
+
+      function sendToPostHog(eventName, payload) {
+        try {
+          if (window.posthog &&
+              typeof window.posthog.capture === "function") {
+            window.posthog.capture(eventName, payload);
+          }
+        } catch (error) {}
+      }
+
+      function track(eventName, extra) {
+        const payload = buildPayload(eventName, extra);
+        sendToGoogle(payload);
+        sendToPostHog(eventName, payload);
+      }
+
+      function sendPageExit(reason) {
+        if (exitSent) return;
+
+        exitSent = true;
+
+        track("page_exit", {
+          exit_reason: reason,
+          duration_seconds: getDurationSeconds()
+        });
+      }
+
+      if (isNewSession) {
+        track("session_start", {
+          return_later: returnLater
+        });
+      }
+
+      track("page_view", {
+        page_title: document.title,
+        page_path: window.location.pathname
+      });
+
+      window.addEventListener("pagehide", function () {
+        sendPageExit(navigating ? "continue_button" : "pagehide");
+      });
+
+      button.addEventListener("click", function () {
+        if (navigating) return;
+
+        navigating = true;
+        button.disabled = true;
+        button.classList.add("loading");
+
+        track("interaction", {
+          interaction: "continue_order",
+          button_text: "متابعة الطلب",
+          destination: NEXT_PAGE
+        });
+
+        sendPageExit("continue_button");
+
+        window.setTimeout(function () {
+          window.location.href = NEXT_PAGE;
+        }, 350);
+      });
+    })();
+  </script>
+</body>
+</html>
