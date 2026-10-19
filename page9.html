@@ -374,20 +374,15 @@
 
   <div class="page">
 
-
     <div class="brand">
       ELIT MAN
     </div>
 
-
     <div class="intro">
-
       <p>
         نكمل من اختيارك
       </p>
-
     </div>
-
 
     <!-- =========================
          PRICE
@@ -399,47 +394,22 @@
         هذا سعر المنتجات التي اخترتها
       </div>
 
-
       <div
         class="price-display"
         aria-label="ثمن المنتجات التي اخترتها"
       >
 
         <div class="digit-box">
-
-          <div
-            class="digit"
-            id="digit1"
-          >
-            0
-          </div>
-
+          <div class="digit" id="digit1">0</div>
         </div>
-
 
         <div class="digit-box">
-
-          <div
-            class="digit"
-            id="digit2"
-          >
-            0
-          </div>
-
+          <div class="digit" id="digit2">0</div>
         </div>
-
 
         <div class="digit-box">
-
-          <div
-            class="digit"
-            id="digit3"
-          >
-            0
-          </div>
-
+          <div class="digit" id="digit3">0</div>
         </div>
-
 
         <span class="currency">
           DH
@@ -448,7 +418,6 @@
       </div>
 
     </div>
-
 
     <!-- =========================
          QUESTION
@@ -465,7 +434,6 @@
       </p>
 
     </div>
-
 
     <!-- =========================
          INPUT
@@ -484,18 +452,13 @@
 
     </div>
 
-
     <!-- =========================
          RESULT
     ========================= -->
 
-    <div
-      class="result"
-      id="result"
-    >
+    <div class="result" id="result">
       اكتب المبلغ الموجود معك لنكمل.
     </div>
-
 
     <!-- =========================
          BUTTON
@@ -534,15 +497,12 @@
       "closing_layer_client_id";
 
     let clientId =
-      localStorage.getItem(
-        CLIENT_KEY
-      );
+      localStorage.getItem(CLIENT_KEY);
 
     if (!clientId) {
 
       clientId =
-        "CL-" +
-        crypto.randomUUID();
+        "CL-" + crypto.randomUUID();
 
       localStorage.setItem(
         CLIENT_KEY,
@@ -562,17 +522,14 @@
       "closing_layer_last_session_id";
 
     let sessionId =
-      sessionStorage.getItem(
-        SESSION_KEY
-      );
+      sessionStorage.getItem(SESSION_KEY);
 
     let isNewSession = false;
 
     if (!sessionId) {
 
       sessionId =
-        "S-" +
-        crypto.randomUUID();
+        "S-" + crypto.randomUUID();
 
       sessionStorage.setItem(
         SESSION_KEY,
@@ -588,9 +545,7 @@
     ===================================================== */
 
     const previousSessionId =
-      localStorage.getItem(
-        LAST_SESSION_KEY
-      );
+      localStorage.getItem(LAST_SESSION_KEY);
 
     const returnedLater =
       isNewSession &&
@@ -607,11 +562,9 @@
        PAGE INFO
     ===================================================== */
 
-    const CURRENT_PAGE =
-      "الصفحة 9";
+    const CURRENT_PAGE = "الصفحة 9";
 
-    const pageEnteredAt =
-      Date.now();
+    const pageEnteredAt = Date.now();
 
     const pageEnteredISO =
       new Date().toISOString();
@@ -621,11 +574,9 @@
 
     /* =====================================================
        U — FULL PATH
-       تسجيل الصفحة لحظة الخروج
     ===================================================== */
 
     let pathExitSent = false;
-
 
     function sendPathExit() {
 
@@ -635,46 +586,29 @@
 
       pathExitSent = true;
 
-
       const payload = {
 
-        client_id:
-          clientId,
-
-        session_id:
-          sessionId,
-
-        event:
-          "path_page_exit",
-
-        page:
-          CURRENT_PAGE,
-
-        path_page:
-          CURRENT_PAGE,
-
-        timestamp:
-          new Date().toISOString()
+        client_id: clientId,
+        session_id: sessionId,
+        event: "path_page_exit",
+        page: CURRENT_PAGE,
+        path_page: CURRENT_PAGE,
+        timestamp: new Date().toISOString()
 
       };
 
-
-      const body =
-        JSON.stringify(payload);
-
+      const body = JSON.stringify(payload);
 
       try {
 
         if (navigator.sendBeacon) {
 
-          const blob =
-            new Blob(
-              [body],
-              {
-                type:
-                  "text/plain;charset=UTF-8"
-              }
-            );
+          const blob = new Blob(
+            [body],
+            {
+              type: "text/plain;charset=UTF-8"
+            }
+          );
 
           if (
             navigator.sendBeacon(
@@ -682,45 +616,26 @@
               blob
             )
           ) {
-
             return;
-
           }
 
         }
 
       } catch (error) {}
 
-
       fetch(
-
         TRACKING_URL,
-
         {
-
-          method:
-            "POST",
-
-          headers:
-            {
-              "Content-Type":
-                "text/plain;charset=UTF-8"
-            },
-
-          body:
-            body,
-
-          mode:
-            "no-cors",
-
-          keepalive:
-            true,
-
-          cache:
-            "no-store"
-
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "text/plain;charset=UTF-8"
+          },
+          body: body,
+          mode: "no-cors",
+          keepalive: true,
+          cache: "no-store"
         }
-
       ).catch(function () {});
 
     }
@@ -734,40 +649,27 @@
 
       const payload = {
 
-        client_id:
-          clientId,
-
-        session_id:
-          sessionId,
-
+        client_id: clientId,
+        session_id: sessionId,
         ...data
 
       };
-
 
       fetch(
         TRACKING_URL,
         {
           method: "POST",
-
           headers: {
             "Content-Type":
               "text/plain;charset=UTF-8"
           },
-
-          body:
-            JSON.stringify(payload),
-
-          mode:
-            "no-cors",
-
+          body: JSON.stringify(payload),
+          mode: "no-cors",
           keepalive: true,
-
           cache: "no-store"
         }
-      ).catch(
-        function () {}
-      );
+      ).catch(function () {});
+
     }
 
 
@@ -779,22 +681,14 @@
 
       sendTracking({
 
-        event:
-          "session_start",
-
-        page:
-          CURRENT_PAGE,
-
-        path:
-          CURRENT_PAGE,
+        event: "session_start",
+        page: CURRENT_PAGE,
+        path: CURRENT_PAGE,
 
         returned_later:
-          returnedLater
-            ? "نعم"
-            : "لا",
+          returnedLater ? "نعم" : "لا",
 
-        timestamp:
-          pageEnteredISO
+        timestamp: pageEnteredISO
 
       });
 
@@ -807,20 +701,11 @@
 
     sendTracking({
 
-      event:
-        "page_view",
-
-      page:
-        CURRENT_PAGE,
-
-      path:
-        CURRENT_PAGE,
-
-      entered_at:
-        pageEnteredISO,
-
-      timestamp:
-        pageEnteredISO
+      event: "page_view",
+      page: CURRENT_PAGE,
+      path: CURRENT_PAGE,
+      entered_at: pageEnteredISO,
+      timestamp: pageEnteredISO
 
     });
 
@@ -838,35 +723,20 @@
             "navigation"
           )[0];
 
-
         if (
           navigation &&
-          navigation.type ===
-            "back_forward"
+          navigation.type === "back_forward"
         ) {
 
           sendTracking({
 
-            event:
-              "back_navigation",
-
-            page:
-              CURRENT_PAGE,
-
-            path:
-              CURRENT_PAGE,
-
-            went_back:
-              true,
-
-            back_count:
-              1,
-
-            interaction:
-              "رجع إلى الصفحة 9",
-
-            timestamp:
-              new Date().toISOString()
+            event: "back_navigation",
+            page: CURRENT_PAGE,
+            path: CURRENT_PAGE,
+            went_back: true,
+            back_count: 1,
+            interaction: "رجع إلى الصفحة 9",
+            timestamp: new Date().toISOString()
 
           });
 
@@ -888,30 +758,18 @@
 
       pageExitSent = true;
 
-
       const durationSeconds =
         Math.round(
-          (Date.now() -
-            pageEnteredAt) / 1000
+          (Date.now() - pageEnteredAt) / 1000
         );
-
 
       sendTracking({
 
-        event:
-          "page_exit",
-
-        page:
-          CURRENT_PAGE,
-
-        path:
-          CURRENT_PAGE,
-
-        duration:
-          durationSeconds,
-
-        timestamp:
-          new Date().toISOString()
+        event: "page_exit",
+        page: CURRENT_PAGE,
+        path: CURRENT_PAGE,
+        duration: durationSeconds,
+        timestamp: new Date().toISOString()
 
       });
 
@@ -928,9 +786,7 @@
       );
 
     const productCount =
-      Number(
-        savedProductCount
-      );
+      Number(savedProductCount);
 
 
     /* =====================================================
@@ -940,25 +796,17 @@
     const prices = {
 
       2: 100,
-
       3: 129,
-
       4: 159,
-
       5: 179,
-
       6: 199
 
     };
 
-
     const productPrice =
       prices[productCount];
 
-
-    if (
-      productPrice === undefined
-    ) {
+    if (productPrice === undefined) {
 
       console.error(
         "No price exists for product count:",
@@ -972,15 +820,12 @@
        SAVE PRICE
     ===================================================== */
 
-    if (
-      productPrice !== undefined
-    ) {
+    if (productPrice !== undefined) {
 
       localStorage.setItem(
         "product_price",
         String(productPrice)
       );
-
 
       localStorage.setItem(
         "productPrice",
@@ -988,7 +833,6 @@
       );
 
     }
-
 
     localStorage.setItem(
       "product_count",
@@ -1000,22 +844,13 @@
        DIGITS
     ===================================================== */
 
-    function setDigit(
-      id,
-      value
-    ) {
+    function setDigit(id, value) {
 
       const element =
-        document.getElementById(
-          id
-        );
-
+        document.getElementById(id);
 
       if (element) {
-
-        element.textContent =
-          String(value);
-
+        element.textContent = String(value);
       }
 
     }
@@ -1035,81 +870,44 @@
       setTimeout(
         () => {
 
-          const start =
-            performance.now();
+          const start = performance.now();
 
-          let lastNumber =
-            -1;
-
+          let lastNumber = -1;
 
           function animate(now) {
 
-            const elapsed =
-              now - start;
-
+            const elapsed = now - start;
 
             const progress =
-              Math.min(
-                elapsed / duration,
-                1
-              );
-
+              Math.min(elapsed / duration, 1);
 
             const eased =
-              1 -
-              Math.pow(
-                1 - progress,
-                4
-              );
+              1 - Math.pow(1 - progress, 4);
 
-
-            if (
-              progress < 1
-            ) {
+            if (progress < 1) {
 
               const number =
-                Math.floor(
-                  eased * 40
-                ) % 10;
+                Math.floor(eased * 40) % 10;
 
+              if (number !== lastNumber) {
 
-              if (
-                number !== lastNumber
-              ) {
+                setDigit(id, number);
 
-                setDigit(
-                  id,
-                  number
-                );
-
-
-                lastNumber =
-                  number;
+                lastNumber = number;
 
               }
 
+              requestAnimationFrame(animate);
 
-              requestAnimationFrame(
-                animate
-              );
+            } else {
 
-            }
-
-            else {
-
-              setDigit(
-                id,
-                finalNumber
-              );
+              setDigit(id, finalNumber);
 
             }
 
           }
 
-
-          requestAnimationFrame(
-            animate
-          );
+          requestAnimationFrame(animate);
 
         },
         delay
@@ -1118,18 +916,11 @@
     }
 
 
-    function revealPrice(
-      price
-    ) {
+    function revealPrice(price) {
 
-      if (
-        !Number.isFinite(price)
-      ) {
-
+      if (!Number.isFinite(price)) {
         return;
-
       }
-
 
       const digits =
         String(price)
@@ -1137,64 +928,20 @@
           .split("")
           .map(Number);
 
+      setDigit("digit1", 0);
+      setDigit("digit2", 0);
+      setDigit("digit3", 0);
 
-      setDigit(
-        "digit1",
-        0
-      );
-
-      setDigit(
-        "digit2",
-        0
-      );
-
-      setDigit(
-        "digit3",
-        0
-      );
-
-
-      spinDigit(
-        "digit1",
-        digits[0],
-        850,
-        0
-      );
-
-
-      spinDigit(
-        "digit2",
-        digits[1],
-        1000,
-        250
-      );
-
-
-      spinDigit(
-        "digit3",
-        digits[2],
-        1150,
-        500
-      );
-
+      spinDigit("digit1", digits[0], 850, 0);
+      spinDigit("digit2", digits[1], 1000, 250);
+      spinDigit("digit3", digits[2], 1150, 500);
 
       setTimeout(
         () => {
 
-          setDigit(
-            "digit1",
-            digits[0]
-          );
-
-          setDigit(
-            "digit2",
-            digits[1]
-          );
-
-          setDigit(
-            "digit3",
-            digits[2]
-          );
+          setDigit("digit1", digits[0]);
+          setDigit("digit2", digits[1]);
+          setDigit("digit3", digits[2]);
 
         },
         1800
@@ -1208,117 +955,75 @@
     ===================================================== */
 
     const moneyInput =
-      document.getElementById(
-        "moneyInput"
-      );
-
+      document.getElementById("moneyInput");
 
     const result =
-      document.getElementById(
-        "result"
-      );
-
+      document.getElementById("result");
 
     const continueBtn =
-      document.getElementById(
-        "continueBtn"
-      );
+      document.getElementById("continueBtn");
 
-
-    let currentMoney =
-      0;
-
+    let currentMoney = 0;
 
     let financialGap =
-      Number(productPrice) -
-      currentMoney;
+      Number(productPrice) - currentMoney;
 
 
     function calculateMoney() {
 
-      const value =
-        Number(
-          moneyInput.value
-        );
-
+      const rawValue = moneyInput.value;
 
       if (
-        !Number.isFinite(value) ||
-        value < 0
+        rawValue.trim() === "" ||
+        !Number.isFinite(Number(rawValue)) ||
+        Number(rawValue) < 0 ||
+        !Number.isFinite(Number(productPrice))
       ) {
 
-        currentMoney =
-          0;
+        currentMoney = 0;
 
+        financialGap = Number(productPrice);
 
-        financialGap =
-          Number(productPrice);
-
-
-        continueBtn.disabled =
-          true;
-
+        continueBtn.disabled = true;
 
         result.classList.remove(
           "insufficient",
           "sufficient"
         );
 
-
         result.textContent =
           "اكتب المبلغ الموجود معك لنكمل.";
-
 
         return;
 
       }
 
+      const value = Number(rawValue);
 
-      currentMoney =
-        value;
-
+      currentMoney = value;
 
       financialGap =
         Math.max(
-          Number(productPrice) -
-          currentMoney,
+          Number(productPrice) - currentMoney,
           0
         );
 
-
-      continueBtn.disabled =
-        false;
-
+      continueBtn.disabled = false;
 
       if (
-        currentMoney >=
-        Number(productPrice)
+        currentMoney >= Number(productPrice)
       ) {
 
-        result.classList.remove(
-          "insufficient"
-        );
-
-        result.classList.add(
-          "sufficient"
-        );
-
+        result.classList.remove("insufficient");
+        result.classList.add("sufficient");
 
         result.textContent =
           "المبلغ الموجود معك يكفي لهذا الاختيار.";
 
-      }
+      } else {
 
-      else {
-
-        result.classList.remove(
-          "sufficient"
-        );
-
-        result.classList.add(
-          "insufficient"
-        );
-
+        result.classList.remove("sufficient");
+        result.classList.add("insufficient");
 
         result.textContent =
           "باقي لك " +
@@ -1344,9 +1049,7 @@
       "DOMContentLoaded",
       () => {
 
-        revealPrice(
-          productPrice
-        );
+        revealPrice(productPrice);
 
       }
     );
@@ -1361,36 +1064,30 @@
       () => {
 
         if (
-          continueBtn.disabled
+          continueBtn.disabled ||
+          !Number.isFinite(Number(productPrice))
         ) {
-
           return;
-
         }
 
-
-        const now =
-          new Date().toISOString();
-
+        const now = new Date().toISOString();
 
         const timeOnPage =
           Math.round(
-            (Date.now() -
-              pageEnteredAt) / 1000
+            (Date.now() - pageEnteredAt) / 1000
           );
 
 
         /* =================================================
            NEXT PAGE
-           المبلغ الكافي → 18
-           المبلغ غير الكافي → 10
+           المبلغ الأقل → الصفحة 19
+           المبلغ المساوي أو الأعلى → الصفحة 11
         ================================================= */
 
         const nextPage =
-          currentMoney >=
-          Number(productPrice)
-            ? 18
-            : 10;
+          currentMoney >= Number(productPrice)
+            ? 11
+            : 19;
 
 
         /* =================================================
@@ -1402,18 +1099,15 @@
           String(currentMoney)
         );
 
-
         localStorage.setItem(
           "financial_gap",
           String(financialGap)
         );
 
-
         localStorage.setItem(
           "product_price",
           String(productPrice)
         );
-
 
         localStorage.setItem(
           "product_count",
@@ -1427,20 +1121,11 @@
 
         sendTracking({
 
-          event:
-            "interaction",
-
-          page:
-            CURRENT_PAGE,
-
-          path:
-            CURRENT_PAGE,
-
-          interaction:
-            "ضغط على زر: نكمل",
-
-          timestamp:
-            now
+          event: "interaction",
+          page: CURRENT_PAGE,
+          path: CURRENT_PAGE,
+          interaction: "ضغط على زر: نكمل",
+          timestamp: now
 
         });
 
@@ -1451,38 +1136,17 @@
 
         sendTracking({
 
-          event:
-            "page9_completed",
-
-          page:
-            CURRENT_PAGE,
-
-          path:
-            CURRENT_PAGE,
-
-          completed:
-            true,
-
-          current_money:
-            currentMoney,
-
-          product_count:
-            productCount,
-
-          product_price:
-            productPrice,
-
-          financial_gap:
-            financialGap,
-
-          time_on_page:
-            timeOnPage,
-
-          next_page:
-            "الصفحة " + nextPage,
-
-          timestamp:
-            now
+          event: "page9_completed",
+          page: CURRENT_PAGE,
+          path: CURRENT_PAGE,
+          completed: true,
+          current_money: currentMoney,
+          product_count: productCount,
+          product_price: productPrice,
+          financial_gap: financialGap,
+          time_on_page: timeOnPage,
+          next_page: "الصفحة " + nextPage,
+          timestamp: now
 
         });
 
@@ -1507,20 +1171,11 @@
 
         sendTracking({
 
-          event:
-            "page9_to_next",
-
-          from_page:
-            CURRENT_PAGE,
-
-          to_page:
-            "الصفحة " + nextPage,
-
-          transitioned:
-            "نعم",
-
-          transition_at:
-            now
+          event: "page9_to_next",
+          from_page: CURRENT_PAGE,
+          to_page: "الصفحة " + nextPage,
+          transitioned: "نعم",
+          transition_at: now
 
         });
 
@@ -1533,7 +1188,7 @@
           () => {
 
             window.location.href =
-              nextPage === 10
+              nextPage === 19
                 ? "page19.html"
                 : "page11.html";
 
@@ -1542,7 +1197,6 @@
         );
 
       }
-
     );
 
 
